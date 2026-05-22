@@ -689,10 +689,12 @@ function placeHardOrder(){
   //const EMAILJS_AUTOREPLY= process.env.EMAILJS_TEMPLATE_REPLY_ID; // Auto-reply → customer
   
   // Reset indicators
-  ['err-name','err-phone','err-email','err-addr'].forEach(id => {
-    document.getElementById(id).textContent = '';
-    document.getElementById(id).style.display = 'none';
-    const ok = document.getElementById(id.replace("err","ok"));
+  ['h-name','h-phone','h-email','h-addr'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.remove('valid','invalid');
+    const err = document.getElementById('err-' + id.split('-')[1]);
+    if(err){ err.textContent = ''; err.style.display = 'none'; }
+    const ok = document.getElementById('ok-' + id.split('-')[1]);
     if(ok) ok.style.display = 'none';
   });
   
@@ -708,10 +710,10 @@ function placeHardOrder(){
   const addr  = document.getElementById('h-addr').value.trim();
 
   // Validate
-  if(!name)  { alert('অনুগ্রহ করে আপনার নাম দিন।'); return; }
-  if(!phone) { alert('অনুগ্রহ করে মোবাইল নম্বর দিন।'); return; }
-  if(!email) { alert('অনুগ্রহ করে ই-মেল ঠিকানা দিন।'); return; }
-  if(!addr)  { alert('অনুগ্রহ করে পূর্ণ ঠিকানা দিন।'); return; }
+  //if(!name)  { alert('অনুগ্রহ করে আপনার নাম দিন।'); return; }
+  //if(!phone) { alert('অনুগ্রহ করে মোবাইল নম্বর দিন।'); return; }
+  //if(!email) { alert('অনুগ্রহ করে ই-মেল ঠিকানা দিন।'); return; }
+  //if(!addr)  { alert('অনুগ্রহ করে পূর্ণ ঠিকানা দিন।'); return; }
   
   let valid = true;
   
@@ -719,15 +721,18 @@ function placeHardOrder(){
   if(!name) {
     document.getElementById('err-name').textContent = 'অনুগ্রহ করে আপনার নাম দিন।';
     document.getElementById('err-name').style.display = 'block';
+    document.getElementById('h-name').classList.add('invalid');
     valid = false;
   } else {
     document.getElementById('ok-name').style.display = 'inline';
+    document.getElementById('h-name').classList.add('valid');
   }
   
   const phoneRegex = /^\+\d{2}\s?\d{10}$/;
   if(!phone) {
     document.getElementById('err-phone').textContent = 'অনুগ্রহ করে মোবাইল নম্বর দিন।';
     document.getElementById('err-phone').style.display = 'block';
+    document.getElementById('h-phone').classList.add('invalid');
     valid = false;
   } else if(!phoneRegex.test(phone)) {
     document.getElementById('err-phone').textContent = 'এইভাবে: +91 9876543210 অথবা +919876543210';
@@ -735,27 +740,33 @@ function placeHardOrder(){
     valid = false;
   } else {
     document.getElementById('ok-phone').style.display = 'inline';
+    document.getElementById('h-phone').classList.add('valid');
   }
   
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if(!email) {
     document.getElementById('err-email').textContent = 'অনুগ্রহ করে ই-মেল ঠিকানা দিন।';
     document.getElementById('err-email').style.display = 'block';
+    document.getElementById('h-email').classList.add('invalid');
     valid = false;
   } else if(!emailRegex.test(email)) {
     document.getElementById('err-email').textContent = 'ই-মেল লিখুন: name@provider.com';
     document.getElementById('err-email').style.display = 'block';
+    document.getElementById('h-email').classList.add('invalid');
     valid = false;
   } else {
     document.getElementById('ok-email').style.display = 'inline';
+    document.getElementById('h-email').classList.add('valid');
   }
   
   if(!addr) {
     document.getElementById('err-addr').textContent = 'অনুগ্রহ করে পূর্ণ ঠিকানা দিন।';
     document.getElementById('err-addr').style.display = 'block';
+    document.getElementById('h-addr').classList.add('invalid');
     valid = false;
   } else {
     document.getElementById('ok-addr').style.display = 'inline';
+    document.getElementById('h-addr').classList.add('valid');
   }
   
   if(!valid) return; // stop if validation fails
