@@ -904,7 +904,7 @@ function placeHardOrder(){
   // ══════════════════════════════════════════════════
   // EmailJS CREDENTIALS
   // ══════════════════════════════════════════════════
-  //const EMAILJS_SERVICE  = process.env.EMAILJS_SERVICE_ID;
+  //const EMAILJS_SERVICE  = process.env.EMAILJS_SERVICE_ID; all 3 Moved to Bankend
   //const EMAILJS_ORDER_T  = process.env.EMAILJS_TEMPLATE_CONFIRM_ID; // Order confirmation → publisher
   //const EMAILJS_AUTOREPLY= process.env.EMAILJS_TEMPLATE_REPLY_ID; // Auto-reply → customer
   const BOOK_TITLE       = 'নবদিগন্তের অভিমন্যুরা';
@@ -923,6 +923,18 @@ function placeHardOrder(){
   if(!email) { alert('অনুগ্রহ করে ইমেল ঠিকানা দিন।'); return; }
   if(!addr)  { alert('অনুগ্রহ করে পূর্ণ ঠিকানা দিন।'); return; }
   
+  // Regex validation
+  const phoneRegex = /^\+\d{2}\s?\d{10}$/;
+  if(!phoneRegex.test(phone)) {
+    alert('মোবাইল নম্বর ফরম্যাট: +91 9876543210 অথবা +919876543210'); 
+    return;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRegex.test(email)) {
+    alert('ইমেল ফরম্যাট: name@provider.com'); 
+    return;
+  }
+  
   // Build WhatsApp URL (always ready as fallback)
   const waMsg = encodeURIComponent(
     '📦 নতুন অর্ডার — ' + BOOK_TITLE + '\n\n' +
@@ -935,7 +947,7 @@ function placeHardOrder(){
   const waUrl = 'https://wa.me/' + WA_NUMBER + '?text=' + waMsg;
   document.getElementById('whatsapp-direct-btn').href = waUrl;
 
-  // Show sending state
+  // Show sending state for WhatsApp send
   const btn = document.getElementById('hard-order-btn');
   const sending = document.getElementById('hard-sending');
   btn.style.display = 'none';
@@ -963,14 +975,15 @@ function placeHardOrder(){
   .then(res => res.json())
   .then(data => {
     // ✅ Success
-    sending.style.display = "none";
+    //sending.style.display = "none";
     document.getElementById('success-hard').style.display = 'block';
+    ['h-name','h-phone','h-email','h-addr'].forEach(id => document.getElementById(id).value = '');
   })
   .catch(err => {
     // ❌ Error
     console.error("Backend error:", err);
-    sending.style.display = "none";
-    btn.style.display = "block";
+    //sending.style.display = "none";
+    //btn.style.display = "block";
     document.getElementById('hard-error').style.display = "block";
   });
 }
