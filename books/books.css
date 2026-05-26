@@ -332,7 +332,7 @@ footer a{color:var(--gold-l);text-decoration:none}
 
 .comment-name{
     font-weight:700;
-    font-size:1rem;
+    font-size:14px;
     margin-bottom:4px;
 }
 
@@ -345,12 +345,12 @@ footer a{color:var(--gold-l);text-decoration:none}
 .comment-stars{
     color:#f5a623;
     margin-bottom:8px;
-    font-size:.9rem;
+    font-size:13px;
 }
 
 .comment-text{
-    line-height:1.7;
-    font-size:.9rem;
+    line-height:1.5;
+    font-size:14px;
 }
 
 /* ===== Load More ===== */
@@ -387,4 +387,25 @@ footer a{color:var(--gold-l);text-decoration:none}
     font-size:0.85rem;
     color:#777;
     margin-top:2px;
+}
+
+.comments-title{
+    text-align:center;
+    margin:0 0 10px;
+    font-size:1.1rem;
+    font-weight:700;
+}
+
+#reader-comments #ratingSummary{
+    margin-top:6px;
+}
+
+#reader-comments .rating-stars{
+    font-size:.9rem;
+    font-weight:600;
+}
+
+#reader-comments .rating-count{
+    font-size:.8rem;
+    opacity:.9;
 }
