@@ -29,7 +29,14 @@ if (req.method === "GET") {
 
   try {
 
-    const { name, comment } = req.body;
+    const { name, comment, website } = req.body;
+    
+    if (website) {
+      return res.status(403).json({
+        success: false,
+        message: "Spam detected"
+      });
+    }
 
     if (!name || !comment) {
       return res.status(400).json({
@@ -37,7 +44,20 @@ if (req.method === "GET") {
         message: "Name and comment required"
       });
     }
-
+    
+    if (name.length > 50) {
+      return res.status(400).json({
+        success: false,
+        message: "Name cannot exceed 50 characters"
+      });
+    }
+    
+    if (comment.length > 150) {
+      return res.status(400).json({
+        success: false,
+        message: "Comment cannot exceed 150 characters"
+      });
+    }
     const owner = process.env.GITHUB_OWNER;
     const repo = process.env.GITHUB_REPO;
     const token = process.env.GITHUB_TOKEN;
