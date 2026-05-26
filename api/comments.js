@@ -58,12 +58,7 @@ if (req.method === "GET") {
         message: "Comment cannot exceed 150 characters"
       });
     }
-    const owner = process.env.GITHUB_OWNER;
-    const repo = process.env.GITHUB_REPO;
-    const token = process.env.GITHUB_TOKEN;
-
-    const path = "comments/books/book1.json";
-
+    
     // Read existing file
 
     const getResponse = await fetch(
