@@ -255,11 +255,11 @@
             <td style="padding:.55rem .5rem;font-weight:600;color:var(--ink-lt)">বাংলা</td>
           </tr>
           <tr style="border-bottom:1px solid var(--bdr)">
-            <td style="padding:.55rem .5rem;color:var(--ink-mu)">GGKEY (ebook)</td>
+            <td style="padding:.55rem .5rem;color:var(--ink-mu)">GGKEY (ই-বুক)</td>
             <td style="padding:.55rem .5rem;font-weight:600;color:var(--ink-lt)">6KU2ET80A31 978-93-5917-169-2</td>
           </tr>
           <tr>
-            <td style="padding:.55rem .5rem;color:var(--ink-mu)">ISBN (হার্ডকপি)</td>
+            <td style="padding:.55rem .5rem;color:var(--ink-mu)">ISBN (বাঁধানো)</td>
             <td style="padding:.55rem .5rem;font-weight:600;color:var(--ink-lt)">978-81-932050-5-1</td>
           </tr>
         </table>
@@ -267,21 +267,29 @@
     </div>
     
     <!-- ── NEW REVIEWS ChatGPT── -->
+
+    
     <!-- Reader Comments Section -->
-    <div class="section" id="reader-comments">
-      <div class="section-head">⭐ পাঠকের মতামত</div>
-        <!-- Section Body -->
-        <div class="section-body">
-          <!-- Comments Container -->
-          <div id="comments"></div>
-            <!-- Comments Actions -->
-            <div class="comments-actions">
-              <button id="loadMoreBtn" class="btn">
-                আরও মন্তব্য দেখুন ⬇️
-              </button>
-            </div>
+    <!-- Reader Comments -->
+    <div class="section">
+
+      <div class="section-head">
+        ⭐ পাঠকের মতামত
+      </div>
+
+      <div class="section-body">
+
+        <div id="comments"></div>
+
+        <div class="comments-actions">
+          <button id="loadMoreBtn" class="load-more-btn">
+            আরও মন্তব্য দেখুন
+          </button>
         </div>
-    </div>  
+
+      </div>
+
+    </div>
     
     <!--COMMENT PANEL ════  - MeSanjoy 25May-->
     <div class="section">
@@ -295,7 +303,7 @@
 
             <div class="bf">
               <label for="ccomm">মতামত *</label>
-              <textarea id="ccomm" placeholder="আপনার মতামত লিখুন..." maxlength="150" required></textarea>
+              <textarea id="ccomm" placeholder="আপনার মতামত লিখুন..." maxlength="300" required></textarea>
             </div>
             
             <!-- Hidden Honeypot Field 
@@ -311,7 +319,7 @@
                 style="display:none;">
             
             <!-- Submit button -->
-            <button class="buy-submit" type="submit">পাঠান</button>
+            <button class="buy-submit" type="submit">পাঠিয়ে দিন 🙏</button>
           </form>
 
         <!-- Display comments -->
