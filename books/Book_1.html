@@ -1293,22 +1293,19 @@ function renderComments() {
 
         name.textContent =
             item.name;
-
-        const date =
+      
+        const stars =
             document.createElement("div");
-
-        date.className =
-            "comment-date";
+      
+        stars.className =
+            "comment-stars";
+      
+        const rating =
+            Number(item.rating) || 5;
 
         stars.textContent =
           "★".repeat(Number(item.rating)) +
           "☆".repeat(5 - Number(item.rating));
-
-        const stars =
-            document.createElement("div");
-
-        stars.className =
-            "comment-stars";
 
         stars.textContent =
             "★★★★★";
@@ -1323,7 +1320,6 @@ function renderComments() {
             item.comment;
 
         card.appendChild(name);
-        card.appendChild(date);
         card.appendChild(stars);
         card.appendChild(text);
 
