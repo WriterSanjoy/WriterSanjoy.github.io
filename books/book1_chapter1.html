@@ -40,3 +40,44 @@
 <div style="text-align:center;padding:2rem 0 1rem;">
   ⋯ প্রথম অধ্যায় সমাপ্ত ⋯
 </div>
+
+<p class="preview-teaser">
+  অভিমন্যুরা তখনও জানে না,
+  এই অফিসই তাদের জীবন বদলে দেবে...
+</p>
+
+
+<div class="preview-end-wrap">
+
+  <div class="preview-fade"></div>
+
+  <div class="preview-end-card">
+
+    <div class="preview-lock-icon">
+      🔒
+    </div>
+
+    <h3>
+      প্রিভিউ এখানেই সমাপ্ত
+    </h3>
+
+    <p>
+      সম্পূর্ণ বই পড়তে এখনই সংগ্রহ করুন
+    </p>
+
+    <button class="preview-buy-btn"
+      onclick="
+        closeReader();
+        setTimeout(()=>{
+          document.querySelector('.buy-submit')
+            ?.scrollIntoView({
+              behavior:'smooth'
+            });
+        },250);
+      ">
+      সম্পূর্ণ বই কিনুন →
+    </button>
+
+  </div>
+
+</div>
