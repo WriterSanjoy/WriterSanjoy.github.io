@@ -1,0 +1,223 @@
+```html
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Moderation Panel</title>
+
+<style>
+
+body{
+  margin:0;
+  background:#111;
+  color:#fff;
+  font-family:sans-serif;
+}
+
+.admin-wrap{
+  max-width:900px;
+  margin:auto;
+  padding:2rem;
+}
+
+h1{
+  margin-bottom:2rem;
+}
+
+.comment-card{
+  background:#1b1b1b;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:1rem;
+  margin-bottom:1rem;
+}
+
+.comment-meta{
+  opacity:.7;
+  font-size:.9rem;
+  margin-bottom:.8rem;
+}
+
+.comment-text{
+  line-height:1.7;
+  margin-bottom:1rem;
+}
+
+.admin-actions{
+  display:flex;
+  gap:.8rem;
+}
+
+button{
+  border:none;
+  border-radius:999px;
+  padding:.7rem 1.2rem;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.approve-btn{
+  background:#25c266;
+  color:#111;
+}
+
+.delete-btn{
+  background:#ff4d4d;
+  color:#fff;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="admin-wrap">
+
+  <h1>Comment Moderation</h1>
+
+  <div id="comments-container">
+    Loading...
+  </div>
+
+</div>
+
+<script>
+
+const password = prompt("Enter admin password");
+
+async function loadPendingComments(){
+
+  const response = await fetch(
+    '/api/moderate?action=list',
+    {
+      headers:{
+        'x-admin-password':password
+      }
+    }
+  );
+
+  const data = await response.json();
+
+  const container =
+    document.getElementById('comments-container');
+
+  if(!data.success){
+
+    container.innerHTML =
+      `<p>${data.message}</p>`;
+
+    return;
+  }
+
+  let html = '';
+
+  data.comments.forEach(item=>{
+
+    html += `
+      <div class="comment-card">
+
+        <div class="comment-meta">
+          ${item.type} → ${item.contentId}
+          <br>
+          ${item.name}
+        </div>
+
+        <div class="comment-text">
+          ${item.comment}
+        </div>
+
+        <div class="admin-actions">
+
+          <button
+            class="approve-btn"
+            onclick="approveComment(
+              '${item.type}',
+              '${item.contentId}',
+              '${item.date}'
+            )"
+          >
+            Approve
+          </button>
+
+          <button
+            class="delete-btn"
+            onclick="deleteComment(
+              '${item.type}',
+              '${item.contentId}',
+              '${item.date}'
+            )"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+    `;
+  });
+
+  container.innerHTML =
+    html || '<p>No pending comments.</p>';
+}
+
+async function approveComment(
+  type,
+  contentId,
+  date
+){
+
+  await fetch('/api/moderate',{
+
+    method:'POST',
+
+    headers:{
+      'Content-Type':'application/json',
+      'x-admin-password':password
+    },
+
+    body:JSON.stringify({
+      action:'approve',
+      type,
+      contentId,
+      date
+    })
+  });
+
+  loadPendingComments();
+}
+
+async function deleteComment(
+  type,
+  contentId,
+  date
+){
+
+  await fetch('/api/moderate',{
+
+    method:'POST',
+
+    headers:{
+      'Content-Type':'application/json',
+      'x-admin-password':password
+    },
+
+    body:JSON.stringify({
+      action:'delete',
+      type,
+      contentId,
+      date
+    })
+  });
+
+  loadPendingComments();
+}
+
+loadPendingComments();
+
+</script>
+
+</body>
+</html>
+```
