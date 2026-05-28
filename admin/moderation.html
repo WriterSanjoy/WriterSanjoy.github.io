@@ -67,12 +67,48 @@ button{
   color:#fff;
 }
 
+#admin-toast{
+
+  position:fixed;
+
+  right:24px;
+  bottom:24px;
+
+  background:#1f1f1f;
+
+  color:#fff;
+
+  padding:.9rem 1.2rem;
+
+  border-radius:14px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  opacity:0;
+
+  transform:translateY(10px);
+
+  transition:.25s ease;
+
+  pointer-events:none;
+
+  z-index:9999;
+}
+
+#admin-toast.show{
+
+  opacity:1;
+
+  transform:translateY(0);
+}
+  
 </style>
 </head>
 
 <body>
 
 <div class="admin-wrap">
+  <div id="admin-toast"></div>
 
   <h1>Comment Moderation</h1>
 
@@ -86,6 +122,22 @@ button{
 
 const password = prompt("Enter admin password");
 
+function showToast(message){
+
+  const toast =
+    document.getElementById('admin-toast');
+
+  toast.textContent = message;
+
+  toast.classList.add('show');
+
+  setTimeout(()=>{
+
+    toast.classList.remove('show');
+
+  },2000);
+}
+  
 async function loadPendingComments(){
 
   const response = await fetch(
@@ -168,6 +220,7 @@ async function approveComment(
 ){
 
   await fetch('/api/moderate',{
+    showToast('✅ Comment approved');
 
     method:'POST',
 
@@ -194,6 +247,7 @@ async function deleteComment(
 ){
 
   await fetch('/api/moderate',{
+    showToast('🗑 Comment deleted');
 
     method:'POST',
 
