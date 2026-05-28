@@ -1030,115 +1030,6 @@ function placeHardOrder() {
 	  });
 }
 
-function XXplaceHardOrder(){
-  if (!validateName() || !validatePhone() || !validateEmail() || !validateAddr()) {
-    return; // stop if any invalid
-  }
-  
-  // Part of WhatsApp fallback.
-  const btn = document.getElementById('hard-order-btn');
-  const sending = document.getElementById('hard-sending');
-  btn.style.display = 'none';              // hide order button
-  sending.style.display = 'block';         // show sending state
-  document.getElementById('hard-error').style.display = 'none'; // clear old error
-  
-  // EmailJS template parameters  
-  sending.style.display = "block";
-  btn.disabled = true;   // 🔒 prevent double clicks
-  btn.style.display = "none";
-  
-  const BOOK_TITLE       = 'নবদিগন্তের অভিমন্যুরা';
-  const BOOK_PRICE       = '₹৪০৫';
-  // ✅ Collect values from form fields
-  const name  = document.getElementById("h-name").value.trim();
-  const phone = document.getElementById("h-phone").value.trim();
-  const email = document.getElementById("h-email").value.trim();
-  const addr  = document.getElementById("h-addr").value.trim();
-
-  // Load icons.json dynamically in the browser
-  fetch("./icons.json")
-    .then(res => res.json())
-    .then(icons => {
-      // Build orderParams after icons.json is loaded
-      const orderParams = {
-        book_title:   BOOK_TITLE,
-        book_price:   BOOK_PRICE,
-        pub_icon: icons["ebong1.png"], // ✅ base64 string from icons.json /icons["book1_icon.jpg"]
-        book_icon: icons["nabad.png"], // ✅ base64 string from icons.json
-        order_type:   'হার্ডবাইন্ড (ছাপা বই)',
-        customer_name:  name,
-        customer_phone: phone,
-        customer_email: email,
-        customer_address: addr,
-        order_date: new Date().toLocaleString('bn-IN')
-      }; 
-  
-      // 🔜Send to your backend API
-      // 👇 For Local Testing: 1. success test 2 & 3 Failure test   
-      //fetch("https://jsonplaceholder.typicode.com/posts", {
-      //fetch("https://jsonplaceholder.typicode.com/404", {  
-      //fetch("https://invalid.example.com", {
-      // 👇 Production/real call
-      fetch("/api/sendOrder", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderParams)
-      })
-      //.then(res => res.json())
-      .then(res => {
-        if (!res.ok) {
-          throw new Error("Server returned " + res.status);
-        }
-      return res.json();
-      })
-      .then(data => {
-      // ✅ Success
-        sending.style.display = "none";
-        document.getElementById('success-hard').style.display = 'block';
-        //successHard.style.display = "block";
-
-      // Clear fields + reset messages - next 6 lines added
-      ["h-name","h-phone","h-email","h-addr"].forEach(id => {
-        document.getElementById(id).value = "";
-      });
-
-      // Hide validation messages
-      ["name-msg","phone-msg","email-msg","addr-msg"].forEach(id => {
-        //document.getElementById(id).style.display = "none";
-              const el = document.getElementById(id);
-        el.textContent = el.getAttribute("data-hint");
-        el.className = "msg hint";
-      });
-
-      // Auto-hide success after 5 seconds
-      setTimeout(() => {
-      document.getElementById('success-hard').style.display = 'none';
-        btn.disabled = false;   // 🔓 allow new submission
-      btn.style.display = "block"; // re-show order button
-      }, 5000);
-    })
-      .catch(err => {
-      // ❌ Error
-      console.error("Backend error:", err);
-      sending.style.display = "none";
-
-      // Only needed if you disable the button earlier
-      btn.disabled = false;   // 🔓 re-enable if error
-
-      btn.style.display = "block";
-      document.getElementById('hard-error').style.display = "block";
-      //hardError.style.display = "block";
-
-      // Optional: auto‑prepare WhatsApp fallback
-      buildWhatsAppUrl();
-      document.getElementById("whatsapp-direct-btn").style.display = "flex";
-    });//🔚
-    })
-    .catch(err => {
-      console.error("Could not load icons.json:", err);
-    });  
-}
-
 // ══════════════════════════════════════════════════
 // WHATSApp fallback function
 // ══════════════════════════════════════════════════  
@@ -1321,7 +1212,7 @@ document
 
 });
 
-//const bookId = "book1"; //old
+//Change for every book/blog
 const type = "books"; //change
 const contentId = "book1"; //change
   
@@ -1333,12 +1224,12 @@ async function loadComments() {
     try {
 
         const response =
-            //await fetch("/api/comments");
-            //await fetch(`/api/comments?book=${bookId}`);
             await fetch(`/api/comments?type=${type}&id=${contentId}`)
 
-        allComments =
-            await response.json();
+        allComments = await response.json();
+        allComments = allComments.filter(
+          c => c.approved === true
+        );
       
         renderRatingSummary();
 
