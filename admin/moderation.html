@@ -220,7 +220,6 @@ async function approveComment(
 ){
 
   await fetch('/api/moderate',{
-    showToast('✅ Comment approved');
 
     method:'POST',
 
@@ -237,6 +236,8 @@ async function approveComment(
     })
   });
 
+  showToast('✅ Comment approved');
+
   loadPendingComments();
 }
 
@@ -247,7 +248,6 @@ async function deleteComment(
 ){
 
   await fetch('/api/moderate',{
-    showToast('🗑 Comment deleted');
 
     method:'POST',
 
@@ -263,6 +263,8 @@ async function deleteComment(
       date
     })
   });
+
+  showToast('🗑 Comment deleted');
 
   loadPendingComments();
 }
