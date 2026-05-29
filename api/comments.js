@@ -263,14 +263,30 @@ await fetch(
     );
 
     const DEFAULT_REPLY = "অনেক ধন্যবাদ। আপনার মতামত আমার কাছে মূল্যবান।";
+    const numericRating =
+      Number(rating);
+    
+    const autoApproved =
+      numericRating >= 3;
+    
     comments.unshift({
+    
       name,
+    
       comment,
-      rating,
-      approved:false,
-      authorReply: DEFAULT_REPLY,
+    
+      rating:numericRating,
+    
+      approved:autoApproved,
+    
+      authorReply:
+        type === "books"
+          ? DEFAULT_REPLY
+          : "",
+    
       date:new Date().toISOString()
     });
+
 
     const updatedContent = Buffer
       .from(JSON.stringify(comments, null, 2))
