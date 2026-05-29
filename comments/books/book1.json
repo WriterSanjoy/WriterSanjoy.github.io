@@ -8,14 +8,6 @@
     "date": "2026-05-29T12:44:14.717Z"
   },
   {
-    "name": "After Rate Limiting",
-    "comment": "Testing After Rate limiting. Allows new comment after 5 mins from same IP",
-    "rating": "5",
-    "approved": false,
-    "authorReply": "অনেক ধন্যবাদ। আপনার মতামত আমার কাছে মূল্যবান।",
-    "date": "2026-05-29T12:24:08.601Z"
-  },
-  {
     "name": "New Sanjoy",
     "comment": "সমাজ ও কর্মক্ষেত্রের একটি ছবি আমাদের সামনে এমন ভাবে এনে দিয়েছে।",
     "rating": "5",
