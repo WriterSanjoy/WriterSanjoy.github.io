@@ -1,47 +1,5 @@
 [
   {
-    "name": "Amol T",
-    "comment": "rating 2 - Should NOT be approved automatically",
-    "rating": 2,
-    "approved": false,
-    "authorReply": "অনেক ধন্যবাদ। আপনার মতামত আমার কাছে মূল্যবান।",
-    "date": "2026-05-29T17:25:54.694Z"
-  },
-  {
-    "name": "Amol R",
-    "comment": "rating 4 - shd be approved automatically",
-    "rating": 4,
-    "approved": true,
-    "authorReply": "অনেক ধন্যবাদ। আপনার মতামত আমার কাছে মূল্যবান।",
-    "likes": 11,
-    "date": "2026-05-29T17:18:47.530Z"
-  },
-  {
-    "name": "New Sanjoy",
-    "comment": "সমাজ ও কর্মক্ষেত্রের একটি ছবি আমাদের সামনে এমন ভাবে এনে দিয়েছে।",
-    "rating": "5",
-    "approved": true,
-    "authorReply": "অনেক ধন্যবাদ। আপনার মতামত আমার কাছে মূল্যবান।",
-    "likes": 12,
-    "date": "2026-05-28T15:58:41.546Z"
-  },
-  {
-    "name": "Me Sanjoy",
-    "comment": "বিশ্বায়ন ও যান্ত্রিক স্বয়ংক্রিয়তার যুগে গল্পের প্রাসাঙ্গিকতা অন্ত্যন্ত গুরুত্বপূর্ণ।",
-    "rating": "5",
-    "approved": true,
-    "date": "2026-05-28T14:33:25.781Z",
-    "likes": 3
-  },
-  {
-    "name": "Pampa Mondal",
-    "comment": "খুব খুব ভাল লাগলো। অনেক অনেক ধন্যবাদ।",
-    "rating": "5",
-    "approved": true,
-    "date": "2026-05-28T14:06:26.729Z",
-    "likes": 3
-  },
-  {
     "name": "অমিত মুখোপাধ্যায়",
     "rating": 4,
     "approved": true,
