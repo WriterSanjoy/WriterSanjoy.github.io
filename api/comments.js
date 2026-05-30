@@ -1,7 +1,5 @@
 export default async function handler(req, res) {
 
-  import bannedWordsData from "../data/banned-words.json";
-
   if (
     req.method !== "GET" &&
     req.method !== "POST"
