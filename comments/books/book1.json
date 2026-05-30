@@ -9,15 +9,6 @@
     "date": "2026-05-30T15:31:45.976Z"
   },
   {
-    "name": "Add Profanity 1",
-    "comment": "after profanity low rating. shd be not auto proved",
-    "rating": 2,
-    "approved": false,
-    "likes": 0,
-    "authorReply": "অনেক ধন্যবাদ। আপনার মতামত আমার কাছে মূল্যবান।",
-    "date": "2026-05-30T15:25:46.472Z"
-  },
-  {
     "name": "testing bad",
     "comment": "no one idiot",
     "rating": 5,
