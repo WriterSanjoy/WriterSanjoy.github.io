@@ -1,5 +1,14 @@
 [
   {
+    "name": "Bimal Pal",
+    "comment": "After new Book added",
+    "rating": 4,
+    "approved": true,
+    "likes": 0,
+    "authorReply": "অনেক ধন্যবাদ। আপনার মতামত আমার কাছে মূল্যবান।",
+    "date": "2026-05-30T18:47:22.023Z"
+  },
+  {
     "name": "Pampa Mondal",
     "comment": "স্ফুলিঙ্গ - খুব খুব ভাল লাগলো। অনেক অনেক ধন্যবাদ।",
     "rating": "5",
