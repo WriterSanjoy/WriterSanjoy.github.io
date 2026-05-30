@@ -112,7 +112,7 @@ button{
 
   <h2 id="moderation-title">
     Comment Moderation
-  </h2
+  </h2>
 
   <div id="comments-container">
     Loading...
@@ -151,7 +151,14 @@ async function loadPendingComments(){
     }
   );
 
-  const data = await response.json();
+  //const data = await response.json();
+  let data;
+  try {
+    data = await response.json();
+  } catch {
+    container.innerHTML = '<p>Invalid server response</p>';
+    return;
+  }
 
   const title =
     document.getElementById(
@@ -207,6 +214,7 @@ async function loadPendingComments(){
           >
             Approve
           </button>
+//If any value contains ' (apostrophe), your JS will break or worse. Example: contentId = O'Reilly 👉 This will break your HTML.
 
           <button
             class="delete-btn"
