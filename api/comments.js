@@ -1,7 +1,6 @@
 export default async function handler(req, res) {
 
-const bannedWords =
-  require("../data/bannedWords");
+//const bannedWords = require("../data/bannedWords");
 
   if (
     req.method !== "GET" &&
