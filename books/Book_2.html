@@ -292,7 +292,7 @@
           <form id="reviewForm">
             <div class="bf">
               <label for="cname">নাম *</label>
-                <input type="text" id="cname" placeholder="আপনার নাম" maxlength="50" required>
+                <input type="text" id="cname" placeholder="আপনার নাম" maxlength="50" required onblur="validateName()">
             </div>
 
             <div class="bf">
@@ -310,7 +310,7 @@
             
             <div class="bf">
               <label for="ccomm">মতামত *</label>
-              <textarea id="ccomm" placeholder="আপনার মতামত লিখুন..." maxlength="300" required></textarea>
+              <textarea id="ccomm" placeholder="আপনার মতামত লিখুন..." maxlength="300" onblur="validateAddr()" required></textarea>
             </div>
             
             <!-- Hidden Honeypot Field 
@@ -896,7 +896,7 @@ function validateAddr() {
     return false;
   }
   if (val.length > 150) {
-    nameMsg.textContent = "ঠিকানা ১৫০ অক্ষরের মধ্যে সীমিত রাখুন";
+    nameMsg.textContent = "ঠিকানা ৩০০ অক্ষরের মধ্যে সীমিত রাখুন";
     nameMsg.className = "msg error";
     return false;
   }  
@@ -915,8 +915,8 @@ document.getElementById("h-addr").onblur = validateAddr;
 // 1. Helper: build orderParams
 //function buildOrderParams(pubIcon, bookIcon) { 
 function buildOrderParams() {
-  const BOOK_TITLE       = 'নবদিগন্তের অভিমন্যুরা';
-  const BOOK_PRICE       = '₹৪০৫';
+  const BOOK_TITLE       = 'স্ফুলিঙ্গ';
+  const BOOK_PRICE       = '₹৩৬০';
   const PUBLISHER_EMAIL  = 'sencool69@gmail.com';
   
   
@@ -1043,8 +1043,8 @@ function placeHardOrder() {
 // ══════════════════════════════════════════════════  
 function buildWhatsAppUrl() {
   
-  const BOOK_TITLE       = 'নবদিগন্তের অভিমন্যুরা';
-  const BOOK_PRICE       = '₹৪০৫';
+  const BOOK_TITLE       = 'স্ফুলিঙ্গ';
+  const BOOK_PRICE       = '₹৩৬০';
   // CHANGE: Your WhatsApp number (with country code, no + or spaces)
   const WA_NUMBER        = '919830622345';
   
@@ -1071,7 +1071,13 @@ function buildWhatsAppUrl() {
   );
   const waUrl = 'https://wa.me/' + WA_NUMBER + '?text=' + waMsg;
 
-  document.getElementById('whatsapp-direct-btn').href = waUrl;
+    document.getElementById('whatsapp-direct-btn').href = waUrl;
+    
+    // Clear fields + reset messages
+    document.getElementById("wa-error").style.display = "none"; // clear error message
+	["h-name","h-phone","h-email","h-addr"].forEach(id => {
+	document.getElementById(id).value = "";
+	});
   return true;
 }
 
