@@ -1255,15 +1255,23 @@ document
       document.getElementById("website").value;
   
     
-    //if (!name || !comment) {
+    if (!name || !comment) {
     //alert("নাম ও মতামত লিখুন");
-    //return;
-    //}
+      showToast(
+            "নাম ও মতামত লিখুন",
+            "warning"
+          );
+      return;
+    }
   
-    //if (!rating) {
+    if (!rating) {
     //alert("রেটিং নির্বাচন করুন");
-    //return;
-    //}
+      showToast(
+      "রেটিং নির্বাচন করুন। ",
+      "warning"
+      ); 
+      return;
+    }
 
     try {
 
@@ -1324,7 +1332,7 @@ document
         );
       }else{
         showToast(
-          "সমস্ত তথ্য পূরণ করুন। মন্তব্য পাঠাতে সমস্যা হচ্ছে।",
+          "মন্তব্য পাঠাতে সমস্যা হচ্ছে।",
           "error"
         ); 
       } 
