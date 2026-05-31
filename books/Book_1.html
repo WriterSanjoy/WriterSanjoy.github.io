@@ -291,13 +291,14 @@
           <form id="reviewForm">
             <div class="bf">
               <label for="cname">নাম *</label>
-                <input type="text" id="cname" placeholder="আপনার নাম" maxlength="50" required>
+                <input type="text" id="cname" placeholder="আপনার নাম" maxlength="50" onblur="validateCName()">
+                <span id="cname-msg"></span>
             </div>
 
             <div class="bf">
               <label for="rating">রেটিং *</label>
 
-              <select id="rating" required>
+              <select id="rating" onblur=validateRating()>
                 <option value="">রেটিং নির্বাচন করুন</option>
                 <option value="5">★★★★★ (5)</option>
                 <option value="4">★★★★☆ (4)</option>
@@ -305,11 +306,13 @@
                 <option value="2">★★☆☆☆ (2)</option>
                 <option value="1">★☆☆☆☆ (1)</option>
               </select>
+              <span id="rate-msg"></span>
             </div>            
             
             <div class="bf">
               <label for="ccomm">মতামত *</label>
-              <textarea id="ccomm" placeholder="আপনার মতামত লিখুন..." maxlength="300" required></textarea>
+              <textarea id="ccomm" placeholder="আপনার মতামত লিখুন..." maxlength="300" onblur="validateCComm()"></textarea>
+              <span id="comm-msg"></span>
             </div>
             
             <!-- Hidden Honeypot Field 
@@ -850,7 +853,6 @@ function validateName() {
   return true;
 }
 
-
 function validatePhone() {
   const val = document.getElementById("h-phone").value.trim();
   const phoneMsg = document.getElementById("phone-msg");
@@ -861,8 +863,8 @@ function validatePhone() {
     return false;
   }
   if (val.length > 14) {
-    nameMsg.textContent = "সঠিক সংখ্যার নম্বর দিন";
-    nameMsg.className = "msg error";
+    phoneMsg.textContent = "সঠিক সংখ্যার নম্বর দিন";
+    phoneMsg.className = "msg error";
     return false;
   }
   phoneMsg.textContent = "✅";
@@ -895,8 +897,8 @@ function validateAddr() {
     return false;
   }
   if (val.length > 150) {
-    nameMsg.textContent = "ঠিকানা ১৫০ অক্ষরের মধ্যে সীমিত রাখুন";
-    nameMsg.className = "msg error";
+    addrMsg.textContent = "ঠিকানা ১৫০ অক্ষরের মধ্যে সীমিত রাখুন";
+    addrMsg.className = "msg error";
     return false;
   }  
   addrMsg.textContent = "✅";
@@ -904,6 +906,68 @@ function validateAddr() {
   return true;
 }
 
+//Validation for Comments Form☑️ 
+function validateCName() {
+  const val = document.getElementById("cname").value.trim();
+  const cnameMsg = document.getElementById("cname-msg");
+
+  if (!val) {
+    cnameMsg.textContent = "আপনার নাম দিন";
+    cnameMsg.className = "msg error";
+    return false;
+  }
+  if (val.length > 50) {
+    cnameMsg.textContent = "৫০ অক্ষরের মধ্যে নাম লিখুন";
+    cnameMsg.className = "msg error";
+    return false;
+  }
+  if (/^\d/.test(val)) {
+    cnameMsg.textContent = "সংখ্যা দিয়ে নাম শুরু হতে পারবে না";
+    cnameMsg.className = "msg error";
+    return false;
+  }
+  if (/^\d+$/.test(val)) {
+    cnameMsg.textContent = "আপনার নাম শুধুমাত্র সংখ্যা হতে পারবে না";
+    cnameMsg.className = "msg error";
+    return false;
+  }
+  cnameMsg.textContent = "✅";
+  cnameMsg.className = "msg valid";
+  return true;
+}
+
+function validateCcomm() {
+  const val = document.getElementById("ccomm").value.trim();
+  const commmsg = document.getElementById("comm-msg");
+
+  if (!val) {
+    commmsg.textContent = "দয়া করে সম্পূর্ণ ঠিকানা লিখুন";
+    commmsg.className = "msg error";
+    return false;
+  }
+  if (val.length > 150) {
+    commmsg.textContent = "ঠিকানা ৩০০ অক্ষরের মধ্যে রাখুন";
+    commmsg.className = "msg error";
+    return false;
+  }  
+  commmsg.textContent = "✅";
+  commmsg.className = "msg valid";
+  return true;
+}
+
+function validateRating() {
+  const val = document.getElementById("rating").value; // get selected value
+  const ratemsg = document.getElementById("rate-msg");
+
+  if (!val || parseInt(val) < 1) {
+    ratemsg.textContent = "দয়া করে রেটিং দিন";
+    ratemsg.className = "msg error";
+    return false;
+  }
+  ratemsg.textContent = "✅";
+  ratemsg.className = "msg valid";
+  return true;
+}
 
 // Bind blur events once
 document.getElementById("h-name").onblur = validateName;
@@ -911,6 +975,10 @@ document.getElementById("h-phone").onblur = validatePhone;
 document.getElementById("h-email").onblur = validateEmail;
 document.getElementById("h-addr").onblur = validateAddr;
 
+//Validation for Comments Form☑️  
+document.getElementById("cname").onblur = validateCName;
+document.getElementById("ccomm").onblur = validateCcomm;
+  
 // 1. Helper: build orderParams
 //function buildOrderParams(pubIcon, bookIcon) { 
 function buildOrderParams() {
@@ -1071,6 +1139,21 @@ function buildWhatsAppUrl() {
   const waUrl = 'https://wa.me/' + WA_NUMBER + '?text=' + waMsg;
 
   document.getElementById('whatsapp-direct-btn').href = waUrl;
+      
+  // Clear fields + reset messages
+  document.getElementById("wa-error").style.display = "none"; // clear error message
+  ["h-name","h-phone","h-email","h-addr"].forEach(id => {
+  document.getElementById(id).value = "";
+  });
+
+  // Hide validation messages
+  ["name-msg","phone-msg","email-msg","addr-msg"].forEach(id => {
+  //document.getElementById(id).style.display = "none";
+  const el = document.getElementById(id);
+  el.textContent = el.getAttribute("data-hint");
+  el.className = "msg hint";
+  });
+  
   return true;
 }
 
@@ -1171,15 +1254,16 @@ document
     const website =
       document.getElementById("website").value;
   
-    if (!name || !comment) {
-    alert("নাম ও মতামত লিখুন");
-    return;
-    }
+    
+    //if (!name || !comment) {
+    //alert("নাম ও মতামত লিখুন");
+    //return;
+    //}
   
-    if (!rating) {
-    alert("রেটিং নির্বাচন করুন");
-    return;
-    }
+    //if (!rating) {
+    //alert("রেটিং নির্বাচন করুন");
+    //return;
+    //}
 
     try {
 
@@ -1218,6 +1302,14 @@ document
       visibleCount += 1;
       loadComments();
       document.getElementById("reviewForm").reset();
+      
+      // Hide validation messages cname-msg comm-msg rate-msg
+      ["cname-msg","comm-msg","rate-msg"].forEach(id => {
+      //document.getElementById(id).style.display = "none";
+      const el = document.getElementById(id);
+      el.textContent = el.getAttribute("data-hint");
+      el.className = "msg hint";
+      });
 
     } catch(error) {
 
@@ -1232,7 +1324,7 @@ document
         );
       }else{
         showToast(
-          "মন্তব্য পাঠাতে সমস্যা হয়েছে।",
+          "সমস্ত তথ্য পূরণ করুন। মন্তব্য পাঠাতে সমস্যা হচ্ছে।",
           "error"
         ); 
       } 
