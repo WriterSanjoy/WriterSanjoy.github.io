@@ -1,5 +1,14 @@
 [
   {
+    "name": "স্ফুলিঙ্গ - New Cust",
+    "comment": "from স্ফুলিঙ্গ page - low rating - shd not be approved",
+    "rating": 2,
+    "approved": false,
+    "likes": 0,
+    "authorReply": "অনেক ধন্যবাদ। আপনার মতামত আমার কাছে মূল্যবান।",
+    "date": "2026-05-31T15:10:38.288Z"
+  },
+  {
     "name": "Sfulingo New 2",
     "comment": "Good rating",
     "rating": 4,
