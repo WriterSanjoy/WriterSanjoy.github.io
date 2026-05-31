@@ -292,7 +292,7 @@
           <form id="reviewForm">
             <div class="bf">
               <label for="cname">নাম *</label>
-                <input type="text" id="cname" placeholder="আপনার নামটি" maxlength="50" onblur="validateCName() required">
+                <input type="text" id="cname" placeholder="আপনার নাম" maxlength="50" onblur="validateCName() required">
                 <span id="cname-msg"></span>
             </div>
 
@@ -907,7 +907,7 @@ function validateAddr() {
   return true;
 }
 
-//Validation for Comments Form☑️
+//Validation for Comments Form☑️ 
 function validateCName() {
   const val = document.getElementById("cname").value.trim();
   const cnameMsg = document.getElementById("cname-msg");
@@ -1147,6 +1147,15 @@ function buildWhatsAppUrl() {
 	["h-name","h-phone","h-email","h-addr"].forEach(id => {
 	document.getElementById(id).value = "";
 	});
+    
+    // Hide validation messages
+	["name-msg","phone-msg","email-msg","addr-msg"].forEach(id => {
+	//document.getElementById(id).style.display = "none";
+	const el = document.getElementById(id);
+	el.textContent = el.getAttribute("data-hint");
+	el.className = "msg hint";
+	});
+  
   return true;
 }
 
@@ -1295,6 +1304,14 @@ document
       visibleCount += 1;
       loadComments();
       document.getElementById("reviewForm").reset();
+      
+      // Hide validation messages cname-msg comm-msg rate-msg
+      ["cname-msg","comm-msg","rate-msg"].forEach(id => {
+      //document.getElementById(id).style.display = "none";
+      const el = document.getElementById(id);
+      el.textContent = el.getAttribute("data-hint");
+      el.className = "msg hint";
+      });
 
     } catch(error) {
 
