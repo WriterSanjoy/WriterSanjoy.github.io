@@ -942,7 +942,7 @@ function validateCcomm() {
   const commmsg = document.getElementById("comm-msg");
 
   if (!val) {
-    commmsg.textContent = "দয়া করে সম্পূর্ণ ঠিকানা লিখুন";
+    commmsg.textContent = "আপনার মতামত লিখুন";
     commmsg.className = "msg error";
     return false;
   }
@@ -961,7 +961,7 @@ function validateRating() {
   const ratemsg = document.getElementById("rate-msg");
 
   if (!val || parseInt(val) < 1) {
-    ratemsg.textContent = "দয়া করে রেটিং দিন";
+    ratemsg.textContent = "রেটিং নির্বাচন করুন";
     ratemsg.className = "msg error";
     return false;
   }
