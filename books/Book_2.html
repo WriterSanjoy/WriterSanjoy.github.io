@@ -292,13 +292,14 @@
           <form id="reviewForm">
             <div class="bf">
               <label for="cname">নাম *</label>
-                <input type="text" id="cname" placeholder="আপনার নাম" maxlength="50" onblur="validateCName()">
+                <input type="text" id="cname" placeholder="আপনার নামটি" maxlength="50" onblur="validateCName() required">
+                <span id="cname-msg"></span>
             </div>
 
             <div class="bf">
               <label for="rating">রেটিং *</label>
 
-              <select id="rating" required>
+              <select id="rating" onblur=validateRating()>
                 <option value="">রেটিং নির্বাচন করুন</option>
                 <option value="5">★★★★★ (5)</option>
                 <option value="4">★★★★☆ (4)</option>
@@ -306,11 +307,13 @@
                 <option value="2">★★☆☆☆ (2)</option>
                 <option value="1">★☆☆☆☆ (1)</option>
               </select>
+              <span id="rate-msg"></span>
             </div>            
             
             <div class="bf">
               <label for="ccomm">মতামত *</label>
-              <textarea id="ccomm" placeholder="আপনার মতামত লিখুন..." maxlength="300" onblur="validateCComm()" required></textarea>
+              <textarea id="ccomm" placeholder="আপনার মতামত লিখুন..." maxlength="300" onblur="validateCComm()"></textarea>
+              <span id="comm-msg"></span>
             </div>
             
             <!-- Hidden Honeypot Field 
@@ -861,8 +864,8 @@ function validatePhone() {
     return false;
   }
   if (val.length > 14) {
-    nameMsg.textContent = "সঠিক সংখ্যার নম্বর দিন";
-    nameMsg.className = "msg error";
+    phoneMsg.textContent = "সঠিক সংখ্যার নম্বর দিন";
+    phoneMsg.className = "msg error";
     return false;
   }
   phoneMsg.textContent = "✅";
@@ -894,9 +897,9 @@ function validateAddr() {
     addrMsg.className = "msg error";
     return false;
   }
-  if (val.length > 150) {
-    nameMsg.textContent = "ঠিকানা ৩০০ অক্ষরের মধ্যে সীমিত রাখুন";
-    nameMsg.className = "msg error";
+  if (val.length > 300) {
+    addrMsg.textContent = "ঠিকানা ৩০০ অক্ষরের মধ্যে সীমিত রাখুন";
+    addrMsg.className = "msg error";
     return false;
   }  
   addrMsg.textContent = "✅";
@@ -907,52 +910,66 @@ function validateAddr() {
 //Validation for Comments Form☑️
 function validateCName() {
   const val = document.getElementById("cname").value.trim();
-  const nameMsg = document.getElementById("name-msg");
+  const cnameMsg = document.getElementById("cname-msg");
 
   if (!val) {
-    nameMsg.textContent = "আপনার নাম দিন";
-    nameMsg.className = "msg error";
+    cnameMsg.textContent = "আপনার নাম দিন";
+    cnameMsg.className = "msg error";
     return false;
   }
   if (val.length > 50) {
-    nameMsg.textContent = "৫০ অক্ষরের মধ্যে নাম লিখুন";
-    nameMsg.className = "msg error";
+    cnameMsg.textContent = "৫০ অক্ষরের মধ্যে নাম লিখুন";
+    cnameMsg.className = "msg error";
     return false;
   }
   if (/^\d/.test(val)) {
-    nameMsg.textContent = "সংখ্যা দিয়ে নাম শুরু হতে পারবে না";
-    nameMsg.className = "msg error";
+    cnameMsg.textContent = "সংখ্যা দিয়ে নাম শুরু হতে পারবে না";
+    cnameMsg.className = "msg error";
     return false;
   }
   if (/^\d+$/.test(val)) {
-    nameMsg.textContent = "আপনার নাম শুধুমাত্র সংখ্যা হতে পারবে না";
-    nameMsg.className = "msg error";
+    cnameMsg.textContent = "আপনার নাম শুধুমাত্র সংখ্যা হতে পারবে না";
+    cnameMsg.className = "msg error";
     return false;
   }
-  nameMsg.textContent = "☑️";
-  nameMsg.className = "msg valid";
+  cnameMsg.textContent = "✅";
+  cnameMsg.className = "msg valid";
   return true;
 }
 
 function validateCcomm() {
   const val = document.getElementById("ccomm").value.trim();
-  const addrMsg = document.getElementById("addr-msg");
+  const commmsg = document.getElementById("comm-msg");
 
   if (!val) {
-    addrMsg.textContent = "দয়া করে সম্পূর্ণ ঠিকানা লিখুন";
-    addrMsg.className = "msg error";
+    commmsg.textContent = "দয়া করে সম্পূর্ণ ঠিকানা লিখুন";
+    commmsg.className = "msg error";
     return false;
   }
   if (val.length > 150) {
-    nameMsg.textContent = "ঠিকানা ৩০০ অক্ষরের মধ্যে রাখুন";
-    nameMsg.className = "msg error";
+    commmsg.textContent = "ঠিকানা ৩০০ অক্ষরের মধ্যে রাখুন";
+    commmsg.className = "msg error";
     return false;
   }  
-  addrMsg.textContent = "☑️";
-  addrMsg.className = "msg valid";
+  commmsg.textContent = "✅";
+  commmsg.className = "msg valid";
   return true;
 }
 
+function validateRating() {
+  const val = document.getElementById("rating").value; // get selected value
+  const ratemsg = document.getElementById("rate-msg");
+
+  if (!val || parseInt(val) < 1) {
+    ratemsg.textContent = "দয়া করে রেটিং দিন";
+    ratemsg.className = "msg error";
+    return false;
+  }
+  ratemsg.textContent = "✅";
+  ratemsg.className = "msg valid";
+  return true;
+}
+  
 // Bind blur events once
 document.getElementById("h-name").onblur = validateName;
 document.getElementById("h-phone").onblur = validatePhone;
@@ -1230,15 +1247,16 @@ document
     const website =
       document.getElementById("website").value;
   
-    if (!name || !comment) {
-    alert("নাম ও মতামত লিখুন");
-    return;
-    }
+    //if (!name || !comment) {
+    //alert("নাম ও মতামত লিখুন");
+    //return;
+    //}
+    
   
-    if (!rating) {
-    alert("রেটিং নির্বাচন করুন");
-    return;
-    }
+    //if (!rating) {
+    //alert("রেটিং নির্বাচন করুন");
+    //return;
+    //}
 
     try {
 
@@ -1291,7 +1309,7 @@ document
         );
       }else{
         showToast(
-          "মন্তব্য পাঠাতে সমস্যা হয়েছে।",
+          "সমস্ত তথ্য পূরণ করুন। মন্তব্য পাঠাতে সমস্যা হচ্ছে।",
           "error"
         ); 
       } 
