@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog2",
+  "blog_title": "ছোবল 🐦‍🔥",
+  "blog_date": "২ মে ২০১৬",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৫ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-002-cover.jpg",
+  "content_file": "/data/blogs/content/blog2.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "রাজনীতি",
+  "tag_3": "আদালত",
+
+  "prev_blog_id": "blog1",
+  "prev_blog_name": "বসন্ত এসে গেছে!",
+
+  "next_blog_id": "blog22",
+  "next_blog_name": "প্রতিবাদহীন"
+}

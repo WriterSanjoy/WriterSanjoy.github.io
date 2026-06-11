@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog18",
+  "blog_title": "বিষদাঁত ⚖",
+  "blog_date": "অগাস্ট ৯, ২০১৯",
+  "blog_type": "ছোটগল্প",
+  "reading_time": "৫ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-018-cover.jpg",
+  "content_file": "/data/blogs/content/blog18.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "রাজনীতি",
+  "tag_3": "আইন",
+
+  "prev_blog_id": "blog17",
+  "prev_blog_name": "পুতুলনাচ",
+
+  "next_blog_id": "blog19",
+  "next_blog_name": "চুলের ক্লিপ অথবা সরকারি কাঁকড়া"
+}

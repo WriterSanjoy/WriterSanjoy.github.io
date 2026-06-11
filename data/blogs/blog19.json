@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog19",
+  "blog_title": "চুলের ক্লিপ অথবা সরকারি কাঁকড়া📎",
+  "blog_date": "সেপ্টেম্বর ২৮, ২০১৯",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৩৪৫ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-019-cover.jpg",
+  "content_file": "/data/blogs/content/blog19.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "রাজনীতি",
+  "tag_3": "আইন",
+
+  "prev_blog_id": "blog18",
+  "prev_blog_name": "বিষদাঁত",
+
+  "next_blog_id": "blog20",
+  "next_blog_name": "পরিযায়ী শ্রমিকঃ তোমরা কি এদেশেরই মানুষ!"
+}

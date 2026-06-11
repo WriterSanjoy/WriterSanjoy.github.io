@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog16",
+  "blog_title": "প্রাথমিক শিক্ষক নিয়োগঃ আমরা কোথায় দাঁড়িয়েছি? 👨🏻‍🏫",
+  "blog_date": "মে ২০, ২০১৮",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৪ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-016-cover.jpg",
+  "content_file": "/data/blogs/content/blog16.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "রাজনীতি",
+  "tag_3": "আইন",
+
+  "prev_blog_id": "blog15",
+  "prev_blog_name": "টাকা মাটি, মাটি...",
+
+  "next_blog_id": "blog17",
+  "next_blog_name": "পুতুলনাচ"
+}

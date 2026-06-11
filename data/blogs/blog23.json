@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog23",
+  "blog_title": "ঝলসানো রুটি 🫓",
+  "blog_date": "অগাস্ট ৬, ২০২০",
+  "blog_type": "অণুগল্প",
+  "reading_time": "৪ মিনিট",
+  
+  "blog_image": "/images/blogimages/blog-023-cover.jpg",
+  "content_file": "/data/blogs/content/blog23.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "রাজনীতি",
+  "tag_3": "অণুগল্প",
+
+  "prev_blog_id": "blog22",
+  "prev_blog_name": "প্রতিবাদহীন",
+
+  "next_blog_id": "",
+  "next_blog_name": ""
+}

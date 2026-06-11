@@ -1,0 +1,842 @@
+/* style.css for NewWeb */
+/* ═══════════════════════════════════════════════
+   STYLES For Book files
+═══════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1208;--ink-lt:#3d3020;--ink-md:#6b5a45;--ink-mu:#9a8a76;
+  --paper:#faf8f4;--paper-w:#f5f1e8;--paper-d:#ede8de;
+  --gold:#b8860b;--gold-l:#d4a017;--gold-p:#fdf4d8;
+  --red:#8b1a1a;--teal:#1a5f5a;--teal-p:#e8f5f4;
+  --bdr:rgba(26,18,8,.12);--bdr-s:rgba(26,18,8,.22);
+  --r:4px;--r-lg:8px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(--paper);color:var(--ink);line-height:1.8;font-size:16px}
+
+/* ── NAV ── */
+nav{background:var(--ink);padding:0 2.5rem;position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;height:58px;box-shadow:0 2px 16px rgba(0,0,0,.35)}
+.nbrand{font-family:'Hind Siliguri',serif;font-size:1.05rem;font-weight:700;color:var(--gold-l);text-decoration:none}
+.nlinks{display:flex;list-style:none}
+.nlinks li a{font-family:'Hind Siliguri',sans-serif;font-size:.82rem;color:rgba(255,255,255,.62);text-decoration:none;padding:.4rem 1rem;display:block;transition:color .2s;border-bottom:2px solid transparent}
+.nlinks li a:hover{color:#fff}
+.nlinks li a.act{color:var(--gold-l);border-bottom-color:var(--gold-l)}
+.nburg{display:none;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;padding:.3rem}
+.mmenu{display:none;background:#0e0c08;position:fixed;top:58px;left:0;right:0;z-index:199;border-top:1px solid rgba(255,255,255,.08)}
+.mmenu.open{display:block}
+.mmenu a{display:block;font-family:'Hind Siliguri',sans-serif;font-size:.95rem;color:rgba(255,255,255,.72);text-decoration:none;padding:.7rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05)}
+
+/* ── BREADCRUMB ── */
+.breadcrumb{background:var(--paper-w);border-bottom:1px solid var(--bdr);padding:.65rem 2rem;font-family:'Hind Siliguri',sans-serif;font-size:.78rem;color:var(--ink-mu)}
+.breadcrumb a{color:var(--ink-md);text-decoration:none}
+.breadcrumb a:hover{color:var(--red)}
+.breadcrumb span{margin:0 .4rem}
+
+/* ── BOOK HERO ── */
+.book-hero{background:var(--ink);padding:3rem 2rem;position:relative;overflow:hidden}
+.book-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(184,134,11,.04) 48px,rgba(184,134,11,.04) 49px)}
+.book-hero-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:200px 1fr;gap:2.5rem;align-items:center;position:relative;z-index:1}
+.book-cover-3d{width:180px;height:255px;border-radius:3px 8px 8px 3px;box-shadow:-5px 5px 0 rgba(0,0,0,.15),6px 12px 32px rgba(0,0,0,.4);display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;flex-shrink:0}
+/* CHANGE gradient colour per book */
+.book-cover-3d{background:linear-gradient(160deg,#1a3a5c 0%,#0d2137 100%)}
+.book-cover-3d::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0px;background:rgba(0,0,0,.2);border-radius:2px 0 0 2px}/* sanjoy width: was 10px*/
+.cover-icon{position:absolute;top:22px;left:0;right:0;text-align:center;font-size:3.5rem;opacity:.18}
+.cover-title-text{font-family:'Hind Siliguri',sans-serif;font-weight:700;font-size:1rem;line-height:1.35;text-align:center;padding:.7rem;position:relative;z-index:1;color:#d4a017}
+.cover-author-text{font-family:'Hind Siliguri',sans-serif;font-size:.68rem;text-align:center;padding:0 .7rem .7rem;position:relative;z-index:1;color:rgba(212,160,23,.65);letter-spacing:.05em}
+/* OR use a real cover image — uncomment and set path:
+.book-cover-3d{background:none}
+.book-cover-img{width:100%;height:100%;object-fit:cover;border-radius:3px 8px 8px 3px}
+*/
+.book-hero-info{color:#fff}
+.hero-genre-badge{display:inline-block;font-family:'Hind Siliguri',sans-serif;font-size:.72rem;font-weight:600;padding:.28rem .9rem;border-radius:100px;background:rgba(184,134,11,.25);color:var(--gold-l);border:1px solid rgba(184,134,11,.4);letter-spacing:.05em;margin-bottom:.8rem}
+.hero-book-title{font-family:'Hind Siliguri',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;line-height:1.25;margin-bottom:.4rem;color:#fff}
+.hero-book-author{font-family:'Hind Siliguri',sans-serif;font-size:1rem;color:rgba(255,255,255,.55);margin-bottom:1.4rem;letter-spacing:.04em}
+.hero-quick-meta{display:flex;flex-wrap:wrap;gap:1.25rem;margin-bottom:1.6rem}
+.hqm{display:flex;flex-direction:column;gap:2px}
+.hqm-label{font-family:'Hind Siliguri',sans-serif;font-size:.65rem;color:var(--gold-l);text-transform:uppercase;letter-spacing:.09em;font-weight:600}
+.hqm-val{font-family:'Hind Siliguri',sans-serif;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.85)}
+.hero-price-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.price-chip{font-family:'Hind Siliguri',sans-serif;font-size:.9rem;font-weight:700;padding:.2rem 1.1rem;border-radius:100px}
+.price-digital{background:var(--red);color:#fff}
+.price-hard{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.2)}
+.price-label{font-family:'Hind Siliguri',sans-serif;font-size:.7rem;color:rgba(255,255,255,.7)}
+/* New prominent button for reading book added later Sanjoy */
+/* using Existing .price-label also*/
+.price-read{background:var(--red);color:yellow;cursor:pointer}
+
+/* ── MAIN LAYOUT ── */
+.book-main{max-width:1000px;margin:0 auto;padding:2.5rem 2rem 5rem;display:grid;grid-template-columns:1fr 300px;gap:2.5rem;align-items:start}
+
+/* ── CONTENT SECTIONS ── */
+.section{background:#fff;border:1px solid var(--bdr);border-radius:var(--r-lg);margin-bottom:1.5rem;overflow:hidden}
+.section-head{padding:.75rem 1.4rem;background:var(--paper-w);border-bottom:1px solid var(--bdr);font-family:'Hind Siliguri',sans-serif;font-size:.88rem;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:.5rem}
+.section-body{padding:1.4rem}
+
+/* Summary */
+.book-summary{font-family:'Hind Siliguri',sans-serif;font-size:.97rem;line-height:1.95;color:var(--ink-lt)}
+.book-summary p{margin-bottom:1rem}
+.book-summary p:last-child{margin-bottom:0}
+
+/* Preview */
+.preview-content{font-family:'Hind Siliguri',sans-serif;font-size:.95rem;line-height:2;color:var(--ink-lt)}
+.preview-content p{margin-bottom:1rem}
+.preview-content blockquote{border-left:3px solid var(--gold);padding:.8rem 1.2rem;margin:1rem 0;background:var(--gold-p);font-style:italic;border-radius:0 var(--r) var(--r) 0}
+.preview-fade{position:relative}
+.preview-fade::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,#fff)}
+.preview-more{text-align:center;padding-top:.5rem}
+.preview-more button{font-family:'Hind Siliguri',sans-serif;font-size:.82rem;font-weight:600;color:var(--red);background:none;border:1px solid var(--red);border-radius:100px;padding:.4rem 1.2rem;cursor:pointer;transition:all .18s}
+.preview-more button:hover{background:var(--red);color:#fff}
+
+/* Reviews */
+.review-item{padding:.9rem 0;border-bottom:1px solid var(--bdr);display:flex;gap:.9rem;align-items:flex-start}
+.review-item:last-child{border-bottom:none;padding-bottom:0}
+.review-avatar{width:38px;height:38px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-l);font-weight:700;font-family:'Hind Siliguri',sans-serif;font-size:.9rem;flex-shrink:0}
+.review-body{flex:1}
+.review-name{font-family:'Hind Siliguri',sans-serif;font-size:.85rem;font-weight:700;color:var(--ink)}
+.review-stars{color:#f59e0b;font-size:.85rem;margin:.15rem 0}
+.review-text{font-family:'Hind Siliguri',sans-serif;font-size:.84rem;color:var(--ink-lt);line-height:1.7}
+
+/* Related books */
+.related-book{display:flex;gap:.9rem;padding:.75rem 0;border-bottom:1px solid var(--bdr);text-decoration:none;transition:all .18s}
+.related-book:last-child{border-bottom:none}
+.related-book:hover{opacity:.8}
+.rel-cover{width:42px;height:60px;border-radius:2px 4px 4px 2px;flex-shrink:0}
+.rel-info{}
+.rel-title{font-family:'Hind Siliguri',sans-serif;font-size:.85rem;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:.2rem}
+.rel-price{font-family:'Hind Siliguri',sans-serif;font-size:.78rem;color:var(--red);font-weight:600}
+
+/* ── SIDEBAR (BUY BOX) ── */
+.buy-box{background:#fff;border:1px solid var(--bdr);border-radius:var(--r-lg);overflow:hidden;position:sticky;top:72px}
+.buy-box-head{background:var(--ink);padding:1rem 1.25rem;text-align:center}
+.buy-box-title{font-family:'Hind Siliguri',sans-serif;font-size:.78rem;color:var(--gold-l);margin-bottom:.3rem}
+.buy-box-bookname{font-family:'Hind Siliguri',sans-serif;font-size:.98rem;font-weight:700;color:#fff;line-height:1.3}
+
+/* Price tabs inside buy box */
+.buy-tabs{display:flex;border-bottom:1px solid var(--bdr)}
+.buy-tab{flex:1;padding:.65rem .4rem;text-align:center;cursor:pointer;border:none;background:var(--paper-w);transition:all .18s;border-bottom:2px solid transparent}
+.buy-tab.active{background:#fff;border-bottom-color:var(--red)}
+.buy-tab .bt-icon{font-size:1.1rem;display:block;margin-bottom:2px}
+.buy-tab .bt-label{font-family:'Hind Siliguri',sans-serif;font-size:.68rem;font-weight:600;color:var(--ink-md)}
+.buy-tab .bt-price{font-family:'Hind Siliguri',sans-serif;font-size:.88rem;font-weight:700;color:var(--red)}
+.buy-tab.active .bt-label{color:var(--ink)}
+
+.buy-pane{display:none;padding:1.1rem 1.25rem}
+.buy-pane.active{display:block}
+
+/* Format selector inside buy pane */
+.fmt-options{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.fmt-opt{display:flex;align-items:center;gap:.6rem;padding:.55rem .75rem;border:1.5px solid var(--bdr-s);border-radius:var(--r);cursor:pointer;transition:all .15s}
+.fmt-opt:hover{border-color:var(--gold)}
+.fmt-opt.selected{border-color:var(--red);background:#fff8f8}
+.fmt-opt input{accent-color:var(--red)}
+.fmt-opt-info{flex:1}
+.fmt-opt-name{font-family:'Hind Siliguri',sans-serif;font-size:.82rem;font-weight:600;color:var(--ink)}
+.fmt-opt-desc{font-family:'Hind Siliguri',sans-serif;font-size:.7rem;color:var(--ink-mu)}
+
+/* Delivery steps */
+.dlv-steps{margin-bottom:1rem}
+.dlv-step{display:flex;gap:.6rem;align-items:flex-start;margin-bottom:.5rem}
+.dlv-num{width:18px;height:18px;background:var(--ink);color:var(--gold-l);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Hind Siliguri',sans-serif;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:.15rem}
+.dlv-text{font-family:'Hind Siliguri',sans-serif;font-size:.76rem;color:var(--ink-lt);line-height:1.5}
+
+/* Fields inside pane */
+.bf{margin-bottom:.75rem}
+.bf label{display:block;font-family:'Hind Siliguri',sans-serif;font-size:.74rem;font-weight:600;color:var(--ink-lt);margin-bottom:.28rem}
+.bf input,.bf textarea,.bf select{width:100%;padding:.52rem .8rem;border:1px solid var(--bdr-s);border-radius:var(--r);font-family:'Hind Siliguri',sans-serif;font-size:.85rem;background:var(--paper-w);color:var(--ink);outline:none;transition:border-color .18s}
+.bf input:focus,.bf textarea:focus,.bf select:focus{border-color:var(--red);background:#fff}
+.bf textarea{min-height:70px;resize:vertical}
+.bf-hint{font-family:'Hind Siliguri',sans-serif;font-size:.68rem;color:var(--ink-mu);margin-top:.2rem;line-height:1.5}
+
+.buy-submit{width:100%;padding:.72rem;background:var(--red);color:#fff;border:none;border-radius:var(--r);font-family:'Hind Siliguri',sans-serif;font-size:.92rem;font-weight:700;cursor:pointer;transition:all .18s;margin-top:.25rem;letter-spacing:.02em}
+.buy-submit:hover{background:#6e1414;transform:translateY(-1px)}
+
+/* Buy elsewhere links */
+.buy-elsewhere{padding:.9rem 1.25rem;border-top:1px solid var(--bdr);background:var(--paper-w)}
+.buy-elsewhere-label{font-family:'Hind Siliguri',sans-serif;font-size:.7rem;color:var(--ink-mu);margin-bottom:.55rem;text-align:center}
+.buy-links{display:flex;flex-direction:column;gap:.4rem}
+.buy-link{display:flex;align-items:center;gap:.5rem;padding:.45rem .75rem;border-radius:var(--r);border:1px solid var(--bdr-s);text-decoration:none;font-family:'Hind Siliguri',sans-serif;font-size:.8rem;font-weight:600;transition:all .18s;color:var(--ink)}
+.buy-link:hover{transform:translateX(3px)}
+.bl-amazon{background:#fff8f0;border-color:#ffcc88}.bl-amazon:hover{background:#ff9900;color:#fff;border-color:#ff9900}
+.bl-google{background:#f0f4ff;border-color:#aabbff}.bl-google:hover{background:#4285f4;color:#fff;border-color:#4285f4}
+.bl-boighor{background:#fee6e8;border-color:#fcb4b9}.bl-boighor:hover{background:#FF052F;color:#fff;border-color:#FF052F}  
+.bl-boierhut{background:#e8f5f4;border-color:rgba(26,95,90,.25)}.bl-boierhut:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+
+/* Publisher card */
+.pub-section{padding:1.1rem 1.25rem;border-top:1px solid var(--bdr)}
+.pub-section-label{font-family:'Hind Siliguri',sans-serif;font-size:.7rem;color:var(--ink-mu);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:.7rem}
+.pub-row{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.45rem}
+.pub-row-icon{font-size:.85rem;flex-shrink:0;margin-top:.1rem}
+.pub-row-text{flex:1}
+.pub-row-label{font-family:'Hind Siliguri',sans-serif;font-size:.67rem;color:var(--ink-mu);letter-spacing:.05em}
+/* Change font from to Noto Sans Bengali for better visibility */
+.pub-row-val{font-family:'Hind Siliguri',sans-serif;font-size:.8rem;color:var(--ink-lt);font-weight:500}
+.pub-row-val a{color:var(--teal);text-decoration:none}
+.pub-row-val a:hover{text-decoration:underline}
+
+.pub-row-val-num{font-family:'Noto Sans Bengali','Hind Siliguri', sans-serif;font-size:.8rem;color:var(--ink-lt);font-weight:500}
+.pub-row-val-num a{color:var(--teal);text-decoration:none}
+.pub-row-val-num a:hover{text-decoration:underline}
+
+/* ── SETTINGS BTN ── */
+#settings-btn{position:fixed;bottom:2rem;right:2rem;z-index:500;width:48px;height:48px;border-radius:50%;background:var(--ink);color:var(--gold-l);display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:all .2s;border:2px solid rgba(255,255,255,.1)}
+#settings-btn:hover{transform:rotate(45deg) scale(1.1)}
+#settings-overlay{display:none;position:fixed;inset:0;z-index:499;background:rgba(0,0,0,.4)}
+#settings-overlay.open{display:block}
+#settings-panel{position:fixed;right:-340px;top:0;bottom:0;width:320px;z-index:500;background:var(--paper);border-left:1px solid var(--bdr-s);box-shadow:-8px 0 40px rgba(0,0,0,.2);transition:right .3s cubic-bezier(.4,0,.2,1);overflow-y:auto}
+#settings-panel.open{right:0}
+.sp-header{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.4rem;background:var(--ink);font-family:'Hind Siliguri',sans-serif;font-size:1rem;font-weight:600;color:var(--gold-l);position:sticky;top:0}
+.sp-header button{background:none;border:none;color:rgba(255,255,255,.6);font-size:1.2rem;cursor:pointer;padding:.2rem .4rem}
+.sp-section{padding:1.1rem 1.4rem;border-bottom:1px solid var(--bdr)}
+.sp-label{font-family:'Hind Siliguri',sans-serif;font-size:.8rem;font-weight:600;color:var(--ink-mu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem}
+.sp-grid{display:grid;grid-template-columns:1fr 1fr;gap:.45rem}
+.theme-btn{font-family:'Hind Siliguri',sans-serif;font-size:.78rem;padding:.5rem .6rem;border:1.5px solid var(--bdr-s);border-radius:var(--r);background:var(--paper-w);color:var(--ink);cursor:pointer;transition:all .18s;text-align:left}
+.theme-btn:hover,.theme-btn.active{border-color:var(--gold);background:var(--gold-p);font-weight:700}
+.sp-font-list{display:flex;flex-direction:column;gap:.4rem}
+.font-btn{font-family:'Hind Siliguri',sans-serif;font-size:.82rem;padding:.55rem .8rem;border:1.5px solid var(--bdr-s);border-radius:var(--r);background:var(--paper-w);color:var(--ink);cursor:pointer;transition:all .18s;text-align:left;display:flex;align-items:center;gap:.6rem}
+.font-btn:hover,.font-btn.active{border-color:var(--gold);background:var(--gold-p)}
+.font-preview{font-size:1.1rem;color:var(--ink-lt);min-width:40px}
+.sp-size-row{display:flex;gap:.4rem;flex-wrap:wrap}
+.size-btn{font-family:'Hind Siliguri',sans-serif;font-size:.78rem;padding:.42rem .8rem;border:1.5px solid var(--bdr-s);border-radius:100px;background:var(--paper-w);color:var(--ink);cursor:pointer;transition:all .18s}
+.size-btn.active{border-color:var(--gold);background:var(--gold);color:#fff;font-weight:700}
+.reset-btn{width:100%;font-family:'Hind Siliguri',sans-serif;font-size:.82rem;padding:.6rem;border:1.5px solid var(--bdr-s);border-radius:var(--r);background:transparent;color:var(--ink-md);cursor:pointer;transition:all .18s}
+.reset-btn:hover{background:var(--red);color:#fff;border-color:var(--red)}
+
+/* ── SUCCESS MESSAGE ── */
+.order-success{display:none;background:var(--teal-p);border:1px solid rgba(26,95,90,.25);border-radius:var(--r);padding:1rem;font-family:'Hind Siliguri',sans-serif;font-size:.86rem;color:var(--teal);line-height:1.6;text-align:center;margin-top:.75rem}
+
+/* ── RESPONSIVE ── */
+footer{background:var(--ink);color:rgba(255,255,255,.32);font-family:'Hind Siliguri',sans-serif;font-size:.75rem;text-align:center;padding:1.75rem 2rem}
+footer a{color:var(--gold-l);text-decoration:none}
+@media(max-width:760px){
+  nav{padding:0 1.2rem}.nlinks{display:none}.nburg{display:block}
+  .book-hero-inner{grid-template-columns:1fr;text-align:center}
+  .book-cover-3d{margin:0 auto}
+  .hero-quick-meta{justify-content:center}
+  .hero-price-row{justify-content:center}
+  .book-main{grid-template-columns:1fr}
+  .buy-box{position:static}
+  #settings-btn{bottom:1.2rem;right:1.2rem;width:44px;height:44px}
+}
+
+/* ══ READING MODAL ══ */
+/* #reader-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(10,8,4,.82);backdrop-filter:blur(6px);animation:rdrFadeIn .25s ease}*/
+/* #reader-overlay{display:none;position:fixed;inset:0;z-index:2000;animation:rdrFadeIn .25s ease}*/
+/* #reader-overlay.open{display:flex;align-items:stretch;justify-content:center}*/
+#reader-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:2000;
+
+  background:rgba(10,8,4,.96);
+}
+
+#reader-overlay.open{
+  display:flex;
+  align-items:stretch;
+  justify-content:center;
+}
+
+@keyframes rdrFadeIn{from{opacity:0}to{opacity:1}}
+#reader-modal{position:relative;width:100%;max-width:780px;margin:1.5rem auto;background:var(--paper);border-radius:var(--r-lg);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.5);animation:rdrSlideUp .3s ease}
+@keyframes rdrSlideUp{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+#reader-toolbar{background:var(--ink);padding:.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:1rem;flex-wrap:wrap}
+.rtb-left{display:flex;flex-direction:column;gap:2px}
+.rtb-chapter{font-family:'Hind Siliguri',sans-serif;font-size:.7rem;font-weight:600;color:var(--gold-l);letter-spacing:.08em;text-transform:uppercase}
+.rtb-title{font-family:'Noto Serif Bengali',serif;font-size:.92rem;font-weight:600;color:rgba(255,255,255,.85)}
+.rtb-right{display:flex;align-items:center;gap:.5rem}
+.rdr-ctrl{font-family:'Hind Siliguri',sans-serif;font-size:.75rem;font-weight:600;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.15);border-radius:var(--r);padding:.28rem .65rem;cursor:pointer;transition:all .15s;white-space:nowrap}
+.rdr-ctrl:hover{background:rgba(255,255,255,.2);color:#fff}
+.rdr-ctrl.on{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+#reader-close{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.15);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+#reader-close:hover{background:var(--red);color:#fff;border-color:var(--red)}
+#reader-progress-wrap{height:3px;background:rgba(255,255,255,.1);flex-shrink:0}
+#reader-progress-bar{height:100%;background:var(--gold);width:0%;transition:width .1s;border-radius:0 2px 2px 0}
+#reader-body{flex:1;overflow-y:auto;padding:2.5rem 3rem;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--gold) var(--paper-d)}
+#reader-body::-webkit-scrollbar{width:6px}
+#reader-body::-webkit-scrollbar-track{background:var(--paper-d)}
+#reader-body::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+#reader-body p{font-family:'Noto Serif Bengali',serif;font-size:var(--rdr-size,1.05rem);line-height:var(--rdr-lh,2.1);color:var(--ink-lt);margin-bottom:1.2rem;text-align:justify}
+#reader-body blockquote{border-left:4px solid var(--gold);padding:1rem 1.5rem;margin:1.5rem 0;background:var(--gold-p);font-style:italic;color:var(--ink-lt);border-radius:0 var(--r) var(--r) 0;font-size:var(--rdr-size,1.05rem);line-height:var(--rdr-lh,2.1)}
+#reader-body h2{font-family:'Noto Serif Bengali',serif;font-size:1.3rem;font-weight:700;color:var(--ink);margin:2rem 0 1rem}
+.rdr-divider{display:flex;align-items:center;gap:.75rem;margin:2rem 0}
+.rdr-divider-line{flex:1;height:1px;background:var(--bdr-s)}
+.rdr-divider-dot{color:var(--gold);font-size:.8rem;letter-spacing:.3rem}
+#reader-footer{background:var(--paper-w);border-top:1px solid var(--bdr);padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;flex-wrap:wrap;gap:.75rem}
+.rdr-wm{font-family:'Hind Siliguri',sans-serif;font-size:.75rem;color:var(--ink-mu);display:flex;align-items:center;gap:.35rem}
+.rdr-buy{font-family:'Hind Siliguri',sans-serif;font-size:.8rem;font-weight:700;background:var(--red);color:#fff;border:none;border-radius:100px;padding:.4rem 1.25rem;cursor:pointer;transition:all .18s}
+.rdr-buy:hover{background:#6e1414;transform:translateY(-1px)}
+@media(max-width:640px){#reader-modal{margin:.5rem;border-radius:var(--r-lg) var(--r-lg) 0 0;max-height:96vh}#reader-body{padding:1.5rem 1.25rem}#reader-toolbar{padding:.65rem 1rem}}
+
+/* ══ INPUT Error ══ */ 
+.msg { font-size: 0.8rem; color: red; display: none; }
+.valid-check { color: green; margin-left: 6px; }
+
+#success-hard {
+  display: none;
+  background: #e6f9e6;
+  border: 1px solid #2e8b57;
+  color: #2e8b57;
+  padding: .75rem;
+  border-radius: 4px;
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+/* ══ Added after books_Rebased_Modified_3_Working ══ */ 
+/*
+.hint {
+  font-size: 0.75rem;
+  color: #666;
+  display: block;
+  margin-top: 2px;
+}
+
+.msg {
+  font-size: 0.8rem;
+  color: red;
+  display: none;
+}
+*/ 
+
+.msg {
+  font-size: 0.8rem;
+  display: block;
+  margin-top: 2px;
+}
+.hint { color: #666; }       /* default grey hint */
+.error { color: red; }       /* invalid */
+.valid { color: green; }     /* ✅ valid */
+
+/* ══ For WhatsApp ══ */ 
+.error-box {
+  background: #ffe5e5;
+  border: 1px solid #cc0000;
+  color: #a00;
+  padding: 8px 12px;
+  margin-top: 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+/* ══ For Message Module by CHatGPT ══ */ 
+/* ══ Old Comment Cards - delete later ══ 
+.comment-card{
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:12px;
+    margin-top:12px;
+}
+
+.comment-name{
+    font-weight:bold;
+}
+
+.comment-date{
+    font-size:12px;
+    color:#666;
+    margin-bottom:8px;
+}
+
+.comment-text{
+    line-height:1.5;
+}
+*/
+/* ===== Comment Cards ===== */
+.comment-card:last-child{
+    border-bottom:none;
+}
+
+.comment-card{
+    padding:8px 0;
+    border-bottom:1px solid #ddd;
+}
+
+.comment-name{
+    font-weight:700;
+    font-size:.8rem;
+    margin-bottom:2px;
+}
+
+.comment-stars{
+    color:#f5a623;
+    font-size:.85rem;
+    margin-bottom:4px;
+}
+
+.comment-text{
+    font-size:.8rem;
+    line-height:1.45;
+}
+
+/* ===== Load More ===== */
+
+.comments-actions{
+    text-align:center;
+    margin-top:20px;
+}
+
+.load-more-btn{
+    padding:10px 18px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    background:#e9e9e9;
+    font-weight:600;
+}
+
+.load-more-btn:hover{
+    background:#dcdcdc;
+}
+/* ===== for showing avg rating ===== */
+.rating-summary{
+    text-align:center;
+    margin:6px 0 12px;
+}
+
+.rating-stars{
+    font-size:0.95rem;
+    font-weight:600;
+}
+
+.rating-count{
+    font-size:0.85rem;
+    color:#777;
+    margin-top:2px;
+}
+
+.comments-title{
+    text-align:center;
+    margin:0 0 10px;
+    font-size:1rem;
+    font-weight:700;
+}
+
+#reader-comments .section-head{
+    flex-direction:column;
+    align-items:flex-start;
+    text-align:left;
+}
+
+#reader-comments #ratingSummary{
+    margin-top:4px;
+}
+
+#reader-comments .rating-stars{
+    font-size:.9rem;
+    font-weight:600;
+}
+
+#reader-comments .rating-count{
+    font-size:.8rem;
+    color:#666;
+}
+/* ===== for new Reader ===== */
+#reader-overlay.show{
+  display:flex;
+}
+
+.reader-loading,
+.reader-error{
+  padding:3rem 1rem;
+  text-align:center;
+  font-family:'Hind Siliguri',sans-serif;
+  color:#bbb;
+}
+/* ===== updateReaderProgress  ===== */
+#reader-progress-bar{
+  transition:width .12s linear;
+}
+
+/* ===== 4. Add Premium Reader Typography  ===== */
+#reader-body{
+
+  font-family:'Hind Siliguri',sans-serif;
+
+  font-size:1.08rem;
+
+  line-height:2.05;
+
+  letter-spacing:.01em;
+
+  /*-webkit-font-smoothing:antialiased;*/
+
+  /*text-rendering:optimizeLegibility;*/
+  /*text-rendering:auto;*/
+
+  scroll-behavior:smooth;
+}
+
+/* ===== 5. Add Proper Paragraph Spacing  ===== */
+#chapter-content p{
+  margin:0 0 1.5rem;
+}
+
+/* ===== 6. Add Beautiful Blockquote Style  ===== */
+#chapter-content blockquote{
+
+  margin:2rem 0;
+
+  padding:1rem 1.2rem;
+
+  border-left:3px solid rgba(255,255,255,.18);
+
+  background:rgba(255,255,255,.03);
+
+  border-radius:12px;
+
+  font-style:italic;
+
+  color:#ddd;
+}
+
+/* ===== 7. Add Reading Width Control (CRITICAL)  ===== */
+#chapter-content{
+
+  width:100%;
+
+  max-width:720px;
+
+  margin:auto;
+
+  padding:3rem 1.4rem 6rem;
+}
+
+/* ===== 8. Add Fade Edge Like Kindle  ===== */
+/*
+#reader-body{
+
+  mask-image:linear-gradient(
+    to bottom,
+    transparent,
+    black 24px,
+    black calc(100% - 24px),
+    transparent
+  );
+}
+*/
+/* =========================================
+   Preview Ending
+========================================= */
+
+.preview-end-wrap{
+
+  position:relative;
+
+  margin-top:5rem;
+
+  padding-top:8rem;
+
+  text-align:center;
+}
+
+/* Blur/Fade Area */
+/*
+.preview-fade{
+
+  position:absolute;
+
+  left:0;
+  right:0;
+  top:-120px;
+
+  height:220px;
+
+  background:linear-gradient(
+    to bottom,
+    rgba(17,17,17,0),
+    rgba(17,17,17,.75),
+    rgba(17,17,17,.95),
+    #111
+  );
+
+  pointer-events:none;
+}
+*/
+/* Card */
+
+.preview-end-card{
+
+  margin:5rem auto 2rem;
+
+  max-width:520px;
+
+  padding:2rem 1.4rem;
+
+  border-radius:24px;
+
+  background:#1b1b1b;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  text-align:center;
+}
+
+/* Lock Icon */
+
+.preview-lock-icon{
+
+  font-size:2rem;
+
+  margin-bottom:1rem;
+}
+
+/* Heading */
+
+.preview-end-card h3{
+
+  margin:0 0 .7rem;
+
+  font-family:'Hind Siliguri',sans-serif;
+
+  font-size:1.4rem;
+
+  color:#fff;
+}
+
+/* Text */
+
+.preview-end-card p{
+
+  margin:0 0 1.5rem;
+
+  color:rgba(255,255,255,.7);
+
+  line-height:1.8;
+}
+
+/* Buy Button */
+
+.preview-buy-btn{
+
+  border:none;
+
+  border-radius:999px;
+
+  padding:.95rem 1.7rem;
+
+  font-family:'Hind Siliguri',sans-serif;
+
+  font-size:1rem;
+
+  font-weight:700;
+
+  background:linear-gradient(
+    135deg,
+    #ffcf33,
+    #ff9f0a
+  );
+
+  color:#111;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+
+  box-shadow:
+    0 8px 30px rgba(255,180,0,.25);
+}
+
+.preview-buy-btn:hover{
+
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 14px 40px rgba(255,180,0,.38);
+}
+
+/* STEP 4 — VERY IMPORTANT MOBILE FIX */
+@media(max-width:768px){
+
+  .preview-end-card{
+
+    border-radius:22px;
+
+    padding:2rem 1.2rem;
+  }
+
+  .preview-end-card h3{
+
+    font-size:1.2rem;
+  }
+
+}
+
+/* breadcrumb fix  deleted*/
+
+/* Writer's Auto Reply */
+.author-reply{
+
+  margin-top:.65rem;
+
+  padding:.7rem .9rem;
+
+  border-left:3px solid #8b1a1a;
+
+  background:rgba(255,207,51,.06);
+
+  border-radius:0 10px 10px 0;
+}
+/* .82 700 */
+.author-reply-label{
+
+  font-family:'Hind Siliguri',sans-serif;
+
+  font-size:.75rem;
+
+  font-weight:500;
+
+  color:#8b1a1a;
+
+  margin-bottom:.22rem;
+
+  line-height:1.3;
+}
+
+.author-reply-text{
+
+  font-family:'Hind Siliguri',sans-serif;
+
+  font-size:.70rem;
+
+  line-height:1.65;
+
+  color:#111;
+}
+
+/* ══ for custom toast notification system ════ */
+#toast{
+
+  position:fixed;
+
+  left:50%;
+  bottom:28px;
+
+  transform:
+    translateX(-50%)
+    translateY(20px);
+
+  background:#111;
+
+  color:#fff;
+
+  padding:.9rem 1.2rem;
+
+  border-radius:14px;
+
+  font-family:'Hind Siliguri',sans-serif;
+
+  font-size:.95rem;
+
+  line-height:1.5;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.28);
+
+  z-index:99999;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:
+    opacity .28s ease,
+    transform .28s ease;
+
+  max-width:92vw;
+
+  text-align:center;
+}
+
+#toast.show{
+
+  opacity:1;
+
+  transform:
+    translateX(-50%)
+    translateY(0);
+}
+
+#toast.success{
+
+  background:#17351f;
+
+  color:#d7ffd9;
+
+  border:1px solid rgba(120,255,140,.18);
+}
+
+#toast.error{
+
+  background:#3a1717;
+
+  color:#ffdede;
+
+  border:1px solid rgba(255,120,120,.16);
+}
+
+#toast.warning{
+
+  background:#3b2c11;
+
+  color:#ffe7b3;
+
+  border:1px solid rgba(255,207,51,.18);
+}
+
+/* Render Button */
+.helpful-btn{
+
+  margin-top:.8rem;
+
+  border:none;
+
+  background:transparent;
+
+  color:#777;
+
+  font-family:'Hind Siliguri',sans-serif;
+
+  font-size:.85rem;
+
+  cursor:pointer;
+
+  padding:0;
+}
+
+.helpful-btn:hover{
+
+  color:#111;
+}
+
+/* For Avatar 1-Jun-26*/
+.comment-header{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:8px;
+}
+  
+.comment-avatar{
+
+  width:20px;
+  height:20px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#1d1204;
+
+  color:#d4a017;
+
+  border:1px solid #1e4f9a;
+
+  font-family:'Hind Siliguri',sans-serif;
+  font-size:.8rem;
+  font-weight:700;
+
+  flex-shrink:0;
+}

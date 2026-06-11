@@ -1,0 +1,18 @@
+{
+  "blog_id": "blog6",
+  "blog_title": "নবদিগন্তের অভিমন্যুরা 📕",
+  "blog_date": "জানুয়ারি ১৫, ২০১৯",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৫ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-006-cover.jpg",
+  "content_file": "/data/blogs/content/blog6.html",
+
+  "tag_1": "বই-খবর",
+
+  "prev_blog_id": "blog5",
+  "prev_blog_name": "বোতলবন্দী",
+
+  "next_blog_id": "blog7",
+  "next_blog_name": "মহিষাসুর"
+}

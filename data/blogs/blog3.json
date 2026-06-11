@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog3",
+  "blog_title": "দিবস-মোহ 📆",
+  "blog_date": "৬ মে, ২০১৬",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৩ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-003-cover.jpg",
+  "content_file": "/data/blogs/content/blog3.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "চেতনা",
+
+
+  "prev_blog_id": "blog2",
+  "prev_blog_name": "ছোবল",
+
+  "next_blog_id": "blog4",
+  "next_blog_name": "প্রদীপের নীচে ‘আলো’"
+}

@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog20",
+  "blog_title": "পরিযায়ী শ্রমিক: তোমরা কি এদেশেরই মানুষ!🚶‍➡️",
+  "blog_date": "অক্টোবর ২৫, ২০১৯",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৪ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-020-cover.jpg",
+  "content_file": "/data/blogs/content/blog20.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "রাজনীতি",
+  "tag_3": "আইন",
+
+  "prev_blog_id": "blog19",
+  "prev_blog_name": "চুলের ক্লিপ অথবা সরকারি কাঁকড়া",
+
+  "next_blog_id": "blog21",
+  "next_blog_name": "অদৃশ্য"
+}

@@ -1,0 +1,1369 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>সঞ্জয় মণ্ডল — বাংলা লেখক</title>
+    <link rel="icon" type="image/png" href="../images/logoimage.png" sizes="32x32">
+    <!-- ── sanjoy added ── -->
+    <meta name="description" content="সঞ্জয় মণ্ডলের ব্লগ — আড্ডা, বিতর্ক, মতামত। সঙ্গে কিছু গল্প, কবিতা, প্রতিবেদন।" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Baloo+Da+2:wght@400;500;600;700&family=Tiro+Bangla:ital@0;1&family=Noto+Serif+Bengali:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600&display=swap"
+      rel="stylesheet" />
+
+    <!-- Load EmailJS SDK (must be before your JS code) sanjoy addded -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+      <!-- Linking style.css -->
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/indexfile.css">
+  
+  </head>
+  <body>
+    <!-- ════ SETTINGS PANEL ════ -->
+    <!--<div id="settings-btn" onclick="toggleSettings()" title="সেটিংস">⚙</div>-->
+    <div id="settings-overlay" onclick="closeSettings()"></div>
+    <div id="settings-panel">
+      <div class="sp-header">
+        <span>⚙ সেটিংস</span>
+        <button onclick="closeSettings()">✕</button>
+      </div>
+
+      <div class="sp-section">
+        <div class="sp-label">🎨 থিম</div>
+        <div class="sp-grid">
+          <button class="theme-btn active" data-theme="classic" onclick="setTheme('classic',this)">📜 ক্লাসিক</button>
+          <button class="theme-btn" data-theme="mint" onclick="setTheme('mint',this)">🌿 মিন্ট</button>
+          <button class="theme-btn" data-theme="teal" onclick="setTheme('teal',this)">🩵 টিল ডার্ক</button>
+          <button class="theme-btn" data-theme="navy" onclick="setTheme('navy',this)">🌊 নেভি</button>
+        </div>
+      </div>
+
+      <div class="sp-section">
+        <div class="sp-label">✍ ফন্ট</div>
+        <div class="sp-font-list">
+          <button class="font-btn active" data-font="hind" onclick="setFont('hind',this)">
+            <span class="font-preview">বাংলা</span> Hind Siliguri
+          </button>
+          <button class="font-btn" data-font="baloo" onclick="setFont('baloo',this)">
+            <span class="font-preview">বাংলা</span> Baloo Da 2
+          </button>
+          <button class="font-btn" data-font="tiro" onclick="setFont('tiro',this)">
+            <span class="font-preview">বাংলা</span> Tiro Bangla
+          </button>
+          <button class="font-btn" data-font="noto-serif" onclick="setFont('noto-serif',this)">
+            <span class="font-preview">বাংলা</span> Noto Serif
+          </button>
+          <button class="font-btn" data-font="noto-sans" onclick="setFont('noto-sans',this)">
+            <span class="font-preview">বাংলা</span> Noto Sans
+          </button>
+        </div>
+      </div>
+
+      <div class="sp-section">
+        <div class="sp-label">🔠 লেখার আকার</div>
+        <div class="sp-size-row">
+          <button class="size-btn" onclick="setSize(14)">ছোট</button>
+          <button class="size-btn active" onclick="setSize(16)">স্বাভাবিক</button>
+          <button class="size-btn" onclick="setSize(18)">বড়</button>
+          <button class="size-btn" onclick="setSize(20)">বড়তর</button>
+        </div>
+      </div>
+
+      <div class="sp-section">
+        <div class="sp-label">📏 লাইনের ব্যবধান</div>
+        <div class="sp-size-row">
+          <button class="size-btn" onclick="setLineH(1.6)">ঘন</button>
+          <button class="size-btn active" onclick="setLineH(1.8)">স্বাভাবিক</button>
+          <button class="size-btn" onclick="setLineH(2.1)">হালকা</button>
+          <button class="size-btn" onclick="setLineH(2.4)">বিরল</button>
+        </div>
+      </div>
+
+      <div class="sp-section">
+        <button class="reset-btn" onclick="resetSettings()">↺ ডিফল্টে ফিরুন</button>
+      </div>
+    </div>
+
+    <!-- ════ NAV ════ -->
+    <nav id="snav">
+      <span class="nbrand" onclick="sp('home')">
+        <img src="images/DarkLogo_Small.png" alt="সঞ্জয় মণ্ডল" class="brand-img" />
+      </span>
+      <ul class="nlinks">
+        <li><button id="n-home" onclick="sp('home')">প্রথম পাতা</button></li>
+        <li><button id="n-about" onclick="sp('about')">আমার কথা</button></li>
+        <li><button id="n-blog" onclick="window.location='blog-list.html'">ব্লগবার্তা</button></li>
+        <li><button id="n-books" onclick="sp('books')">বইটই</button></li>
+        <li><button id="n-published" onclick="window.location='published.html'">প্রকাশিত</button></li>
+        <!--<li><button id="n-stories" onclick="sp('stories')">গল্পের আসর</button></li> ── sanjoy removed -->
+        <!--<li><button id="n-contact" onclick="sp('contact')">যোগাযোগ</button></li>
+        <li><a href="#contact">যোগাযোগ</a></li>-->
+        <li><button onclick="sp('contact')">যোগাযোগ</button></li>
+      </ul>
+      <button class="nburg" onclick="tmob()">☰</button>
+    </nav>
+    <div class="mmenu" id="mmenu">
+      <button onclick="sp('home');tmob()">প্রথম পাতা</button>
+      <button onclick="sp('about');tmob()">আমার কথা</button>
+      <button onclick="window.location='blog-list.html';tmob()">ব্লগবার্তা</button>
+      <button onclick="sp('books');tmob()">বইটই</button>
+      <button onclick="window.location='published.html';tmob()">প্রকাশিত</button>
+      <!--<button onclick="sp('stories');tmob()">গল্পের আসর</button> ── sanjoy removed -->
+      <button onclick="sp('contact');tmob()">যোগাযোগ</button>
+    </div>
+
+    <!-- ════ HOME ════ -->
+    <div class="page active" id="pg-home">
+      <div class="hhero">
+        <div class="hinner">
+          <div class="horn">✦✦ ব্লগবার্তা ✦✦</div>
+          <div class="hen">SANJOY MONDAL · BENGALI WRITER</div>
+          <h1 class="hbn">সঞ্জয় <span>মণ্ডল</span></h1>
+          <p class="htag">আড্ডা, বিতর্ক, মতামত।<br />সঙ্গে কিছু গল্প, কবিতা, প্রতিবেদন।</p>
+          <div class="hdiv"></div>
+          <div class="hbtns">
+            <button class="hbtn hbtn-g" onclick="window.location='blog-list.html'">📝 ব্লগ পড়ুন</button>
+            <button class="hbtn hbtn-o" onclick="sp('books')">📚 বই দেখুন</button>
+            <button class="hbtn hbtn-o" onclick="sp('contact')">✉ যোগাযোগ</button>
+            <!--<button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+              <span class="icon-envelope"></span> যোগাযোগ
+            </button>-->
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ BOOKS SHOWCASE ════ -->
+      <div class="bks-section">
+        <div class="shd">
+          <div class="shdl"></div>
+          <h2>প্রকাশিত বইগুলি</h2>
+          <div class="shdl"></div>
+          <button class="bks-hdr-link" onclick="sp('books')">সব দেখুন →</button>
+        </div>
+        <div class="bks-shelf-wrap">
+          <div class="bks-shelf">
+            <!-- ═══ BOOK 1 ═══-->
+            <div class="bk-item" onclick="window.location='books/Book_1.html'">
+              <div class="bk-cover">
+                <!-- Replace this div with <img> once you have the cover image -->
+                <img src="images/cover-nabadiganta.jpg" alt="নবদিগন্তের অভিমন্যুরা" />
+              </div>
+              <div class="bk-label">উপন্যাস</div>
+            </div>
+
+            <!-- ═══ BOOK 2 ═══ -->
+            <div class="bk-item" onclick="window.location='books/Book_2.html'">
+              <div class="bk-cover">
+                <img src="images/cover-sfulingo.jpg" alt="নবদিগন্তের অভিমন্যুরা" />
+              </div>
+              <div class="bk-label">উপন্যাস</div>
+            </div>
+
+            <!-- ═══ BOOK 3 — FEATURED (centre, taller) ═══ -->
+            <!--<div class="bk-item featured" onclick="window.location='books/Book_3.html'">-->
+            <div class="bk-item" onclick="window.location='books/Book_3.html'">
+              <div class="bk-cover">
+                <img src="images/cover-ishwarer.jpg" alt="নবদিগন্তের অভিমন্যুরা" />
+              </div>
+              <div class="bk-label">গল্পসংকলন</div>
+            </div>
+
+            <!-- ═══ BOOK 4 ═══ 
+            <div class="bk-item" onclick="window.location='books/Book_4.html'">
+              <div class="bk-cover">
+                <div class="bk-placeholder">
+                  <div class="bk-ph-title">চতুর্থ বই</div>
+                  <div class="bk-ph-author">সঞ্জয় মণ্ডল</div>
+                  <div class="bk-ph-num">০৪</div>
+                </div>
+              </div>
+              <div class="bk-label">উপন্যাস</div>
+            </div>-->
+
+            <!-- ═══ BOOK 5 ═══ 
+            <div class="bk-item" onclick="window.location='books/Book_5.html'">
+              <div class="bk-cover">
+                <div class="bk-placeholder">
+                  <div class="bk-ph-title">পঞ্চম বই</div>
+                  <div class="bk-ph-author">সঞ্জয় মণ্ডল</div>
+                  <div class="bk-ph-num">০৫</div>
+                </div>
+              </div>
+              <div class="bk-label">উপন্যাস</div>
+            </div>-->
+          </div>
+          <!-- /bks-shelf -->
+          <div class="bks-shelf-base"></div>
+        </div>
+      </div>
+
+      <!-- ════ BLOGS SHOWCASE ════ -->
+      <div class="hlat">
+        <div class="shd">
+          <div class="shdl"></div>
+          <h2>সাম্প্রতিক লেখা</h2>
+          <div class="shdl"></div>
+          <button class="bks-hdr-link" onclick="window.location='blog-list.html'">সব দেখুন →</button>
+        </div>
+        <!-- sanjoy added class="bks-hdr-link" -->
+        <div class="hpg" id="home-blog-cards">
+          <!-- Loaded dynamically from data/blogs/index.json -->
+          <div
+            style="
+              text-align: center;
+              padding: 2rem;
+              font-family: &quot;Hind Siliguri&quot;, sans-serif;
+              color: var(--ink-mu);
+              font-size: 0.88rem;
+              grid-column: 1/-1;
+            "
+            id="home-blog-loading">
+            ⏳ লোড হচ্ছে...
+          </div>
+        </div>
+      </div>
+      
+      <div class="sfoot">
+        <!--© সঞ্জয় মণ্ডল · সর্বস্বত্ব সংরক্ষিত · <a href="#" onclick="sp('contact')">যোগাযোগ করুন</a>-->
+        <!--© সঞ্জয় মণ্ডল · সর্বস্বত্ব সংরক্ষিত · <a href="#contact">যোগাযোগ করুন</a>-->
+        © সঞ্জয় মণ্ডল · সর্বস্বত্ব সংরক্ষিত · <a href="javascript:void(0)" onclick="sp('contact')">যোগাযোগ করুন</a>
+      </div>
+    </div>
+
+    <!-- ════ লেখক পরিচিত PAGE ════ -->
+    <div class="page" id="pg-about">
+      <div class="phdr">
+        <h1>আমার কথা</h1>
+        <p>লেখক পরিচিতি</p>
+      </div>
+      <div class="apg">
+        <div class="ahcard">
+          <!--    <div class="aport">📷<span class="aport-n">ছবি যোগ করুন</span></div> sanjoy removed -->
+          <div class="aphoto">
+            <img
+              src="https://writersanjoy.github.io//images/author.webp"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px" />
+          </div>
+          <div>
+            <div class="aname">আমার কথা</div>
+            <!--<div class="aen">SANJOY MONDAL</div> -->
+            <div class="abio">
+              <p>আরো একটি ব্লগ।</p>
+              <p>
+                লেখা হয় একা একা। আর লেখা শেষ হলেই স্বাধীন হতে চায়। সৃষ্টির দাবী মেনে, যে বক্তব্যকে কেন্দ্র করে সেই লেখার
+                শরীর নির্মিত হয়, সেই বক্তব্য তখন বর্হিজগতে প্রকাশিত হতে চায়। যে চিন্তাসূত্রটি এতদিন ধরে শুঁয়োপোকার গুটির
+                মতো গুটিয়ে ছিল মননে, লেখার হাত ধরে সে রঙিন প্রজাপতি হয়ে উড়তে চায়। প্রসারিত হতে চায়। যে অনুভূতিগুলো মনের
+                জমিতে তুষারকণার মতো নিঃশব্দে ঝরতে থাকে প্রতি পলে, অনুপলে, সেই অনুভূতিগুলো এবার শব্দের কায়া পেতে চায়। সেই
+                সূক্ষ কায়া পাঠকের স্পর্শ পেতে চায়। সান্নিধ্য পেতে চায়। পৃথিবীর যে কোন প্রান্তে থাকুক না কেন সমমনস্কদের
+                সাথে মিশতে চায়। একাত্ম হতে চায়।
+              </p>
+              <p>
+                আর সেই তাড়না থেকে কিছু লেখা আঙুল বেয়ে কাগজের পাতায় কিংবা কম্পিউটারের পর্দায় কালো অক্ষরে ফুটে উঠতে শুরু
+                করেছিল বেশ কয়েক বছর আগে থেকেই। তথ্যপ্রযুক্তি শিল্পে বছরের পর বছর দিবারাত্র আষ্টেপৃষ্টে জড়িয়ে থাকার পরেও
+                ব্লগ লেখার কথা কোনওদিন মনেই হয়নি। লেখাগুলো এদিক ওদিক যায় কখনো-সখনো মূদ্রিত হয় খবরের কাগজের পাতায় কিংবা
+                অনলাইন পত্রিকায় কিংবা ফেসবুকের দেওয়ালে। অল্পস্বল্প পঠিত হয়, আলোচিত হয়, সমালোচিত হয় পাঠকদের কাছ থেকে। আর
+                সেই অভিজ্ঞতায় ঋদ্ধ হই আমি।
+              </p>
+              <p>
+                কালের অমোঘ নিয়মে সেই লেখাগুলির উপর ধুলো জমে। মূদ্রিত পাতা হলুদ হয়, ধুলো জমে আর অনলাইনের পাতাগুলি
+                নিঃশব্দে পেছনের সারিতে পড়ে থাকে। হয়তো বা আরো একটি হাতের স্পর্শ কিংবা ‘ক্লিকের’ অপেক্ষা করে, যদি কোন পাঠক
+                ফিরে আসে। রূপকথার জাদুকাঠির মতো পাঠকের একটি মাউসের ক্লিকে কিংবা পাতা ওল্টানোর শব্দে সেই লেখাগুলি
+                কিছুক্ষণের জন্য প্রাণ ফিরে পায়। আবার তারা ঘুমিয়ে পড়ে কবে কোনদিন আর এক পাঠক ‘রাজপুত্র’ এসে তাদের জাগিয়ে
+                তুলবে।
+              </p>
+              <p>
+                বন্ধুরা, আন্তর্জালের এই মহাজগতে নিরন্তর ভ্রমণের সময় কোনদিন যদি এই ব্লগটিতে এসে পড়েন, তবে অনুরোধ করবো
+                আপনাদের সুচিন্তিত মতামত দেবার জন্য।
+              </p>
+              <p>অনেক অনেক ধন্যবাদ আপনার মূল্যবান সময় দেবার জন্য। সঙ্গে থাকুন।</p>
+            </div>
+            <div class="asocial">
+              <!--<a class="asl" href="#" target="_blank">Facebook</a>-->
+              <a class="asl" href="https://www.linkedin.com/in/sanjoy-mondal-64b236294/" target="_blank">LinkedIN</a>
+              <a class="asl" href="https://www.facebook.com/sanjoyisonline" target="_blank">Facebook</a>
+              <a class="asl" href="https://x.com/Sanjoyisonline" target="_blank"> X </a>
+            </div>
+          </div>
+        </div>
+        <div class="astats">
+          <div class="astat">
+            <div class="astat-n">২৩+</div>
+            <div class="astat-l">প্রকাশিত লেখা</div>
+          </div>
+          <div class="astat">
+            <div class="astat-n">৩+</div>
+            <div class="astat-l">প্রকাশিত গ্রন্থ</div>
+          </div>
+          <div class="astat">
+            <div class="astat-n">২০১৬</div>
+            <div class="astat-l">ব্লগ শুরু</div>
+          </div>
+          <div class="astat">
+            <div class="astat-n">বাংলা</div>
+            <div class="astat-l">লেখার ভাষা</div>
+          </div>
+        </div>
+      </div>
+      <div class="sfoot">© সঞ্জয় মণ্ডল</div>
+    </div>
+
+    <!-- ════ BOOKS ════ -->
+    <div class="page" id="pg-books">
+      <div class="bhero">
+        <h1>বইটই</h1>
+        <p>প্রকাশিত গ্রন্থসমূহ · পড়ুন, কিনুন, সংগ্রহ করুন</p>
+      </div>
+      <div class="bflt">
+        <span class="flbl">ধরন:</span>
+        <button class="fbtn on" onclick="fbk('all',this)">সব বই</button>
+        <button class="fbtn" onclick="fbk('উপন্যাস',this)">উপন্যাস</button>
+        <button class="fbtn" onclick="fbk('গল্পসংকলন',this)">গল্পসংকলন</button>
+        <button class="fbtn" onclick="fbk('প্রবন্ধ',this)">প্রবন্ধ</button>
+      </div>
+      <div class="bmain">
+        <!-- ══════════════════════════════════════════
+       BOOKS GRID — ADD NEW BOOK CARDS HERE
+       Copy one .book-thumb block for each book.
+       Change: href, gradient colour, icon emoji,
+               title, genre badge, summary, price
+  ══════════════════════════════════════════ -->
+        <div class="books-grid">
+          <!-- Book 1 — PLACEHOLDER Latest First-->
+          <a class="book-thumb" data-bg="গল্পসংকলন" href="books/Book_3.html">
+            <img src="images/cover-ishwarer.jpg" alt="Book Cover" style="width: 100%; height: auto" />
+            <div class="book-thumb-info">
+              <span class="book-thumb-genre" style="background: #e8fdf0; color: #0a5a2a; border: 1px solid #a0e0b0"
+                >গল্পসংকলন</span
+              >
+              <div class="book-thumb-title">ঈশ্বরের ভূমিকায় ও অন্যান্য</div>
+              <div class="book-thumb-summary">
+                দশটি জীবনের গল্প
+                <p>
+                  দশটি গল্প এখানে দশটি জীবন। তাদের প্রেক্ষিত, দর্শন আর গন্তব্যও ভিন্ন ভিন্ন। গল্পের প্রতিটি চরিত্র
+                  প্রত্যেকেই নিজেদের কাছে সৎ, স্পষ্ট, ঋজু ও আপোষহীন। নিজের প্রয়োজনে তারা সমাজকে মানিয়ে নেয় না। বরং
+                  জীবনের টানাপোড়েন থেকে ছিটকে বেরিয়ে এসে সমকাল, সমকালীন রাজনীতি আর সমাজকে সরাসরি চ্যালেঞ্জ করে। একা,
+                  একাই লড়ে। ভাবায়, অনুভব করায়। মনে হয় গল্পগুলি যেন স্যুইস চকোলেটের মতো। শেষ টুকরোটা গলা দিয়ে নেমে যাবার
+                  সময় একটা হালকা তিক্ত স্বাদ জিভে ফেলে রেখে যায়।
+                </p>
+              </div>
+              <div class="book-thumb-footer">
+                <span class="book-thumb-price">₹২৭০ থেকে</span>
+                <span class="book-thumb-btn">বিস্তারিত →</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Book 2 — PLACEHOLDER: Fill in when Book_2.html is ready -->
+          <a class="book-thumb" data-bg="উপন্যাস" href="books/Book_2.html">
+            <img src="images/cover-sfulingo.jpg" alt="Book Cover" style="width: 100%; height: auto" />
+            <div class="book-thumb-info">
+              <span class="book-thumb-genre" style="background: #fdf4e3; color: #6b4000; border: 1px solid #e8c87a"
+                >উপন্যাস</span
+              >
+              <div class="book-thumb-title">স্ফুলিঙ্গ</div>
+              <div class="book-thumb-summary">
+                হোক কলরব
+                <p>
+                  এমন একটা সময়ে আমরা বেঁচে আছি, যখন শাসক বদলের সাথে সাথে বদলে যায় জার্সি। দেশপ্রেম ওজন হচ্ছে
+                  দাঁড়িপাল্লায়। গণতান্ত্রিক মঞ্চ এখন বিরোধীশূন্য আর বাক্‌স্বাধীনতা বন্দি জেলকুঠুরির অন্ধকারে। দেশ ও
+                  সমাজের এই দুঃসময়ে সাম্য, স্বাধীনতা আর গণতন্ত্র রক্ষায় নিখিলেশের নেতৃত্বে গর্জে ওঠে তামাম ছাত্রসমাজ।
+                </p>
+              </div>
+              <div class="book-thumb-footer">
+                <span class="book-thumb-price">₹৩৬০ থেকে</span>
+                <span class="book-thumb-btn">বিস্তারিত →</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Book 3 -->
+          <a class="book-thumb" data-bg="উপন্যাস" href="books/Book_1.html">
+            <img src="images/cover-nabadiganta.jpg" alt="Book Cover" style="width: 100%; height: auto" />
+            <div class="book-thumb-info">
+              <span class="book-thumb-genre" style="background: #e8f0fa; color: #1a3a5c; border: 1px solid #b5c8e8"
+                >উপন্যাস</span
+              >
+              <div class="book-thumb-title">নবদিগন্তের অভিমন্যুরা</div>
+              <div class="book-thumb-summary">
+                অভিমন্যুরা কেমন আছে?
+                <p>তথ্যপ্রযুক্তি শিল্পে কর্মরত এক প্রজন্মের প্রেম, কেরিয়ার ও পরিচয়ের সন্ধানের আখ্যান।</p>
+              </div>
+              <div class="book-thumb-footer">
+                <span class="book-thumb-price">₹৩৫৯ থেকে </span>
+                <span class="book-thumb-btn">বিস্তারিত →</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Book 4 — PLACEHOLDER sanjoy removed
+    <a class="book-thumb" href="books/Book_3.html">
+      <img src="images/cover-ishwarer.jpg" alt="Book Cover" style="width:100%; height:auto;">
+      <div class="book-thumb-info">
+        <span class="book-thumb-genre" style="background:#e8fdf0;color:#0a5a2a;border:1px solid #a0e0b0">গল্পসংকলন</span>
+        <div class="book-thumb-title">ঈশ্বরের ভূমিকায় ও অন্যান্য</div>
+        <div class="book-thumb-summary">দশটি জীবনের গল্প
+          <p>দশটি গল্প এখানে দশটি জীবন। তাদের প্রেক্ষিত, দর্শন আর গন্তব্যও ভিন্ন ভিন্ন। গল্পের প্রতিটি চরিত্র প্রত্যেকেই নিজেদের কাছে সৎ, স্পষ্ট, ঋজু ও আপোষহীন। নিজের প্রয়োজনে তারা সমাজকে মানিয়ে নেয় না। বরং জীবনের টানাপোড়েন থেকে ছিটকে বেরিয়ে এসে সমকাল, সমকালীন রাজনীতি আর সমাজকে সরাসরি চ্যালেঞ্জ করে। একা, একাই লড়ে। ভাবায়, অনুভব করায়। মনে হয় গল্পগুলি যেন স্যুইস চকোলেটের মতো। শেষ টুকরোটা গলা দিয়ে নেমে যাবার সময় একটা হালকা তিক্ত স্বাদ জিভে ফেলে রেখে যায়।</p>
+        </div>
+        <div class="book-thumb-footer">
+          <span class="book-thumb-price">₹২৭০ থেকে</span>
+          <span class="book-thumb-btn">বিস্তারিত →</span>
+        </div>
+      </div>
+    </a>
+    -->
+          <!-- ADD MORE BOOKS HERE — copy any block above -->
+        </div>
+      </div>
+    </div>
+    <div class="sfoot">© সঞ্জয় মণ্ডল</div>
+
+    <!-- ════ CONTACT ════ -->
+    <div class="page" id="pg-contact">
+      <div class="phdr">
+        <h1>যোগাযোগ করুন</h1>
+        <p>মতামত, বই অর্ডার বা যেকোনো প্রশ্নের জন্য</p>
+      </div>
+      <div class="cpg">
+        <div class="cgrid">
+          <div class="cicard">
+            <h3>📬 যোগাযোগের তথ্য</h3>
+            <div class="cii">
+              <div class="ciic">✉</div>
+              <div>
+                <div class="ciil">ই-মেল</div>
+                <div class="ciiv"><a href="mailto:sanjoyonblog@gmail.com">sanjoyonblog@gmail.com</a></div>
+              </div>
+            </div>
+            <div class="cii">
+              <div class="ciic">📍</div>
+              <div>
+                <div class="ciil">অবস্থান</div>
+                <div class="ciiv">কলকাতা, পশ্চিমবঙ্গ, ভারত</div>
+              </div>
+            </div>
+            <div class="cii">
+              <div class="ciic">📚</div>
+              <div>
+                <div class="ciil">বই অর্ডার</div>
+                <div class="ciiv">ফর্ম পূরণ করুন বা সরাসরি ইমেল করুন</div>
+              </div>
+            </div>
+            <div class="cii">
+              <div class="ciic">⏰</div>
+              <div>
+                <div class="ciil">প্রতিক্রিয়া সময়</div>
+                <div class="ciiv">২৪–৪৮ ঘন্টার মধ্যে</div>
+              </div>
+            </div>
+            <div class="csoc">
+              <p>সামাজিক মাধ্যমে</p>
+              <div class="csocl">
+                <a class="csl" href="https://www.facebook.com/sanjoyisonline" target="_blank">Facebook</a>
+                <a class="csl" href="https://sanjoyisonline.blogspot.com" target="_blank">Blogger</a>
+                <a class="csl" href="https://x.com/Sanjoyisonline" target="_blank"> X </a>
+              </div>
+            </div>
+          </div>
+          <!--formspree start sanjoy-->
+          <!--<div class="cfcard">
+      <h3>✍ বার্তা পাঠান</h3>
+      <form id="contactForm" action="https://formspree.io/f/xkokqkrn" method="POST">
+      <div class="cfrow">
+        <div class="cfg"><label>আপনার নাম *</label><input type="text" id="cfn" name="name" placeholder="পুরো নাম" required></div>
+        <div class="cfg"><label>ইমেল ঠিকানা *</label><input type="email" id="cfe" name="email" placeholder="yourname@email.com" required></div>
+      </div>
+      <div class="cfg"><label>বিষয়</label>
+        <select id="cfs" name="subject"><option value="">বিষয় বেছে নিন...</option><option>বই কেনার অর্ডার</option><option>লেখার বিষয়ে মতামত</option><option>প্রকাশনা সংক্রান্ত</option><option>সাক্ষাৎকার / অনুষ্ঠান</option><option>অন্যান্য</option></select>
+      </div>
+      <div class="cfg"><label>বার্তা *</label><textarea id="cfm" name="message" placeholder="আপনার বার্তা এখানে লিখুন..." required></textarea></div>
+      <button class="cfsub" type="submit">বার্তা পাঠান →</button>
+      </form>
+      <div class="cfok" id="cfok">✅ আপনার বার্তা পাঠানো হয়েছে! শীঘ্রই উত্তর দেওয়া হবে।</div>
+    </div> -->
+          <!--formspree end sanjoy-->
+
+          <!-- Contact Form emailjs start sanjoy -->
+          <!--<div id="contact" class="cfcard"> sanjoy 11PM-->
+          <div class="cfcard"> 
+            <h3>✍✍ বার্তা পাঠান</h3>
+            <form id="contactForm">
+              <div class="cfrow">
+                <div class="cfg">
+                  <label>আপনার নাম *</label>
+                  <input type="text" id="customer_name" name="customer_name" placeholder="আপনার নাম" maxlength="50" onblur="validateCName()" />
+                  <span id="cname-msg"></span>
+                </div>
+                <div class="cfg">
+                  <label>ই-মেল ঠিকানা *</label>
+                  <input type="email" id="email" name="email" placeholder="yourname@email.com" maxlength="50" onblur="validateEmail()"/>
+                  <span id="email-msg" class="msg hint"></span>
+                  <!--<span id="email-msg" class="msg hint" data-hint="যেমন: name@example.com">যেমন: name@example.com</span>-->
+                </div>
+              </div>
+              <div class="cfrow">
+                <div class="cfg">
+                  <label>মোবাইল নম্বর</label>
+                  <input type="number" id="mobile" name="mobile" placeholder="মোবাইল নম্বর (ঐচ্ছিক)" />
+                </div>
+                <div class="cfg">
+                  <label for="subject">বিষয় *</label>
+                  <select id="cfs" name="subject" onblur=validateSubject()>
+                    <option value="">বিষয় বেছে নিন...</option>
+                    <option>বই কেনার অর্ডার</option>
+                    <option>লেখার বিষয়ে মতামত</option>
+                    <option>প্রকাশনা সংক্রান্ত</option>
+                    <option>সাক্ষাৎকার / অনুষ্ঠান</option>
+                    <option>অন্যান্য</option>
+                  </select>
+                  <span id="cfs-msg"></span>
+                </div>
+              </div>
+              <div class="cfg">
+                <label>বার্তা *</label>
+                <textarea name="message" id="message" placeholder="আপনার বার্তা এখানে লিখুন..." maxlength="300" onblur="validateCcomm()"></textarea>
+                <span id="comm-msg"></span>
+              </div>
+              <!--<button type="submit">বার্তা পাঠান →</button>-->
+              <button class="cfsub" type="submit">বার্তা পাঠান →</button>
+            </form>
+            <!-- Success/failure Message 531cferror,527spinner> cfg-->
+            <!--<div class="spinner" id="spinner">⏳ পাঠানো হচ্ছে...</div>-->
+            <div class="spinner" 
+                 id="spinner" 
+                 style="display:none;text-align:center;padding:.75rem;font-family:'Hind Siliguri',sans-serif;font-size:.84rem;color:var(--ink-md)">
+              ⏳ বার্তা পাঠানো হচ্ছে...
+            </div>
+            
+            <div class="cfok" id="cfok" style="display: none">
+              ✅ বার্তাটি সফলভাবে পাঠানো হয়েছে।
+            </div>
+            <!--<div class="cferror" id="cferror">❌ বার্তা পাঠানো যায়নি। আবার চেষ্টা করুন।</div>-->
+            <div class="cferror" 
+                 id="cferror" 
+                 style="display:none;background:#fdf0f0;border:1px solid rgba(139,26,26,.2);border-radius:var(--r);padding:.75rem;font-family:'Hind Siliguri',sans-serif;font-size:.8rem;color:var(--red);margin-top:.5rem;line-height:1.6">
+                ❌ বার্তা পাঠানো যায়নি। আবার চেষ্টা করুন।
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sfoot">© সঞ্জয় মণ্ডল · সর্বস্বত্ব সংরক্ষিত</div>
+    </div>
+
+    <!-- ════ PUBLISHED (Coming Soon) ════ -->
+    <div class="page" id="pg-published">
+      <div class="phdr">
+        <h1>প্রকাশিত</h1>
+        <p>পত্রিকা ও সংবাদমাধ্যমে প্রকাশিত লেখাসমূহ</p>
+      </div>
+      <div class="cmpg">
+        <div class="cmic">📰</div>
+        <h2>শীঘ্রই আসছে</h2>
+        <p>পত্রিকা ও অনলাইন মাধ্যমে প্রকাশিত সমস্ত লেখার তালিকা এখানে যুক্ত হবে।</p>
+        <span class="cmbadge">🔧 নির্মাণাধীন</span>
+      </div>
+      <div class="sfoot">© সঞ্জয় মণ্ডল</div>
+    </div>
+
+    <!-- ════ STORIES (Coming Soon) ════ -->
+    <div class="page" id="pg-stories">
+      <div class="phdr">
+        <h1>গল্পের আসর</h1>
+        <p>ছোটগল্প ও বিহ্বল গল্পের সংকলন</p>
+      </div>
+      <div class="cmpg">
+        <div class="cmic">🌿</div>
+        <h2>শীঘ্রই আসছে</h2>
+        <p>ছোটগল্প, বিহ্বল গল্প ও অন্যান্য রচনার বিশেষ আসর এখানে তৈরি হচ্ছে।</p>
+        <span class="cmbadge">🔧 নির্মাণাধীন</span>
+      </div>
+      <div class="sfoot">© সঞ্জয় মণ্ডল</div>
+    </div>
+
+    <!-- ════ BUY MODAL ════ -->
+    <div class="mov" id="bmod">
+      <div class="mbox" style="max-width: 500px">
+        <button class="mx" onclick="cbm()">×</button>
+        <h2 id="mt" style="margin-bottom: 0.2rem"></h2>
+        <div class="modal-price-badge" id="mp"></div>
+
+        <!-- FORMAT TABS -->
+        <div class="modal-tabs">
+          <button class="modal-tab active" id="mtab-digital" onclick="switchModalTab('digital')">📱 ডিজিটাল</button>
+          <button class="modal-tab" id="mtab-kindle" onclick="switchModalTab('kindle')">📖 Kindle</button>
+          <button class="modal-tab" id="mtab-google" onclick="switchModalTab('google')">📗 Google</button>
+          <button class="modal-tab" id="mtab-hard" onclick="switchModalTab('hard')">📦 হার্ডকপি</button>
+        </div>
+
+        <!-- PANE: Digital (EPUB/PDF) -->
+        <div class="modal-pane active" id="mpane-digital">
+          <div class="fg"><label>আপনার নাম *</label><input type="text" id="mn-d" placeholder="পুরো নাম লিখুন" /></div>
+          <div class="fg">
+            <label>ইমেল ঠিকানা *</label><input type="email" id="me-d" placeholder="yourname@email.com" />
+            <div class="fg-helper">এই ইমেলে EPUB / PDF ফাইল পাঠানো হবে</div>
+          </div>
+          <div class="fg">
+            <label>ফরম্যাট</label>
+            <select id="mf-d">
+              <option value="epub">EPUB (সব ডিভাইসে চলে)</option>
+              <option value="pdf">PDF ফাইল</option>
+            </select>
+          </div>
+          <div class="modal-note-hard">📧 পেমেন্টের পর ২৪ ঘন্টার মধ্যে আপনার ইমেলে ফাইল পাঠানো হবে।</div>
+        </div>
+
+        <!-- PANE: Kindle -->
+        <div class="modal-pane" id="mpane-kindle">
+          <div class="fg"><label>আপনার নাম *</label><input type="text" id="mn-k" placeholder="পুরো নাম লিখুন" /></div>
+          <div class="fg">
+            <label>সাধারণ ইমেল *</label><input type="email" id="me-k" placeholder="yourname@gmail.com" />
+            <div class="fg-helper">অর্ডার নিশ্চিতকরণের জন্য</div>
+          </div>
+          <div class="fg">
+            <label>Kindle ইমেল *</label><input type="email" id="mk-k" placeholder="yourname@kindle.com" />
+            <div class="fg-helper">Amazon → Manage Devices → Email থেকে পাবেন। বই সরাসরি Kindle লাইব্রেরিতে যাবে।</div>
+          </div>
+          <div class="modal-note-kindle">
+            📖 <strong>কীভাবে Kindle ইমেল পাবেন:</strong> Amazon.in → Accounts → Manage Content and Devices → Devices →
+            আপনার Kindle সিলেক্ট করুন → Email দেখুন।
+          </div>
+        </div>
+
+        <!-- PANE: Google Play Books -->
+        <div class="modal-pane" id="mpane-google">
+          <div class="fg"><label>আপনার নাম *</label><input type="text" id="mn-g" placeholder="পুরো নাম লিখুন" /></div>
+          <div class="fg">
+            <label>Google অ্যাকাউন্ট ইমেল *</label><input type="email" id="me-g" placeholder="yourname@gmail.com" />
+            <div class="fg-helper">যে Gmail দিয়ে Play Books ব্যবহার করেন</div>
+          </div>
+          <div class="modal-note-google">
+            📗 <strong>ডেলিভারি প্রক্রিয়া:</strong> পেমেন্টের পর আপনার ইমেলে EPUB ফাইল পাঠানো হবে। Google Play Books →
+            Upload → ফাইল আপলোড করুন — ৩০ সেকেন্ডে আপনার লাইব্রেরিতে যোগ হবে।
+          </div>
+        </div>
+
+        <!-- PANE: Hardcopy -->
+        <div class="modal-pane" id="mpane-hard">
+          <div class="fg"><label>পুরো নাম *</label><input type="text" id="mn-h" placeholder="প্রাপকের নাম" /></div>
+          <div class="fg">
+            <label>মোবাইল নম্বর *</label><input type="tel" id="mtel-h" placeholder="+91 XXXXX XXXXX" />
+          </div>
+          <div class="fg">
+            <label>ইমেল</label><input type="email" id="me-h" placeholder="yourname@email.com (ঐচ্ছিক)" />
+          </div>
+          <div class="fg">
+            <label>পূর্ণ ঠিকানা *</label>
+            <textarea
+              id="madr-h"
+              placeholder="বাড়ি নং, রাস্তা, এলাকা, শহর, পিন কোড"
+              style="
+                width: 100%;
+                padding: 0.55rem 0.85rem;
+                border: 1px solid var(--bdr-s);
+                border-radius: var(--r);
+                font-family: &quot;Hind Siliguri&quot;, sans-serif;
+                font-size: 0.87rem;
+                background: #fff;
+                color: var(--ink);
+                outline: none;
+                min-height: 80px;
+                resize: vertical;
+              "></textarea>
+          </div>
+          <div class="modal-note-hard">
+            📦 <strong>ডাক ডেলিভারি:</strong> পেমেন্টের ৩-৫ কার্যদিবসের মধ্যে Speed Post / Courier-এ পাঠানো হবে।
+            Tracking নম্বর SMS / ইমেলে দেওয়া হবে।
+          </div>
+        </div>
+
+        <div class="macts" style="margin-top: 1.1rem">
+          <button class="bbtn bb-pri" style="flex: 1" onclick="sbm()">✓ অর্ডার নিশ্চিত করুন</button>
+          <button class="bbtn bb-out" onclick="cbm()">বাতিল</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ── PAGE NAV ──
+      function Xsp(p) {
+        document.querySelectorAll(".page").forEach((e) => e.classList.remove("active"));
+        const pg = document.getElementById("pg-" + p);
+        if (pg) pg.classList.add("active");
+        document.querySelectorAll(".nlinks button").forEach((e) => e.classList.remove("act"));
+        const nb = document.getElementById("n-" + p);
+        if (nb) nb.classList.add("act");
+        window.scrollTo(0, 0);
+      }
+      function XXsp(p) {
+        // deactivate all pages
+        document.querySelectorAll(".page").forEach((e) => e.classList.remove("active"));
+        const pg = document.getElementById("pg-" + p);
+        if (pg) pg.classList.add("active");
+
+        // update nav button state
+        document.querySelectorAll(".nlinks button").forEach((e) => e.classList.remove("act"));
+        const nb = document.getElementById("n-" + p);
+        if (nb) nb.classList.add("act");
+
+        if (p === "contact") {
+          // scroll directly to contact form
+          const el = document.getElementById("contact");
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        } else {
+          // scroll to top for other pages
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }
+      function sp(p) {
+        // deactivate all pages
+        document.querySelectorAll(".page").forEach((e) =>
+          e.classList.remove("active")
+        );
+
+        // activate selected page
+        const pg = document.getElementById("pg-" + p);
+        if (pg) pg.classList.add("active");
+
+        // update nav button state
+        document.querySelectorAll(".nlinks button").forEach((e) =>
+          e.classList.remove("act")
+        );
+
+        const nb = document.getElementById("n-" + p);
+        if (nb) nb.classList.add("act");
+
+        // always go to top of page
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }    
+      
+      function tmob() {
+        document.getElementById("mmenu").classList.toggle("open");
+      }
+
+      // Blog functions moved to blog-list.html
+
+      // ── BOOKS ──
+      function Xfbk(g, btn) {
+        document.querySelectorAll(".fbtn").forEach((b) => b.classList.remove("on"));
+        btn.classList.add("on");
+        document.querySelectorAll(".bkcard").forEach((c) => {
+          if (g === "all" || c.dataset.bg === g) c.style.display = "";
+          else c.style.display = "none";
+        });
+      }
+      
+      function fbk(g, btn) {
+        document.querySelectorAll(".fbtn").forEach(b =>
+            b.classList.remove("on")
+        );
+
+        btn.classList.add("on");
+
+        document.querySelectorAll(".book-thumb").forEach(c => {
+            const match = g === "all" || c.dataset.bg === g;
+            c.style.display = match ? "" : "none";
+        });
+      }
+      
+      function tpv(hd) {
+        const bd = hd.nextElementSibling;
+        const t = hd.querySelector(".pvtog");
+        const o = bd.classList.contains("open");
+        bd.classList.toggle("open");
+        t.textContent = o ? "▼ খুলুন" : "▲ বন্ধ করুন";
+      }
+
+      // ── PRICE TAB SWITCHER (per book) ──
+      function switchPriceTab(type, bookId) {
+        // tab UI
+        document.getElementById("tab-digital").classList.toggle("active", type === "digital");
+        document.getElementById("tab-hard").classList.toggle("active", type === "hard");
+        // delivery info
+        const dd = document.getElementById("delivery-digital-" + bookId);
+        const dh = document.getElementById("delivery-hard-" + bookId);
+        if (dd) dd.style.display = type === "digital" ? "" : "none";
+        if (dh) dh.style.display = type === "hard" ? "" : "none";
+        // update buy button
+        const btn = document.getElementById("buy-btn-" + bookId);
+        if (btn) {
+          if (type === "digital") {
+            btn.textContent = "🛒 ডিজিটাল কিনুন";
+            btn.onclick = () => obm("নবদিগন্তের অভিমন্যুরা", "৯৯", "digital");
+          } else {
+            btn.textContent = "📦 হার্ডকপি অর্ডার করুন";
+            btn.onclick = () => obm("নবদিগন্তের অভিমন্যুরা", "২৯৯", "hard");
+          }
+        }
+      }
+
+      // ── BUY MODAL ──
+      let BT = "",
+        BType = "digital";
+      let currentModalTab = "digital";
+
+      function obm(title, price, type) {
+        BT = title;
+        BType = type || "digital";
+        document.getElementById("mt").textContent = title;
+        document.getElementById("mp").textContent = "মূল্য: ₹" + price;
+        document.getElementById("bmod").classList.add("open");
+        document.body.style.overflow = "hidden";
+        switchModalTab(BType);
+      }
+
+      function switchModalTab(tab) {
+        currentModalTab = tab;
+        ["digital", "kindle", "google", "hard"].forEach((t) => {
+          const btn = document.getElementById("mtab-" + t);
+          const pane = document.getElementById("mpane-" + t);
+          if (btn) btn.classList.toggle("active", t === tab);
+          if (pane) pane.classList.toggle("active", t === tab);
+        });
+      }
+
+      function cbm() {
+        document.getElementById("bmod").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      function sbm() {
+        const tab = currentModalTab;
+        let name = "",
+          email = "",
+          extra = "",
+          valid = true,
+          msg = "";
+
+        if (tab === "digital") {
+          name = document.getElementById("mn-d").value.trim();
+          email = document.getElementById("me-d").value.trim();
+          const fmt = document.getElementById("mf-d").value;
+          if (!name || !email) {
+            valid = false;
+          }
+          extra = "ফরম্যাট: " + fmt;
+          msg =
+            "ধন্যবাদ " +
+            name +
+            "!\n\nবই: " +
+            BT +
+            "\n" +
+            extra +
+            "\nইমেল: " +
+            email +
+            "\n\n২৪ ঘন্টার মধ্যে ফাইল পাঠানো হবে।";
+        } else if (tab === "kindle") {
+          name = document.getElementById("mn-k").value.trim();
+          email = document.getElementById("me-k").value.trim();
+          const kindle = document.getElementById("mk-k").value.trim();
+          if (!name || !email || !kindle) {
+            valid = false;
+          }
+          extra = "Kindle ইমেল: " + kindle;
+          msg =
+            "ধন্যবাদ " +
+            name +
+            "!\n\nবই: " +
+            BT +
+            "\nKindle ইমেল: " +
+            kindle +
+            "\n\nপেমেন্টের পর সরাসরি আপনার Kindle লাইব্রেরিতে পাঠানো হবে।";
+        } else if (tab === "google") {
+          name = document.getElementById("mn-g").value.trim();
+          email = document.getElementById("me-g").value.trim();
+          if (!name || !email) {
+            valid = false;
+          }
+          extra = "Google ইমেল: " + email;
+          msg =
+            "ধন্যবাদ " +
+            name +
+            "!\n\nবই: " +
+            BT +
+            "\n" +
+            extra +
+            "\n\nEPUB ফাইল ইমেলে পাঠানো হবে। Google Play Books-এ আপলোড করুন।";
+        } else if (tab === "hard") {
+          name = document.getElementById("mn-h").value.trim();
+          const tel = document.getElementById("mtel-h").value.trim();
+          const adr = document.getElementById("madr-h").value.trim();
+          if (!name || !tel || !adr) {
+            valid = false;
+          }
+          msg =
+            "ধন্যবাদ " +
+            name +
+            "!\n\nবই: " +
+            BT +
+            " (হার্ডকপি)\nফোন: " +
+            tel +
+            "\nঠিকানা: " +
+            adr +
+            "\n\n৩-৫ কার্যদিবসের মধ্যে ডাকে পাঠানো হবে।";
+        }
+
+        if (!valid) {
+          alert("অনুগ্রহ করে সমস্ত * চিহ্নিত তথ্য পূরণ করুন।");
+          return;
+        }
+
+        // In production: send to your backend / Razorpay / Instamojo here
+        alert(msg);
+        cbm();
+      }
+
+      document.getElementById("bmod").addEventListener("click", function (e) {
+        if (e.target === this) cbm();
+      });
+
+      // ── CONTACT ──
+      function scon() {
+        const n = document.getElementById("cfn").value.trim();
+        const e = document.getElementById("cfe").value.trim();
+        const m = document.getElementById("cfm").value.trim();
+        if (!n || !e || !m) {
+          alert("অনুগ্রহ করে নাম, ইমেল ও বার্তা পূরণ করুন।");
+          return;
+        }
+        const ok = document.getElementById("cfok");
+        ok.style.display = "block";
+        document.getElementById("cfn").value = "";
+        document.getElementById("cfe").value = "";
+        document.getElementById("cfm").value = "";
+        setTimeout(() => (ok.style.display = "none"), 5000);
+      }
+
+      sp("home");
+
+      // ════ SETTINGS SYSTEM ════
+      const FONTS = {
+        hind: "'Hind Siliguri', sans-serif",
+        baloo: "'Baloo Da 2', cursive",
+        tiro: "'Tiro Bangla', serif",
+        "noto-serif": "'Noto Serif Bengali', serif",
+        "noto-sans": "'Noto Sans Bengali', sans-serif"
+      };
+
+      const FONT_PREVIEWS = {
+        hind: "Hind Siliguri",
+        baloo: "Baloo Da 2",
+        tiro: "Tiro Bangla",
+        "noto-serif": "Noto Serif Bengali",
+        "noto-sans": "Noto Sans Bengali"
+      };
+
+      const THEMES = {
+        classic: {
+          "--ink": "#1a1208",
+          "--ink-lt": "#3d3020",
+          "--ink-md": "#6b5a45",
+          "--ink-mu": "#9a8a76",
+          "--paper": "#faf8f4",
+          "--paper-w": "#f5f1e8",
+          "--paper-d": "#ede8de",
+          "--gold": "#b8860b",
+          "--gold-l": "#d4a017",
+          "--gold-p": "#fdf4d8",
+          "--red": "#8b1a1a",
+          "--teal": "#1a5f5a",
+          "--nav-bg": "#1a1208",
+          "--nav-text": "rgba(255,255,255,.62)"
+        },
+        mint: {
+          "--ink": "#0a1f1e",
+          "--ink-lt": "#0f3330",
+          "--ink-md": "#3a7070",
+          "--ink-mu": "#6aaa9a",
+          "--paper": "#f0faf8",
+          "--paper-w": "#e0f5f0",
+          "--paper-d": "#c5e8e2",
+          "--gold": "#0c726d",
+          "--gold-l": "#0f8f88",
+          "--gold-p": "#d4f0ed",
+          "--red": "#0c726d",
+          "--teal": "#0c726d",
+          "--nav-bg": "#0a1f1e",
+          "--nav-text": "rgba(255,255,255,.62)"
+        },
+        teal: {
+          "--ink": "#e8f4f3",
+          "--ink-lt": "#c0dcd8",
+          "--ink-md": "#80b0aa",
+          "--ink-mu": "#4a8880",
+          "--paper": "#0c2624",
+          "--paper-w": "#0f302d",
+          "--paper-d": "#133a36",
+          "--gold": "#0c726d",
+          "--gold-l": "#14a098",
+          "--gold-p": "#0f3330",
+          "--red": "#14a098",
+          "--teal": "#14a098",
+          "--nav-bg": "#08201e",
+          "--nav-text": "rgba(255,255,255,.6)"
+        },
+        navy: {
+          "--ink": "#c8b898",
+          "--ink-lt": "#b8a888",
+          "--ink-md": "#8a7a60",
+          "--ink-mu": "#5a4e38",
+          "--paper": "#1a2744",
+          "--paper-w": "#1e2f52",
+          "--paper-d": "#243660",
+          "--gold": "#c8b898",
+          "--gold-l": "#ddd0b0",
+          "--gold-p": "#1e2f52",
+          "--red": "#ddd0b0",
+          "--teal": "#a0b8d0",
+          "--nav-bg": "#111c33",
+          "--nav-text": "rgba(200,184,152,.7)"
+        }
+      };
+
+      function toggleSettings() {
+        document.getElementById("settings-panel").classList.toggle("open");
+        document.getElementById("settings-overlay").classList.toggle("open");
+      }
+      function closeSettings() {
+        document.getElementById("settings-panel").classList.remove("open");
+        document.getElementById("settings-overlay").classList.remove("open");
+      }
+
+      function setTheme(name, btn) {
+        const t = THEMES[name];
+        if (!t) return;
+        const r = document.documentElement.style;
+        Object.entries(t).forEach(([k, v]) => r.setProperty(k, v));
+        const nav = document.getElementById("snav");
+        if (nav) nav.style.background = t["--nav-bg"];
+        document.body.style.background = t["--paper"];
+        document.querySelectorAll(".theme-btn").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        localStorage.setItem("sm-theme", name);
+      }
+
+      function setFont(name, btn) {
+        const f = FONTS[name];
+        if (!f) return;
+        document.documentElement.style.setProperty("--font-body", f);
+        document.body.style.fontFamily = f;
+        // update font previews
+        document.querySelectorAll(".font-btn").forEach((b) => {
+          b.classList.remove("active");
+          const fn = b.dataset.font;
+          const preview = b.querySelector(".font-preview");
+          if (preview) preview.style.fontFamily = FONTS[fn] || f;
+        });
+        btn.classList.add("active");
+        localStorage.setItem("sm-font", name);
+      }
+
+      function setSize(px) {
+        document.documentElement.style.fontSize = px + "px";
+        document.querySelectorAll(".size-btn").forEach((b) => b.classList.remove("active"));
+        event.target.classList.add("active");
+        localStorage.setItem("sm-size", px);
+      }
+
+      function setLineH(lh) {
+        document.body.style.lineHeight = lh;
+        document.querySelectorAll(".size-btn").forEach((b) => b.classList.remove("active"));
+        event.target.classList.add("active");
+        localStorage.setItem("sm-lineh", lh);
+      }
+
+      function resetSettings() {
+        localStorage.removeItem("sm-theme");
+        localStorage.removeItem("sm-font");
+        localStorage.removeItem("sm-size");
+        localStorage.removeItem("sm-lineh");
+        location.reload();
+      }
+
+      // Load saved settings on page load
+      (function loadSaved() {
+        const t = localStorage.getItem("sm-theme");
+        const f = localStorage.getItem("sm-font");
+        const s = localStorage.getItem("sm-size");
+        const lh = localStorage.getItem("sm-lineh");
+        if (t) {
+          const btn = document.querySelector('.theme-btn[data-theme="' + t + '"]');
+          if (btn) setTheme(t, btn);
+        }
+        if (f) {
+          const btn = document.querySelector('.font-btn[data-font="' + f + '"]');
+          if (btn) setFont(f, btn);
+        }
+        if (s) document.documentElement.style.fontSize = s + "px";
+        if (lh) document.body.style.lineHeight = lh;
+        // set font previews after load
+        setTimeout(() => {
+          document.querySelectorAll(".font-btn").forEach((b) => {
+            const fn = b.dataset.font;
+            const preview = b.querySelector(".font-preview");
+            if (preview && FONTS[fn]) preview.style.fontFamily = FONTS[fn];
+          });
+        }, 500);
+      })();
+
+      //Validation for Message Form☑️ 
+    function validateCName(showEmptyError = false) {
+      const val = document.getElementById("customer_name").value.trim();
+      const cnameMsg = document.getElementById("cname-msg");
+
+      if (!val) {
+        cnameMsg.textContent = "আপনার নাম দিন";
+        cnameMsg.className = "msg error";
+        return false;
+      }
+      if (val.length > 50) {
+        cnameMsg.textContent = "৫০ অক্ষরের মধ্যে নাম লিখুন";
+        cnameMsg.className = "msg error";
+        return false;
+      }
+      //if (/^\d/.test(val)) {
+      if (/^[0-9\u09E6-\u09EF]/.test(val)) {
+        cnameMsg.textContent = "সংখ্যা দিয়ে নাম শুরু হতে পারবে না";
+        cnameMsg.className = "msg error";
+        return false;
+      }
+      //if (/^\d+$/.test(val)) {
+      if (/^[0-9\u09E6-\u09EF]+$/.test(val)) {
+        cnameMsg.textContent = "আপনার নাম শুধুমাত্র সংখ্যা হতে পারবে না";
+        cnameMsg.className = "msg error";
+        return false;
+      }
+      cnameMsg.textContent = "✅";
+      cnameMsg.className = "msg valid";
+      return true;
+    }
+
+    function validateCcomm(showEmptyError = false) {
+      const val = document.getElementById("message").value.trim();
+      const commmsg = document.getElementById("comm-msg");
+
+      if (!val) {
+        commmsg.textContent = "আপনার মতামত লিখুন";
+        commmsg.className = "msg error";
+        return false;
+      }
+      if (val.length > 150) {
+        commmsg.textContent = "ঠিকানা ৩০০ অক্ষরের মধ্যে রাখুন";
+        commmsg.className = "msg error";
+        return false;
+      }  
+      commmsg.textContent = "✅";
+      commmsg.className = "msg valid";
+      return true;
+}
+      
+    function validateEmail(showEmptyError = false) {
+    const val = document.getElementById("email").value.trim();
+    const emailMsg = document.getElementById("email-msg");
+    //const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+    if (!emailPattern.test(val)) {
+      emailMsg.textContent = "যেমন: name@example.com (in English)";
+      emailMsg.className = "msg error";
+      return false;
+    }
+      emailMsg.textContent = "✅";
+      emailMsg.className = "msg valid";
+      return true;
+    }
+      
+    function validateSubject() {
+      const val = document.getElementById("cfs").value; // get selected value
+      const ratemsg = document.getElementById("cfs-msg");
+
+      if (!val || parseInt(val) < 1) {
+        ratemsg.textContent = "বিষয় নির্বাচন করুন";
+        ratemsg.className = "msg error";
+        return false;
+      }
+      ratemsg.textContent = "✅";
+      ratemsg.className = "msg valid";
+      return true;
+    }
+      
+    //Validation for Comments Form☑️  
+    //document.getElementById("customer_name").onblur = validateCName;
+    document.getElementById("customer_name").addEventListener("blur", () => {
+      validateCName(false);
+    });
+      
+    document.getElementById("message").addEventListener("blur", () => {
+      validateCcomm(false);
+    });
+      
+    document.getElementById("email").addEventListener("blur", () => {
+      validateEmail(false);
+    });
+      
+    function setupEmailJS() {
+      console.log("setupEmailJS called"); // debug
+
+      const form = document.getElementById("contactForm");
+      const spinner = document.getElementById("spinner");
+      const successMsg = document.getElementById("cfok");
+      const errorMsg = document.getElementById("cferror");
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        console.log("Form submitted"); // debug
+
+      const valid =
+        validateCName(true) &&
+        validateEmail(true) &&
+        validateCcomm(true) &&
+        validateSubject(true);
+
+      if (!valid) {
+        console.log("Validation failed");
+        return;
+      }
+
+      // Reset messages
+      successMsg.style.display = "none";
+      errorMsg.style.display = "none";
+      spinner.style.display = "block";
+
+      // Collect form data
+      const formData = new FormData(form);
+      const name = formData.get("customer_name").trim();
+      const email = formData.get("email").trim();
+      const mobile = formData.get("mobile").trim();
+      const header = formData.get("subject").trim();
+      const message = formData.get("message").trim();
+
+      // Build message block
+      const messageBlock = `
+        Message Confirmation Details:
+        cust_name: ${name}
+        cust_Mobile: ${mobile}
+        cust_message: ${message}
+        Dated: ${new Date().toString()}
+      `;
+
+      // Payload matches your EmailJS template variables
+      const payload = {
+        to_email: email,
+        to_name: name,
+        header: header,
+        message_block: messageBlock
+      };
+
+      try {
+        const response = await fetch("/api/sendEmail", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+        console.log("Backend response:", result);
+
+        spinner.style.display = "none";
+
+        if (result.error) {
+          errorMsg.textContent = "❌ " + result.error;
+          errorMsg.style.display = "block";
+          //console.error("FAILED...", result.error, result.details);
+        } else {
+          //successMsg.textContent = "✅ " + result.message;
+          console.log("Backend message:", result.message);
+          successMsg.style.display = "block";
+          form.reset(); // ✅ Clear form after success
+        }
+      } catch (err) {
+        spinner.style.display = "none";
+        errorMsg.textContent = "❌ Network error: " + err.message;
+        errorMsg.style.display = "block";
+        console.error("Error calling backend:", err);
+      }
+        });
+      }
+      
+      // ── LOAD LATEST 3 POSTS FROM index.json ──
+      async function loadLatestPosts() {
+        console.log("loadLatestPosts called");
+
+      const CAT_CLASS = {
+        প্রতিবেদন: "c-rep",
+        ছোটগল্প: "c-sto",
+        অণুগল্প: "c-mic",
+        "বিহ্বল গল্প": "c-bih",
+        কবিতা: "c-poem"
+      };
+
+      const container = document.getElementById("home-blog-cards");
+      const loading = document.getElementById("home-blog-loading");
+
+      console.log(container);
+      console.log(loading);
+
+      try {
+        const res = await fetch("data/blogs/index.json");
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const posts = await res.json();
+
+        const top3 = Array.isArray(posts) ? posts.slice(0, 3) : [];
+
+        if (loading) loading.remove();
+
+        top3.forEach((post) => {
+          const catCls = CAT_CLASS[post.blog_type] || "c-rep";
+          //const href = "blogs/" + post.blog_id + ".html";
+          const href = "blog.html/?id=" + post.blog_id; //sanjoy
+          const excerpt =
+            (post.blog_excerpt || "").substring(0, 160) + ((post.blog_excerpt || "").length > 160 ? "…" : "");
+
+          const a = document.createElement("a");
+          a.className = "mpc";
+          a.href = href;
+          a.innerHTML =
+            '<span class="mpcat ' +
+            catCls +
+            '">' +
+            (post.blog_type || "") +
+            "</span>" +
+            "<h3>" +
+            post.blog_title +
+            "</h3>" +
+            "<p>" +
+            excerpt +
+            "</p>" +
+            '<div class="mpf">' +
+            '<span class="mpd">' +
+            (post.blog_date || "") +
+            "</span>" +
+            '<span class="mpr">পড়ুন →</span>' +
+            "</div>";
+          container.appendChild(a);
+        });
+
+        if (top3.length === 0 && loading) {
+          loading.textContent = "কোনো লেখা পাওয়া যায়নি।";
+        }
+      } catch (e) {
+        console.warn("Could not load index.json:", e);
+        if (loading) loading.textContent = "❌ লোড করতে সমস্যা হয়েছে।";
+      }
+    }
+      
+    // Call the function once the DOM is ready
+    document.addEventListener("DOMContentLoaded", () => {
+      loadLatestPosts();
+    });
+
+    document.addEventListener("DOMContentLoaded", setupEmailJS); 
+      
+    </script>
+  </body>
+</html>

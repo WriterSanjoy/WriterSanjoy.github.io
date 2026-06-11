@@ -1,0 +1,63 @@
+[
+  {
+    "id": "story1",
+    "title": "সম্পর্ক",
+    "category": "ছোটগল্প",
+    "portal": "গল্পপাঠ",
+    "type": "Weblink",
+    "year": "২০১৪",
+    "publishedDate": "অক্টোবর ২০১৪",
+    "image": "https://writersanjoy.github.io/images/blogimages/relation.jpg",
+    "summary": "যা গেছে, তা কি চিরদিনের মতো ছেড়ে চলে যায়...",
+    "contentFile": "/data/published/content/story1.html",
+    "url":"https://www.galpopath.com/2014/10/blog-post_0.html"
+  },
+  {
+    "id": "story2",
+    "title": "বিষদাঁত",
+    "category": "ছোটগল্প",
+    "portal": "বইসই",
+    "type": "Screen",
+    "year": "২০১৯",
+    "publishedDate": "সেপ্টেম্বর ২০১৯",
+    "image": "https://writersanjoy.github.io/images/blogimages/poisonedtooth.jpg",
+    "summary": "যা গেছে, তা কি চিরদিনের মতো ছেড়ে চলে যায়...",
+    "contentFile": "/data/published/content/story2.html"
+  },
+  {
+  "id": "story3",
+  "title": "কবিতাগুচ্ছ",
+  "category": "কবিতা",
+  "portal": "পত্রিকা-ফেসবুক",
+  "type": "Screen",
+  "year": "২০২৬",
+  "publishedDate": "জুন ২০২৬",
+  "image": "https://writersanjoy.github.io/images/blogimages/poems1.png",
+  "summary": "কয়েকটি প্রকাশিত কবিতা",
+  "contentFile": "/data/published/content/story3.html"
+  },
+  {
+  "id": "story4",
+  "title": "টেস্ট প্রবন্ধ",
+  "category": "প্রবন্ধ",
+  "portal": "টেস্ট",
+  "type": "Weblink",
+  "year": "২০২৪",
+  "publishedDate": "জানুয়ারি ২০২৪",
+  "image": "https://via.placeholder.com/300",
+  "summary": "টেস্ট প্রবন্ধ",
+  "contentFile": "/data/published/content/story3.html"
+},
+{
+  "id": "story5",
+  "title": "টেস্ট প্রবন্ধ",
+  "category": "প্রতিবেদন",
+  "portal": "টেস্ট",
+  "type": "Screen",
+  "year": "২০২৪",
+  "publishedDate": "জানুয়ারি ২০২৪",
+  "image": "https://via.placeholder.com/300",
+  "summary": "টেস্ট প্রতিবেদন",
+  "contentFile": "/data/published/content/story4.html"
+}
+]

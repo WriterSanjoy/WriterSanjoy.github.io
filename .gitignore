@@ -1,0 +1,33 @@
+.env
+.env.local
+.env.production
+
+# Dependency directories - keeps dependencies out of GitHub.
+node_modules/
+
+# → ignores all log files.
+# Logs
+*.log
+
+# Build output
+.next/
+dist/
+out/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local-only docs and test folders → These folders are used locally but don’t want in the repo.
+Help_TestFolders/
+docs/
+testing/
+scratch/
+TestFile.txt
+index_withIDs_W.html
+File Structure.txt
+
+# Ignore everything in /books except 2 files (advanced) 
+books/*
+!books/books.css
+!books/Book_1.html

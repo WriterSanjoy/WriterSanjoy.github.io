@@ -1,0 +1,388 @@
+/* ═══════════════════════════════════════════════════════════════
+   published.css — writersanjoy.vercel.app
+   Requires: shared.css (tokens, reset, nav, settings, comments)
+             books.css (if book cards are reused)
+   Used by: published.html (works listing / bibliography page)
+═══════════════════════════════════════════════════════════════ */
+
+/* ── EXTRA ROOT VARS (published.html only) ── */
+:root {
+  --c-story:     #e8b820;  /* গল্প — gold */
+  --c-report:    #e05050;  /* প্রতিবেদন — red */
+  --c-poem:      #8b5cf6;  /* কবিতা — purple */
+  --c-essay:     #1a9060;  /* প্রবন্ধ — green */
+  --c-review:    #2563eb;  /* সমালোচনা — blue */
+  --c-interview: #db7706;  /* সাক্ষাৎকার — orange */
+}
+
+/* Slightly tighter border values used only in published.html */
+/* (override shared :root for this page) */
+:root {
+  --bdr:   rgba(26, 18, 8, 0.11);
+  --bdr-s: rgba(26, 18, 8, 0.2);
+}
+
+/* ── PAGE HEADER (published.html variant) ── */
+/* Overrides shared .phdr to add pattern + inner wrapper */
+.phdr {
+  padding: 2.5rem 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.phdr::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 44px,
+    rgba(184, 134, 11, 0.04) 44px,
+    rgba(184, 134, 11, 0.04) 45px
+  );
+}
+.phdr-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.phdr-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 0;
+}
+.phdr h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.2;
+}
+.phdr-sub {
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 0.3rem;
+}
+.phdr-count {
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+  padding-bottom: 0.25rem;
+}
+
+/* ── CATEGORY TAB BAR ── */
+.cat-bar {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.cat-bar::-webkit-scrollbar { display: none; }
+
+.cat-tab {
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.7rem 1.25rem;
+  color: rgba(255, 255, 255, 0.45);
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+  flex-shrink: 0;
+}
+.cat-tab:hover { color: rgba(255, 255, 255, 0.8); }
+.cat-tab.on    { color: #fff; border-bottom-color: var(--gold-l); }
+
+/* ── MAIN WRAPPER ── */
+.main-wrap {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 2rem 2rem 5rem;
+}
+
+/* ── ENTRY CARD ── */
+.entry {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 0;
+  background: #fff;
+  border: 1px solid var(--bdr);
+  border-radius: var(--r-lg);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: box-shadow 0.22s, transform 0.22s;
+}
+.entry:hover {
+  box-shadow: 0 6px 28px rgba(26, 18, 8, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Entry image panel */
+.entry-img {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-d);
+  flex-shrink: 0;
+  min-height: 180px;
+}
+.entry-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+.entry:hover .entry-img img { transform: scale(1.04); }
+
+.entry-img-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  opacity: 0.18;
+  background: var(--ink);
+}
+.entry-year {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  background: rgba(26, 18, 8, 0.75);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.18rem 0.6rem;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(4px);
+}
+
+/* Entry body */
+.entry-body {
+  padding: 1.4rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  border-left: 1px solid var(--bdr);
+}
+
+.entry-cat-wrap { display: flex; align-items: center; gap: 0.5rem; }
+.entry-cat {
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  position: relative;
+  display: inline-block;
+}
+.entry-cat::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--cat-color, var(--gold));
+}
+
+.entry-portal {
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 0.75rem;
+  color: var(--ink-mu);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.entry-portal::before { content: "·"; color: var(--bdr-s); }
+
+.entry-title {
+  font-family: "Noto Serif Bengali", serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.entry-summary {
+  font-family: "Noto Serif Bengali", serif;
+  font-size: 0.9rem;
+  color: var(--ink-lt);
+  line-height: 1.85;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.entry-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--bdr);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.entry-date {
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 0.72rem;
+  color: var(--ink-mu);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.entry-link {
+  font-family: "Hind Siliguri", "Noto Sans Bengali", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--teal);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.15s;
+  border: none;
+}
+.entry-link:hover { color: var(--red); }
+.entry-link-arrow { font-size: 0.9rem; transition: transform 0.15s; }
+.entry-link:hover .entry-link-arrow { transform: translateX(3px); }
+
+/* ── SECTION DIVIDER ── */
+.sec-div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0 1.25rem;
+}
+.sec-div-label {
+  font-family: "Noto Serif Bengali", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.sec-div-line  { flex: 1; height: 1px; background: var(--bdr-s); }
+.sec-div-count {
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 0.72rem;
+  color: var(--ink-mu);
+  white-space: nowrap;
+}
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+  padding: 0.9rem 1.1rem;
+  background: #fff;
+  border: 1px solid var(--bdr);
+  border-radius: var(--r-lg);
+}
+.filter-label {
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 0.76rem;
+  color: var(--ink-mu);
+  font-weight: 500;
+}
+.filter-pill {
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.28rem 0.88rem;
+  border-radius: 100px;
+  border: 1.5px solid var(--bdr-s);
+  background: var(--paper-w);
+  color: var(--ink-lt);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.filter-pill:hover { border-color: var(--gold); }
+.filter-pill.on    { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+.filter-search { margin-left: auto; display: flex; gap: 0.4rem; }
+.filter-search input {
+  padding: 0.42rem 0.8rem;
+  border: 1.5px solid var(--bdr-s);
+  border-radius: var(--r);
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 0.82rem;
+  background: var(--paper-w);
+  color: var(--ink);
+  outline: none;
+  width: 180px;
+  height: 45px;
+  transition: border-color 0.18s;
+}
+.filter-search input:focus { border-color: var(--red); background: #fff; }
+.filter-search button {
+  padding: 0.42rem 0.85rem;
+  background: var(--gold-l);
+  color: #fff;
+  border: none;
+  border-radius: var(--r);
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+/* ── NO RESULTS ── */
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: var(--ink-mu);
+  font-family: "Noto Serif Bengali", serif;
+  font-size: 1rem;
+  display: none;
+}
+
+/* ── For prevStory & nextStory by Sanjoy ── */
+.story-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  flex-shrink: 0;
+  background: #f1ede6;
+}
+
+.story-nav button {
+  font-family: "Hind Siliguri", "Noto Sans Bengali", sans-serif;
+  font-size: 0.82rem; 
+  font-weight: 600; 
+  color: #1a1208;
+  
+  border: none;
+  background: none;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+}
+
+/* ── PUBLISHED RESPONSIVE ── */
+@media (max-width: 680px) {
+  .entry                  { grid-template-columns: 1fr; }
+  .entry-img              { min-height: 200px; border-left: none; border-bottom: 1px solid var(--bdr); }
+  .entry-img img,
+  .entry-img-placeholder  { min-height: 200px; }
+  .entry-body             { border-left: none; padding: 1.1rem 1.2rem; }
+  .filter-search          { margin-left: 0; width: 100%; }
+  .filter-search input    { width: 100%; flex: 1; }
+  .main-wrap              { padding: 1.5rem 1rem 4rem; }
+  .phdr                   { padding: 2rem 1.2rem 0; }
+}

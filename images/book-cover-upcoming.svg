@@ -1,0 +1,187 @@
+<svg width="1600" height="2400" viewBox="0 0 680 960" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Upcoming book cover — Sanjoy Mondal</title>
+<desc>A literary Bengali book cover with deep navy background, golden title text, and atmospheric illustration</desc>
+
+<defs>
+  <clipPath id="cvr">
+    <rect x="0" y="0" width="680" height="960" rx="4"/>
+  </clipPath>
+  <radialGradient id="glow1" cx="50%" cy="35%" r="45%">
+    <stop offset="0%" stop-color="#c8a84b" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#0d1b3e" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="moonglow" cx="72%" cy="22%" r="18%">
+    <stop offset="0%" stop-color="#e8d8a0" stop-opacity="0.55"/>
+    <stop offset="60%" stop-color="#c8b070" stop-opacity="0.12"/>
+    <stop offset="100%" stop-color="#0d1b3e" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+
+<g clip-path="url(#cvr)">
+
+  <!-- Background -->
+  <rect x="0" y="0" width="680" height="960" fill="#0d1b3e"/>
+
+  <!-- Subtle texture lines -->
+  <g stroke="#1a2d5a" stroke-width="0.4" opacity="0.6">
+    <line x1="0" y1="80"  x2="680" y2="80"/>
+    <line x1="0" y1="160" x2="680" y2="160"/>
+    <line x1="0" y1="240" x2="680" y2="240"/>
+    <line x1="0" y1="720" x2="680" y2="720"/>
+    <line x1="0" y1="800" x2="680" y2="800"/>
+    <line x1="0" y1="880" x2="680" y2="880"/>
+  </g>
+
+  <!-- Glow halo -->
+  <rect x="0" y="0" width="680" height="960" fill="url(#glow1)"/>
+
+  <!-- Stars -->
+  <g fill="#e8d8a0" opacity="0.75">
+    <circle cx="55"  cy="60"  r="1.5"/>
+    <circle cx="110" cy="48"  r="1.0"/>
+    <circle cx="180" cy="82"  r="1.8"/>
+    <circle cx="240" cy="44"  r="1.1"/>
+    <circle cx="310" cy="70"  r="1.3"/>
+    <circle cx="370" cy="55"  r="0.9"/>
+    <circle cx="440" cy="78"  r="1.5"/>
+    <circle cx="510" cy="52"  r="1.2"/>
+    <circle cx="578" cy="90"  r="1.0"/>
+    <circle cx="630" cy="68"  r="0.8"/>
+    <circle cx="75"  cy="130" r="0.9"/>
+    <circle cx="150" cy="115" r="1.2"/>
+    <circle cx="560" cy="108" r="1.1"/>
+    <circle cx="620" cy="138" r="0.7"/>
+    <circle cx="42"  cy="195" r="1.0"/>
+    <circle cx="650" cy="190" r="0.9"/>
+    <circle cx="290" cy="162" r="0.7"/>
+    <circle cx="420" cy="178" r="0.8"/>
+    <circle cx="88"  cy="220" r="0.6"/>
+    <circle cx="600" cy="215" r="0.7"/>
+  </g>
+
+  <!-- Moon -->
+  <circle cx="530" cy="195" r="85" fill="#2a3d6e" stroke="#c8a84b" stroke-width="1.5"/>
+  <circle cx="530" cy="195" r="76" fill="#1e3060"/>
+  <circle cx="508" cy="182" r="12" fill="#243570" opacity="0.8"/>
+  <circle cx="545" cy="212" r="7"  fill="#243570" opacity="0.6"/>
+  <circle cx="524" cy="165" r="5"  fill="#243570" opacity="0.5"/>
+  <circle cx="555" cy="175" r="9"  fill="#243570" opacity="0.4"/>
+  <!-- Moon glow -->
+  <rect x="0" y="0" width="680" height="960" fill="url(#moonglow)"/>
+
+  <!-- Distant mountains -->
+  <polygon points="0,620 55,510 115,575 185,480 255,548 330,472 410,542 480,490 540,545 610,505 680,530 680,710 0,710"
+           fill="#0a1530" opacity="0.9"/>
+
+  <!-- Closer hills -->
+  <ellipse cx="130" cy="690" rx="180" ry="100" fill="#081020"/>
+  <ellipse cx="560" cy="710" rx="220" ry="110" fill="#081020"/>
+
+  <!-- Foreground ground -->
+  <rect x="0" y="745" width="680" height="215" fill="#050d1a"/>
+
+  <!-- Water reflection shimmer -->
+  <g opacity="0.35">
+    <rect x="30"  y="762" width="620" height="2.5" rx="1" fill="#c8a84b"/>
+    <rect x="50"  y="775" width="580" height="2"   rx="1" fill="#c8a84b"/>
+    <rect x="20"  y="789" width="640" height="2"   rx="1" fill="#c8a84b"/>
+    <rect x="40"  y="803" width="600" height="1.5" rx="1" fill="#c8a84b"/>
+    <rect x="55"  y="816" width="570" height="1.5" rx="1" fill="#c8a84b"/>
+    <rect x="30"  y="829" width="620" height="1.2" rx="1" fill="#c8a84b"/>
+    <rect x="45"  y="842" width="590" height="1"   rx="1" fill="#c8a84b"/>
+    <rect x="60"  y="854" width="560" height="1"   rx="1" fill="#c8a84b"/>
+  </g>
+
+  <!-- Moon reflection on water -->
+  <ellipse cx="530" cy="800" rx="38" ry="8"  fill="#c8a84b" opacity="0.22"/>
+  <ellipse cx="530" cy="815" rx="28" ry="5"  fill="#c8a84b" opacity="0.15"/>
+  <ellipse cx="530" cy="828" rx="18" ry="3.5" fill="#c8a84b" opacity="0.10"/>
+
+  <!-- Lone figure silhouette -->
+  <ellipse cx="340" cy="746" rx="30" ry="8" fill="#040b16"/>
+  <rect x="335" y="690" width="10" height="58" rx="3" fill="#040b16"/>
+  <circle cx="340" cy="683" r="11" fill="#040b16"/>
+  <!-- Arms open wide -->
+  <path d="M335 706 Q305 692 298 680" stroke="#040b16" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M345 706 Q375 694 382 682" stroke="#040b16" stroke-width="7" fill="none" stroke-linecap="round"/>
+
+  <!-- Top decorative border -->
+  <rect x="0" y="0"  width="680" height="4" fill="#c8a84b"/>
+  <rect x="0" y="8"  width="680" height="1.2" fill="#c8a84b" opacity="0.4"/>
+
+  <!-- Bottom decorative border -->
+  <rect x="0" y="952" width="680" height="4" fill="#c8a84b"/>
+  <rect x="0" y="946" width="680" height="1.2" fill="#c8a84b" opacity="0.4"/>
+
+  <!-- Corner ornaments -->
+  <g stroke="#c8a84b" stroke-width="1.8" fill="none" opacity="0.85">
+    <path d="M22 18 L22 45 L50 45"/>
+    <path d="M658 18 L658 45 L630 45"/>
+    <path d="M22 942 L22 915 L50 915"/>
+    <path d="M658 942 L658 915 L630 915"/>
+  </g>
+
+  <!-- Inner border frame -->
+  <rect x="14" y="14" width="652" height="932" rx="2"
+        fill="none" stroke="#c8a84b" stroke-width="0.6" opacity="0.25"/>
+
+  <!-- Author name -->
+  <text x="340" y="115" text-anchor="middle"
+        font-family="Georgia,serif" font-size="22" font-weight="400"
+        letter-spacing="8" fill="#c8a84b" opacity="0.88">সঞ্জয় মণ্ডল</text>
+
+  <!-- Thin rule below author -->
+  <line x1="240" y1="130" x2="440" y2="130" stroke="#c8a84b" stroke-width="0.9" opacity="0.5"/>
+
+  <!-- "শীঘ্রই আসছে" badge -->
+  <rect x="260" y="320" width="160" height="36" rx="2" fill="#c8a84b" opacity="0.12"/>
+  <rect x="260" y="320" width="160" height="36" rx="2"
+        fill="none" stroke="#c8a84b" stroke-width="0.8" opacity="0.3"/>
+  <text x="340" y="344" text-anchor="middle"
+        font-family="Georgia,serif" font-size="15" font-weight="400"
+        letter-spacing="5" fill="#c8a84b" opacity="0.78">শীঘ্রই আসছে</text>
+
+  <!-- Main title — large -->
+  <text x="340" y="430" text-anchor="middle"
+        font-family="Georgia,'Noto Serif Bengali',serif" font-size="52" font-weight="700"
+        fill="#e8d8a0" letter-spacing="2">বইয়ের নাম</text>
+
+  <!-- Title ornament line -->
+  <g opacity="0.65">
+    <line x1="160" y1="452" x2="520" y2="452" stroke="#c8a84b" stroke-width="1"/>
+    <circle cx="340" cy="452" r="4" fill="#c8a84b"/>
+    <circle cx="160" cy="452" r="2.5" fill="#c8a84b"/>
+    <circle cx="520" cy="452" r="2.5" fill="#c8a84b"/>
+    <line x1="160" y1="462" x2="520" y2="462" stroke="#c8a84b" stroke-width="0.5" opacity="0.4"/>
+  </g>
+
+  <!-- Subtitle / genre -->
+  <text x="340" y="492" text-anchor="middle"
+        font-family="Georgia,serif" font-size="18" font-weight="400"
+        fill="#a89060" letter-spacing="4">উপন্যাস</text>
+
+  <!-- Tagline — small -->
+  <text x="340" y="540" text-anchor="middle"
+        font-family="Georgia,serif" font-size="13" font-weight="400"
+        fill="#7a6840" letter-spacing="2" opacity="0.8">একটি সমকালীন বাংলা আখ্যান</text>
+
+  <!-- Publisher area -->
+  <line x1="120" y1="922" x2="560" y2="922" stroke="#c8a84b" stroke-width="0.8" opacity="0.4"/>
+  <text x="340" y="942" text-anchor="middle"
+        font-family="Georgia,serif" font-size="14" font-weight="400"
+        letter-spacing="4" fill="#c8a84b" opacity="0.6">প্রকাশক</text>
+
+</g>
+
+<!-- Book spine shadow left edge -->
+<rect x="0" y="0" width="10" height="960" fill="#040a18"/>
+<rect x="0" y="0" width="4"  height="960" fill="#081020" opacity="0.7"/>
+
+<!-- Page edge lines right -->
+<rect x="676" y="4" width="1.5" height="952" fill="#1a2d5a" opacity="0.8"/>
+<rect x="678" y="6" width="1"   height="948" fill="#1a2d5a" opacity="0.4"/>
+
+<!-- Bottom drop shadow -->
+<ellipse cx="340" cy="965" rx="300" ry="12" fill="#020609" opacity="0.5"/>
+
+</svg>

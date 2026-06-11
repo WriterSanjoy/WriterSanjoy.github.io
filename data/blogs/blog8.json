@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog8",
+  "blog_title": "বিশুদ্ধ বাতাস 🌿",
+  "blog_date": "মে ৯, ২০১৬",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৫ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-008-cover.jpg",
+  "content_file": "/data/blogs/content/blog8.html",
+
+  "tag_1": "ছোটগল্প",
+  "tag_2": "কিশোর",
+  "tag_3": "বিজ্ঞান",
+
+  "prev_blog_id": "blog7",
+  "prev_blog_name": "মহিষাসুর",
+
+  "next_blog_id": "blog9",
+  "next_blog_name": "আলাপ"
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Severe Test_2",
+    "comment": "aaichya gavat pay",
+    "rating": 1,
+    "approved": true,
+    "likes": 0,
+    "authorReply": "",
+    "date": "2026-06-11T07:50:56.043Z"
+  },
+  {
+    "name": "Pampa Mondal",
+    "comment": "Very Good.",
+    "rating": "3",
+    "approved": true,
+    "likes": 0,
+    "authorReply": "",
+    "date": "2026-05-26T14:29:20.317Z"
+  }
+]

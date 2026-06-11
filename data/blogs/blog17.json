@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog17",
+  "blog_title": "পুতুলনাচ 🎭",
+  "blog_date": "ফেব্রুয়ারি ১৯, ২০১৯",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৪ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-017-cover.jpg",
+  "content_file": "/data/blogs/content/blog17.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "রাজনীতি",
+  "tag_3": "আইন",
+
+  "prev_blog_id": "blog16",
+  "prev_blog_name": "প্রাথমিক শিক্ষক নিয়োগঃ কোথায় এসে আমরা দাঁড়িয়েছি?",
+
+  "next_blog_id": "blog18",
+  "next_blog_name": "বিষদাঁত"
+}

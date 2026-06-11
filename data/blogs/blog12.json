@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog12",
+  "blog_title": "Misplaced 📜",
+  "blog_date": "জুন ২৮, ২০১৬",
+  "blog_type": "ছোটগল্প",
+  "reading_time": "৫ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-012-cover.jpg",
+  "content_file": "/data/blogs/content/blog12.html",
+
+  "tag_1": "ছোটগল্প",
+  "tag_2": "সম্পর্ক",
+  "tag_3": "English",
+
+  "prev_blog_id": "blog11",
+  "prev_blog_name": "সাধু সাবধান!",
+
+  "next_blog_id": "blog13",
+  "next_blog_name": "রাজনের পদত্যাগঃ কয়েকটি ভাবনা"
+}

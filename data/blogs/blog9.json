@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog9",
+  "blog_title": "আলাপ ❤️",
+  "blog_date": "মে ২২, ২০১৬",
+  "blog_type": "অণুগল্প",
+  "reading_time": "৪ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-009-cover.jpg",
+  "content_file": "/data/blogs/content/blog9.html",
+
+  "tag_1": "অণুগল্প",
+  "tag_2": "",
+  "tag_3": "গল্প",
+
+  "prev_blog_id": "blog8",
+  "prev_blog_name": "বিশুদ্ধ বাতাস",
+
+  "next_blog_id": "blog10",
+  "next_blog_name": "সারমেয় সংবাদ"
+}

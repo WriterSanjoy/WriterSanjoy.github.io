@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog22",
+  "blog_title": "প্রতিবাদহীন ✊",
+  "blog_date": "জুন ১৫, ২০২০",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৪ মিনিট",
+  
+  "blog_image": "/images/blogimages/blog-022-cover.jpg",
+  "content_file": "/data/blogs/content/blog22.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "রাজনীতি",
+  "tag_3": "আইন",
+
+  "prev_blog_id": "blog21",
+  "prev_blog_name": "অদৃশ্য",
+
+  "next_blog_id": "blog23",
+  "next_blog_name": "ঝলসানো রুটি"
+}

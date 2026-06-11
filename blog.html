@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta name="description" content="" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WriterSanjoy</title>
+    <link rel="icon" type="image/png" href="../images/logoimage.png" sizes="32x32">
+    <meta id="meta-description" name="description" content="" />
+    <meta id="og-title" property="og:title" content="" />
+    <meta property="og:type" content="article" />
+    <meta id="og-image" property="og:image" content="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Baloo+Da+2:wght@400;500;600;700&family=Tiro+Bangla:ital@0;1&family=Noto+Serif+Bengali:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600&display=swap"
+      rel="stylesheet" />
+
+    <!-- Linking style.css -->
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/blogs.css">
+    
+  </head>
+  <body>
+    <nav>
+      <!--<a class="nbrand" href="../index.html">সঞ্জয় মণ্ডল</a>-->
+      <span class="nbrand" onclick="sp('home')">
+        <img src="images/DarkLogo_Small.png" alt="সঞ্জয় মণ্ডল" class="brand-img" />
+      </span>
+      <ul class="nlinks">
+        <li><a href="../index.html">প্রথম পাতা</a></li>
+        <li><a href="../index.html">আমার কথা</a></li>
+        <li><a href="../blog-list.html" class="act">ব্লগবার্তা</a></li>
+        <li><a href="../index.html">বইটই</a></li>
+        <li><a href="../published.html">প্রকাশিত</a></li>
+        <!--<li><a href="../index.html">গল্পের আসর</a></li>-->
+        <li><a href="../index.html">যোগাযোগ</a></li>
+      </ul>
+      <button class="nburg" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
+    </nav>
+    
+    <!-- ════ for custom toast notification system ════ -->
+    <div id="toast"></div>
+    
+    <div class="mmenu" id="mm">
+      <a href="../index.html">প্রথম পাতা</a>
+      <a href="../index.html">আমার কথা</a>
+      <a href="../blog-list.html" class="act">ব্লগবার্তা</a>
+      <a href="../index.html">বইটই</a>
+      <a href="../published.html">প্রকাশিত</a>
+      <!--<a href="../index.html">গল্পের আসর</a>-->
+      <a href="../index.html">যোগাযোগ</a>
+    </div>
+    <div class="breadcrumb">
+      <a href="../index.html">প্রথম পাতা</a>
+      <span>›</span>
+      <a href="../blog-list.html">ব্লগবার্তা</a>
+      <span>›</span>
+      <span id="breadcrumb-title"></span>
+    </div>
+    <div class="post-wrap">
+      <a class="back-btn" href="../blog-list.html">← ব্লগে ফিরুন</a>
+
+      <!-- COVER IMAGE — change URL if needed -->
+      <div
+        class="post-cover"
+        style="
+          height: 380px;
+          background: var(--paper-d);
+          border-radius: var(--r-lg);
+          overflow: hidden;
+          margin-bottom: 2rem;
+          position: relative;
+        ">
+        <img id="blog-image" src="/images/MyLogo_org.png" alt="" style="width: 100%; height: 100%; object-fit: cover" />
+        <div
+          style="
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 2rem 0.75rem;
+            background: linear-gradient(transparent, rgba(26, 18, 8, 0.35));
+          ">
+          <div
+            id="cover-blog-type"
+            style="
+              font-family: &quot;Hind Siliguri&quot;, sans-serif;
+              font-size: 0.72rem;
+              font-weight: 600;
+              color: rgba(255, 255, 255, 0.55);
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              margin-bottom: 0.25rem;
+            "></div>
+        </div>
+      </div>
+
+      <span class="post-cat c-rep" id="blog-type"> </span>
+      <h1 class="post-title" id="blog-title">Loading...</h1>
+      <div class="post-meta">
+        <div class="meta-item"><span class="meta-label">লেখক</span><span class="meta-value">সঞ্জয় মণ্ডল</span></div>
+        <div class="meta-item">
+          <span class="meta-label">প্রকাশকাল</span>
+          <span class="meta-value" id="blog-date"> </span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">বিভাগ</span>
+          <span class="meta-value" id="blog-category"> </span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">পড়ার সময়</span>
+          <span class="meta-value" id="blog-reading-time"> </span>
+        </div>
+      </div>
+      <div class="post-body" id="blog-content"></div>
+      <div class="post-tags">
+        <span class="tag" id="tag1"></span>
+        <span class="tag" id="tag2"></span>
+        <span class="tag" id="tag3"></span>
+      </div>
+      <div class="share-section">
+        <span class="share-text">লেখাটি ভালো লাগলে শেয়ার করুন</span>
+        <div class="share-btns">
+          <a
+            class="share-btn fb"
+            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwritersanjoy.github.io%2Fblogs%2Fblog-022.html"
+            target="_blank"
+            >Facebook</a
+          >
+          <a
+            class="share-btn tw"
+            href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwritersanjoy.github.io%2Fblogs%2Fblog-022.html&text=%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A4%E0%A6%BF%E0%A6%AC%E0%A6%BE%E0%A6%A6%E0%A6%B9%E0%A7%80%E0%A6%A8"
+            target="_blank"
+            >X (Twitter)</a
+          >
+        </div>
+      </div>
+      <div class="post-nav">
+        <a class="pnav-card" id="prev-link">
+          <div class="pnav-dir">← আগের পোস্ট</div>
+          <div class="pnav-title" id="prev-title"></div>
+        </a>
+        <a class="pnav-card" id="next-link" style="text-align: right">
+          <div class="pnav-dir">পরের পোস্ট →</div>
+          <div class="pnav-title" id="next-title"></div>
+        </a>
+      </div>
+      <!-- ═════════ COMMENTS ═════════ -->
+      <!--<section class="blog-comments"> -->
+      <!--COMMENT Entry PANEL ════  - MeSanjoy 25May-->
+      <div class="section">
+        <div class="section-head">অনুগ্রহ করে আপনার মূল্যবান মতামত দিন</div>
+        <div class="section-body">
+          <form id="reviewForm">
+            <div class="bf">
+              <label for="cname">নাম *</label>
+              <input type="text" id="cname" placeholder="আপনার নাম" maxlength="50" onblur="validateCName()" />
+              <span id="cname-msg"></span>
+            </div>
+            <!--
+            <div class="bf">
+              <label for="rating">রেটিং *</label>
+
+              <select id="rating" required>
+                <option value="">রেটিং নির্বাচন করুন</option>
+                <option value="5">★★★★★ (5)</option>
+                <option value="4">★★★★☆ (4)</option>
+                <option value="3">★★★☆☆ (3)</option>
+                <option value="2">★★☆☆☆ (2)</option>
+                <option value="1">★☆☆☆☆ (1)</option>
+              </select>
+            </div>            
+-->
+            <div class="bf">
+              <label for="ccomm">মতামত *</label>
+              <textarea id="ccomm" placeholder="আপনার মতামত লিখুন..." maxlength="300" onblur="validateCComm()"></textarea>
+              <span id="comm-msg"></span>
+            </div>
+
+            <!-- Hidden Honeypot Field 
+              👤 Humans never see the field
+              🤖 Many bots fill every input field they find
+              If the hidden field contains anything, you reject the submission -->
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" style="display: none" />
+
+            <!-- Submit button -->
+            <button class="buy-submit" type="submit">পাঠিয়ে দিন 🙏</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Reader Comments Section -->
+      <div class="section" id="reader-comments">
+        <div class="section-head">
+          ⭐ পাঠকের মতামত
+          <!--<div id="ratingSummary"></div>-->
+        </div>
+
+        <div class="section-body">
+          <div id="comments"></div>
+          <div class="comments-actions">
+            <button id="loadMoreBtn" class="load-more-btn">আরও মন্তব্য দেখুন ⬇️</button>
+          </div>
+        </div>
+      </div>
+      <!-- ═════════ COMMENTS ═════════ end-->
+    </div>
+    <!--<div id="settings-btn" onclick="toggleSettings()">⚙</div>-->
+    <div id="settings-overlay" onclick="closeSettings()"></div>
+    <div id="settings-panel">
+      <div class="sp-header"><span>⚙ সেটিংস</span><button onclick="closeSettings()">✕</button></div>
+      <div class="sp-section">
+        <div class="sp-label">🎨 থিম</div>
+        <div class="sp-grid">
+          <button class="theme-btn active" data-theme="classic" onclick="setTheme('classic',this)">📜 ক্লাসিক</button>
+          <button class="theme-btn" data-theme="mint" onclick="setTheme('mint',this)">🌿 মিন্ট</button>
+          <button class="theme-btn" data-theme="teal" onclick="setTheme('teal',this)">🩵 টিল ডার্ক</button>
+          <button class="theme-btn" data-theme="navy" onclick="setTheme('navy',this)">🌊 নেভি</button>
+        </div>
+      </div>
+      <div class="sp-section">
+        <div class="sp-label">✍ ফন্ট</div>
+        <div class="sp-font-list">
+          <button class="font-btn active" data-font="hind" onclick="setFont('hind',this)">
+            <span class="font-preview">বাংলা</span>Hind Siliguri
+          </button>
+          <button class="font-btn" data-font="baloo" onclick="setFont('baloo',this)">
+            <span class="font-preview">বাংলা</span>Baloo Da 2
+          </button>
+          <button class="font-btn" data-font="tiro" onclick="setFont('tiro',this)">
+            <span class="font-preview">বাংলা</span>Tiro Bangla
+          </button>
+          <button class="font-btn" data-font="noto-serif" onclick="setFont('noto-serif',this)">
+            <span class="font-preview">বাংলা</span>Noto Serif
+          </button>
+          <button class="font-btn" data-font="noto-sans" onclick="setFont('noto-sans',this)">
+            <span class="font-preview">বাংলা</span>Noto Sans
+          </button>
+        </div>
+      </div>
+      <div class="sp-section">
+        <div class="sp-label">🔠 লেখার আকার</div>
+        <div class="sp-size-row">
+          <button class="size-btn" onclick="setSize(14)">ছোট</button>
+          <button class="size-btn active" onclick="setSize(16)">স্বাভাবিক</button>
+          <button class="size-btn" onclick="setSize(18)">বড়</button>
+          <button class="size-btn" onclick="setSize(20)">বড়তর</button>
+        </div>
+      </div>
+      <div class="sp-section"><button class="reset-btn" onclick="resetSettings()">↺ ডিফল্টে ফিরুন</button></div>
+    </div>
+
+    <footer>© সঞ্জয় মণ্ডল · সর্বস্বত্ব সংরক্ষিত · <a href="../index.html">প্রথম পাতায় ফিরুন</a></footer>
+    <script>
+      const FONTS = {
+        hind: "'Hind Siliguri',sans-serif",
+        baloo: "'Baloo Da 2',cursive",
+        tiro: "'Tiro Bangla',serif",
+        "noto-serif": "'Noto Serif Bengali',serif",
+        "noto-sans": "'Noto Sans Bengali',sans-serif"
+      };
+      const THEMES = {
+        classic: {
+          "--ink": "#1a1208",
+          "--ink-lt": "#3d3020",
+          "--ink-md": "#6b5a45",
+          "--ink-mu": "#9a8a76",
+          "--paper": "#faf8f4",
+          "--paper-w": "#f5f1e8",
+          "--paper-d": "#ede8de",
+          "--gold": "#b8860b",
+          "--gold-l": "#d4a017",
+          "--gold-p": "#fdf4d8",
+          "--red": "#8b1a1a",
+          "--nav-bg": "#1a1208"
+        },
+        mint: {
+          "--ink": "#0a1f1e",
+          "--ink-lt": "#0f3330",
+          "--ink-md": "#3a7070",
+          "--ink-mu": "#6aaa9a",
+          "--paper": "#f0faf8",
+          "--paper-w": "#e0f5f0",
+          "--paper-d": "#c5e8e2",
+          "--gold": "#0c726d",
+          "--gold-l": "#0f8f88",
+          "--gold-p": "#d4f0ed",
+          "--red": "#0c726d",
+          "--nav-bg": "#0a1f1e"
+        },
+        teal: {
+          "--ink": "#e8f4f3",
+          "--ink-lt": "#c0dcd8",
+          "--ink-md": "#80b0aa",
+          "--ink-mu": "#4a8880",
+          "--paper": "#0c2624",
+          "--paper-w": "#0f302d",
+          "--paper-d": "#133a36",
+          "--gold": "#0c726d",
+          "--gold-l": "#14a098",
+          "--gold-p": "#0f3330",
+          "--red": "#14a098",
+          "--nav-bg": "#08201e"
+        },
+        navy: {
+          "--ink": "#c8b898",
+          "--ink-lt": "#b8a888",
+          "--ink-md": "#8a7a60",
+          "--ink-mu": "#5a4e38",
+          "--paper": "#1a2744",
+          "--paper-w": "#1e2f52",
+          "--paper-d": "#243660",
+          "--gold": "#c8b898",
+          "--gold-l": "#ddd0b0",
+          "--gold-p": "#1e2f52",
+          "--red": "#ddd0b0",
+          "--nav-bg": "#111c33"
+        }
+      };
+      function toggleSettings() {
+        document.getElementById("settings-panel").classList.toggle("open");
+        document.getElementById("settings-overlay").classList.toggle("open");
+      }
+      function closeSettings() {
+        document.getElementById("settings-panel").classList.remove("open");
+        document.getElementById("settings-overlay").classList.remove("open");
+      }
+      function setTheme(n, b) {
+        const t = THEMES[n];
+        if (!t) return;
+        Object.entries(t).forEach(([k, v]) => document.documentElement.style.setProperty(k, v));
+        const nav = document.querySelector("nav");
+        if (nav) nav.style.background = t["--nav-bg"];
+        document.querySelectorAll(".theme-btn").forEach((x) => x.classList.remove("active"));
+        b.classList.add("active");
+        localStorage.setItem("sm-theme", n);
+      }
+      function setFont(n, b) {
+        const f = FONTS[n];
+        if (!f) return;
+        document.body.style.fontFamily = f;
+        document.querySelectorAll(".font-btn").forEach((x) => {
+          x.classList.remove("active");
+          const fp = x.querySelector(".font-preview");
+          if (fp) fp.style.fontFamily = FONTS[x.dataset.font] || f;
+        });
+        b.classList.add("active");
+        localStorage.setItem("sm-font", n);
+      }
+      function setSize(px) {
+        document.documentElement.style.fontSize = px + "px";
+        document.querySelectorAll(".size-btn").forEach((x) => x.classList.remove("active"));
+        event.target.classList.add("active");
+        localStorage.setItem("sm-size", px);
+      }
+      function resetSettings() {
+        ["sm-theme", "sm-font", "sm-size"].forEach((k) => localStorage.removeItem(k));
+        location.reload();
+      }
+      (function () {
+        const t = localStorage.getItem("sm-theme"),
+          f = localStorage.getItem("sm-font"),
+          s = localStorage.getItem("sm-size");
+        if (t) {
+          const b = document.querySelector('.theme-btn[data-theme="' + t + '"]');
+          if (b) setTheme(t, b);
+        }
+        if (f) {
+          const b = document.querySelector('.font-btn[data-font="' + f + '"]');
+          if (b) setFont(f, b);
+        }
+        if (s) document.documentElement.style.fontSize = s + "px";
+        setTimeout(() => {
+          document.querySelectorAll(".font-btn").forEach((b) => {
+            const fp = b.querySelector(".font-preview");
+            if (fp && FONTS[b.dataset.font]) fp.style.fontFamily = FONTS[b.dataset.font];
+          });
+        }, 400);
+      })();
+
+      // For Comments
+      //COMMENT Code ════  - Sanjoy 25May - STARTS
+function validateCName() {
+  const val = document.getElementById("cname").value.trim();
+  const cnameMsg = document.getElementById("cname-msg");
+
+  if (!val) {
+    cnameMsg.textContent = "আপনার নাম দিন";
+    cnameMsg.className = "msg error";
+    return false;
+  }
+  if (val.length > 50) {
+    cnameMsg.textContent = "৫০ অক্ষরের মধ্যে নাম লিখুন";
+    cnameMsg.className = "msg error";
+    return false;
+  }
+  
+  //if (/^\d/.test(val)) {
+  if (/^[0-9\u09E6-\u09EF]/.test(val)) {
+    cnameMsg.textContent = "সংখ্যা দিয়ে নাম শুরু হতে পারবে না";
+    cnameMsg.className = "msg error";
+    return false;
+  }
+  if (/^[0-9\u09E6-\u09EF]+$/.test(val)) {
+    cnameMsg.textContent = "নাম শুধুই সংখ্যা হতে পারবে না";
+    cnameMsg.className = "msg error";
+    return false;
+  }
+  
+  cnameMsg.textContent = "✅";
+  cnameMsg.className = "msg valid";
+  return true;
+}
+
+function validateCcomm() {
+  const val = document.getElementById("ccomm").value.trim();
+  const commmsg = document.getElementById("comm-msg");
+
+  if (!val) {
+    commmsg.textContent = "আপনার মতামত লিখুন";
+    commmsg.className = "msg error";
+    return false;
+  }
+  if (val.length > 150) {
+    commmsg.textContent = "ঠিকানা ৩০০ অক্ষরের মধ্যে রাখুন";
+    commmsg.className = "msg error";
+    return false;
+  }  
+  commmsg.textContent = "✅";
+  commmsg.className = "msg valid";
+  return true;
+}
+      
+//Validation for Comments Form☑️  
+document.getElementById("cname").onblur = validateCName;
+document.getElementById("ccomm").onblur = validateCcomm;
+
+document.getElementById("reviewForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const name    = document.getElementById("cname").value.trim();
+  const rating  = 1;
+  const comment = document.getElementById("ccomm").value.trim();
+  const website = document.getElementById("website").value;
+
+  if (!name || !comment) {
+    showToast("নাম ও মতামত লিখুন", "warning");
+    return;
+  }
+
+  try {
+
+    const response = await fetch("/api/comments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        type,
+        contentId,
+        name,
+        comment,
+        rating,
+        website
+      })
+    });
+
+    const result = await response.json();
+
+    // ── 429: rate limited ──────────────────────────────────────────────
+    if (response.status === 429) {
+
+      if (result.severe) {
+        // returning after a previous severe word hit — show remaining time
+        showToast(result.message, "error");
+      } else {
+        // normal 5-min cooldown
+        showToast(
+          "পুনরায় মন্তব্য করার আগে ৫ মিনিট অপেক্ষা করুন।",
+          "warning"
+        );
+      }
+      return;
+    }
+
+    // ── 422: severe word rejected ──────────────────────────────────────
+    if (response.status === 422) {
+
+      // Clear the comment textarea only
+      document.getElementById("ccomm").value = "";
+
+      // Show error
+      showToast(result.message, "error");
+
+      // Lock submit button for 15 minutes
+      const submitBtn   = document.getElementById("reviewForm")
+                            .querySelector("button[type=submit]");
+      const LOCK_MS     = 15 * 60 * 1000; // 15 minutes
+      const unlockTime  = Date.now() + LOCK_MS;
+
+      submitBtn.disabled = true;
+
+      const interval = setInterval(() => {
+        const remaining = Math.ceil((unlockTime - Date.now()) / 60000);
+        if (remaining <= 0) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "মন্তব্য করুন";
+          clearInterval(interval);
+        } else {
+          submitBtn.textContent = `${remaining} মিনিট অপেক্ষা করুন`;
+        }
+      }, 10000); // update every 10 seconds
+
+      // Run once immediately so button text updates right away
+      const remaining = Math.ceil(LOCK_MS / 60000);
+      submitBtn.textContent = `${remaining} মিনিট অপেক্ষা করুন`;
+
+      return;
+    }
+
+    // ── Other errors ───────────────────────────────────────────────────
+    if (!response.ok) {
+      showToast("মন্তব্য পাঠাতে সমস্যা হচ্ছে।", "error");
+      return;
+    }
+
+    // ── Success ────────────────────────────────────────────────────────
+    if (result.queued) {
+      // Mild word — saved but pending review, don't reload
+      showToast("আপনার মন্তব্য পর্যালোচনার পর প্রকাশ করা হবে।", "warning");
+    } else {
+      // Clean comment — approved, reload to show it
+      showToast("মন্তব্য সফলভাবে পাঠানো হয়েছে।", "success");
+      visibleCount += 1;
+      loadComments();
+    }
+    document.getElementById("reviewForm").reset();
+
+    // Reset validation hints
+    ["cname-msg", "comm-msg"].forEach(id => {
+      const el = document.getElementById(id);
+      el.textContent = el.getAttribute("data-hint");
+      el.className = "msg hint";
+    });
+
+  } catch (error) {
+    console.error(error);
+    showToast("মন্তব্য পাঠাতে সমস্যা হচ্ছে।", "error");
+  }
+});
+
+//const contentId = "blog22";
+const blogId = new URLSearchParams(window.location.search).get("id");
+
+const type = "blogs";
+const contentId = blogId;
+
+let allComments = [];
+let visibleCount = 4;
+
+async function loadBlog() {
+  try {
+    const response = await fetch(`/data/blogs/${blogId}.json`);
+
+    const blog = await response.json();
+
+    // ===== SEO / Meta =====
+
+    document.title = `${blog.blog_title} — সঞ্জয় মণ্ডল`;
+
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute("content", `${blog.blog_title} — সঞ্জয় মণ্ডলের ${blog.blog_type}`);
+
+    document
+      .querySelector('meta[property="og:title"]')
+      ?.setAttribute("content", `${blog.blog_title} — সঞ্জয় মণ্ডল`);
+
+    document.querySelector('meta[property="og:image"]')?.setAttribute("content", blog.blog_image);
+
+    // ===== Existing Code =====
+
+    document.getElementById("blog-title").textContent = blog.blog_title;
+
+    console.log("blog_image:", blog.blog_image);
+    //document.getElementById("blog-image").src = blog.blog_image;
+    const blogImage = document.getElementById("blog-image");
+
+    blogImage.src = blog.blog_image;
+    blogImage.alt = blog.blog_title;
+
+    blogImage.onerror = () => {
+      console.error("Image not found:", blog.blog_image);
+    };
+    console.log("final src:", document.getElementById("blog-image").src);
+
+    document.getElementById("blog-image").alt = blog.blog_title;
+
+    document.getElementById("blog-type").textContent = blog.blog_type;
+
+    document.getElementById("cover-blog-type").textContent = blog.blog_type;
+
+    document.getElementById("blog-category").textContent = blog.blog_type;
+
+    document.getElementById("blog-date").textContent = blog.blog_date;
+
+    document.getElementById("blog-reading-time").textContent = blog.reading_time;
+
+    const html = await fetch(blog.content_file).then((r) => r.text());
+    document.getElementById("blog-content").innerHTML = html;
+
+    document.getElementById("tag1").textContent = blog.tag_1;
+
+    document.getElementById("tag2").textContent = blog.tag_2;
+
+    document.getElementById("tag3").textContent = blog.tag_3;
+
+    document.getElementById("breadcrumb-title").textContent = blog.blog_title;
+
+    // Previous blog
+    if (blog.prev_blog_id) {
+      document.getElementById("prev-title").textContent = blog.prev_blog_name;
+
+      document.getElementById("prev-link").href = `/blog.html?id=${blog.prev_blog_id}`;
+    } else {
+      const prevLink = document.getElementById("prev-link");
+
+      prevLink.removeAttribute("href");
+      prevLink.style.pointerEvents = "none";
+      prevLink.style.opacity = "0.4";
+
+      document.getElementById("prev-title").textContent = "প্রথম পোস্ট";
+    }
+
+    // Next blog
+    if (blog.next_blog_id) {
+      document.getElementById("next-title").textContent = blog.next_blog_name;
+
+      document.getElementById("next-link").href = `/blog.html?id=${blog.next_blog_id}`;
+    } else {
+      const nextLink = document.getElementById("next-link");
+
+      nextLink.removeAttribute("href");
+      nextLink.style.pointerEvents = "none";
+      nextLink.style.opacity = "0.4";
+
+      document.getElementById("next-title").textContent = "সর্বশেষ পোস্ট";
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function loadComments() {
+  try {
+    const response = await fetch(`/api/comments?type=${type}&id=${contentId}`);
+
+    const data = await response.json();
+    console.log("comments api response:", data);
+    allComments = Array.isArray(data) ? data : [];
+
+    //renderRatingSummary();
+
+    renderComments();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function renderRatingSummary() {
+  if (allComments.length < 5) {
+    return;
+  }
+
+  const total = allComments.reduce((sum, item) => sum + Number(item.rating || 5), 0);
+
+  const average = (total / allComments.length).toFixed(1);
+
+  const rounded = Math.round(average);
+
+  const stars = "★".repeat(rounded) + "☆".repeat(5 - rounded);
+
+  document.getElementById("ratingSummary").innerHTML = `
+<div class="rating-stars">
+  ${stars} ${average}/5
+</div>
+<div class="rating-count">
+  (${allComments.length} জন পাঠকের মতামত)
+</div>
+`;
+}
+
+function renderComments() {
+  const commentsDiv = document.getElementById("comments");
+
+  commentsDiv.innerHTML = "";
+
+  const visibleComments = allComments.slice(0, visibleCount);
+
+  visibleComments.forEach((item) => {
+    const card = document.createElement("div");
+
+    card.className = "comment-card";
+
+    //Avatar
+    const firstLetter = item.name.trim().charAt(0);
+
+    const header = document.createElement("div");
+
+    header.className = "comment-header";
+
+    const avatar = document.createElement("div");
+
+    avatar.className = "comment-avatar";
+
+    avatar.textContent = firstLetter;
+    //Avatar
+
+    const name = document.createElement("div");
+
+    name.className = "comment-name";
+
+    name.textContent = item.name;
+
+    header.appendChild(avatar);
+    header.appendChild(name);
+
+    const stars = document.createElement("div");
+
+    stars.className = "comment-stars";
+
+    //const rating = Math.min(
+    //    5,
+    //    Math.max(
+    //        1,
+    //        Number(item.rating) || 5
+    //    )
+    //);
+
+    //stars.textContent =
+    //  "★".repeat(Number(item.rating)) +
+    //  "☆".repeat(5 - Number(item.rating));
+
+    const text = document.createElement("div");
+
+    text.className = "comment-text";
+
+    text.textContent = item.comment;
+
+    //card.appendChild(name);
+    card.appendChild(header);
+    card.appendChild(stars);
+    card.appendChild(text);
+
+    commentsDiv.appendChild(card);
+  });
+
+  const btn = document.getElementById("loadMoreBtn");
+
+  btn.style.display = visibleCount >= allComments.length ? "none" : "inline-block";
+}
+
+document.getElementById("loadMoreBtn").addEventListener("click", () => {
+  visibleCount += 4;
+
+  renderComments();
+});
+
+loadBlog();
+console.log("blogId =", blogId);
+console.log("contentId =", contentId);
+loadComments();
+
+//COMMENT Code ════  - Sanjoy 25May - end
+function showToast(message, type = 'success'){
+  const toast = document.getElementById('toast');
+
+  if (!toast) {
+    console.warn("Toast element not found");
+    return;
+  }
+  toast.textContent = message;
+
+  toast.className = `show ${type}`;
+
+  setTimeout(()=>{
+    toast.className='';
+  },3000);
+}
+// For Comments end
+    </script>
+  </body>
+</html>

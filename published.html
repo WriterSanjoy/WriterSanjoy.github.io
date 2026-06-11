@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>প্রকাশিত — সঞ্জয় মণ্ডল</title>
+    <link rel="icon" type="image/png" href="../images/logoimage.png" sizes="32x32" />
+    <meta name="description" content="সঞ্জয় মণ্ডলের পত্রিকা ও অনলাইন পোর্টালে প্রকাশিত লেখাসমূহ" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+    
+    <!-- Linking style.css -->
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/published.css">
+    <link rel="stylesheet" href="../css/books.css">
+    
+  </head>
+  <body>
+    <!-- ════ NAV ════ -->
+    <nav>
+      <!--<a class="nbrand" href="index.html">সঞ্জয় মণ্ডল</a>-->
+      <span class="nbrand" onclick="sp('home')">
+        <img src="images/DarkLogo_Small.png" alt="সঞ্জয় মণ্ডল" class="brand-img" />
+      </span>
+      <ul class="nlinks">
+        <li><a href="index.html">প্রথম পাতা</a></li>
+        <li><a href="index.html">আমার কথা</a></li>
+        <li><a href="blog-list.html">ব্লগবার্তা</a></li>
+        <li><a href="index.html">বইটই</a></li>
+        <li><a href="published.html" class="act">প্রকাশিত</a></li>
+        <!--<li><a href="index.html">গল্পের আসর</a></li> removed-->
+        <li><a href="index.html">যোগাযোগ</a></li>
+      </ul>
+      <button class="nburg" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
+    </nav>
+    <div class="mmenu" id="mm">
+      <a href="index.html">প্রথম পাতা</a>
+      <a href="index.html">আমার কথা</a>
+      <a href="blog-list.html">ব্লগবার্তা</a>
+      <a href="index.html">বইটই</a>
+      <a href="published.html" class="act">প্রকাশিত</a>
+      <!--<a href="index.html">গল্পের আসর</a>  removed -->
+      <a href="index.html">যোগাযোগ</a>
+    </div>
+
+    <!-- ════ PAGE HEADER ════ -->
+    <div class="phdr">
+      <div class="phdr-inner">
+        <div class="phdr-top">
+          <div>
+            <h1>প্রকাশিত</h1>
+            <div class="phdr-sub">পত্রিকা ও অনলাইন পোর্টালে প্রকাশিত লেখাসমূহ</div>
+          </div>
+          <div class="phdr-count" id="total-count"></div>
+        </div>
+
+        <!-- Category tab bar -->
+        <div class="cat-bar">
+          <button class="cat-tab on" onclick="filterTab('all',this)">সব লেখা</button>
+          <button class="cat-tab" onclick="filterTab('ছোটগল্প',this)">ছোটগল্প</button>
+          <button class="cat-tab" onclick="filterTab('প্রতিবেদন',this)">প্রতিবেদন</button>
+          <button class="cat-tab" onclick="filterTab('প্রবন্ধ',this)">প্রবন্ধ</button>
+          <button class="cat-tab" onclick="filterTab('কবিতা',this)">কবিতা</button>
+          <!-- <button class="cat-tab" onclick="filterTab('সমালোচনা',this)">সমালোচনা</button>-->
+          <!-- <button class="cat-tab" onclick="filterTab('সাক্ষাৎকার',this)">সাক্ষাৎকার</button>-->
+          <div class="filter-search">
+            <input
+              type="text"
+              id="pub-search"
+              placeholder="লেখা খুঁজুন..."
+              onkeydown="if(event.key==='Enter')doSearch()" />
+            <button onclick="doSearch()">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ MAIN ════ -->
+    <div class="main-wrap">
+      <!--Filter bar-->
+      <!--<div class="filter-bar">
+        <span class="filter-label">পোর্টাল:</span>
+        <button class="filter-pill on" onclick="filterPortal('all',this)">সব</button>
+        <button class="filter-pill" onclick="filterPortal('পত্রিকা',this)">পত্রিকা</button>
+        <button class="filter-pill" onclick="filterPortal('অনলাইন',this)">অনলাইন</button>
+        <div class="filter-search">
+          <input
+            type="text"
+            id="X_pub-search"
+            placeholder="লেখা খুঁজুন..."
+            onkeydown="if(event.key==='Enter')doSearch()" />
+          <button onclick="doSearch()">→</button>
+        </div>
+      </div>-->
+
+      <!-- CHANGED -->
+      <div id="pub-list">
+        <!-- ↓↓↓ ADD NEW ENTRIES HERE — NEWEST FIRST ↓↓↓ -->
+
+        <!-- ↑↑↑ ADD NEW ENTRIES ABOVE THIS LINE — NEWEST FIRST ↑↑↑ -->
+      </div>
+      <!-- /pub-list -->
+
+      <div class="no-results" id="no-results">এই বিভাগে কোনো লেখা পাওয়া যায়নি।</div>
+    </div>
+    <!-- /main-wrap -->
+
+    <!-- Reading Modal -->
+    <div id="reader-overlay">
+      <div id="reader-modal">
+
+        <div id="reader-toolbar">
+          <div class="rtb-left">
+            <!--<h2 id="modalTitle"></h2>-->
+            <span id="modalChapter" class="rtb-chapter"></span>
+            <span id="modalTitle" class="rtb-title"></span>
+          </div>
+          <div class="rtb-right">
+            <span style="font-family:'Hind Siliguri',sans-serif;font-size:.7rem;color:rgba(255,255,255,.4)">আকার:</span>
+            <button class="rdr-ctrl" onclick="setRdrFont(0.9,this)">ক</button>
+            <button class="rdr-ctrl on" onclick="setRdrFont(1.05,this)">ক</button>
+            <button class="rdr-ctrl" onclick="setRdrFont(1.2,this)" style="font-size:.92rem">ক</button>
+            <button id="reader-close" onclick="closeReader()" title="বন্ধ করুন">✕</button>
+          </div>
+        </div>
+
+        <div id="reader-progress-wrap">
+          <div id="reader-progress-bar"></div>
+        </div>
+
+        <!--<div id="reader-body" onscroll="updateReaderProgress()">-->
+        <div id="reader-body">
+          <div id="chapter-content">
+            <!-- ═══════════════════════════════════════
+                 Huge Text
+                ═══════════════════════════════════════ -->
+            <!-- Dynamic chapter loads here -->
+          </div>
+        </div>
+      
+        <div class="story-nav">
+          <button id="prevStory">← পূর্ববর্তী</button>
+
+          <button id="nextStory">পরবর্তী →</button>
+        </div>
+
+      </div>
+    </div>
+    <!-- /Reading Modal -->
+
+    <!-- ════ SETTINGS ════ -->
+    <!--<div id="settings-btn" onclick="toggleSettings()" title="সেটিংস">⚙</div>-->
+    <div id="settings-overlay" onclick="closeSettings()"></div>
+    <div id="settings-panel">
+      <div class="sp-header"><span>⚙ সেটিংস</span><button onclick="closeSettings()">✕</button></div>
+      <div class="sp-section">
+        <div class="sp-label">🎨 থিম</div>
+        <div class="sp-grid">
+          <button class="theme-btn active" data-theme="classic" onclick="setTheme('classic',this)">📜 ক্লাসিক</button>
+          <button class="theme-btn" data-theme="mint" onclick="setTheme('mint',this)">🌿 মিন্ট</button>
+          <button class="theme-btn" data-theme="teal" onclick="setTheme('teal',this)">🩵 টিল ডার্ক</button>
+          <button class="theme-btn" data-theme="navy" onclick="setTheme('navy',this)">🌊 নেভি</button>
+        </div>
+      </div>
+      <div class="sp-section">
+        <div class="sp-label">✍ ফন্ট</div>
+        <div class="sp-font-list">
+          <button class="font-btn active" data-font="hind" onclick="setFont('hind',this)">
+            <span class="font-preview">বাংলা</span>Hind Siliguri
+          </button>
+          <button class="font-btn" data-font="baloo" onclick="setFont('baloo',this)">
+            <span class="font-preview">বাংলা</span>Baloo Da 2
+          </button>
+          <button class="font-btn" data-font="tiro" onclick="setFont('tiro',this)">
+            <span class="font-preview">বাংলা</span>Tiro Bangla
+          </button>
+          <button class="font-btn" data-font="noto-serif" onclick="setFont('noto-serif',this)">
+            <span class="font-preview">বাংলা</span>Noto Serif
+          </button>
+          <button class="font-btn" data-font="noto-sans" onclick="setFont('noto-sans',this)">
+            <span class="font-preview">বাংলা</span>Noto Sans
+          </button>
+        </div>
+      </div>
+      <div class="sp-section">
+        <div class="sp-label">🔠 লেখার আকার</div>
+        <div class="sp-size-row">
+          <button class="size-btn" onclick="setSize(14)">ছোট</button>
+          <button class="size-btn active" onclick="setSize(16)">স্বাভাবিক</button>
+          <button class="size-btn" onclick="setSize(18)">বড়</button>
+          <button class="size-btn" onclick="setSize(20)">বড়তর</button>
+        </div>
+      </div>
+      <div class="sp-section"><button class="reset-btn" onclick="resetSettings()">↺ ডিফল্টে ফিরুন</button></div>
+    </div>
+
+    <footer>
+      © সঞ্জয় মণ্ডল · সর্বস্বত্ব সংরক্ষিত ·
+      <a href="index.html">প্রথম পাতায় ফিরুন</a>
+    </footer>
+
+    <script>
+      // For Story Modal
+      let storiesData = [];
+      let currentStoryIndex = -1;
+
+      // ── FILTER STATE ──
+      let activeCat = "all";
+      let activePortal = "all";
+
+      function getEntries() {
+        return Array.from(document.querySelectorAll("#pub-list .entry"));
+      }
+
+      function applyFilters() {
+        const entries = getEntries();
+        let shown = 0;
+        entries.forEach((e) => {
+          const catMatch = activeCat === "all" || e.dataset.cat === activeCat;
+          const portalMatch = activePortal === "all" || e.dataset.type === activePortal;
+          const visible = catMatch && portalMatch;
+          e.style.display = visible ? "" : "none";
+          if (visible) shown++;
+        });
+        document.getElementById("no-results").style.display = shown === 0 ? "" : "none";
+        updateCount(shown);
+      }
+
+      function updateCount(n) {
+        const el = document.getElementById("total-count");
+        if (el) el.textContent = `মোট ${toBengaliNum(n)}টি লেখা`; 
+      }
+
+      // Tab filter (category)
+      function X_filterTab(cat, btn) {
+        activeCat = cat;
+        document.querySelectorAll(".cat-tab").forEach((b) => b.classList.remove("on"));
+        btn.classList.add("on");
+        applyFilters();
+      }
+
+      // Pill filter (portal type)
+      function filterPortal(type, btn) {
+        activePortal = type;
+        document.querySelectorAll(".filter-pill").forEach((b) => b.classList.remove("on"));
+        btn.classList.add("on");
+        applyFilters();
+      }
+
+      // Search
+      function doSearch() {
+        const q = document.getElementById("pub-search").value.trim().toLowerCase();
+        if (!q) {
+          applyFilters();
+          return;
+        }
+        const entries = getEntries();
+        let shown = 0;
+        entries.forEach((e) => {
+          const text = e.textContent.toLowerCase();
+          const vis = text.includes(q);
+          e.style.display = vis ? "" : "none";
+          if (vis) shown++;
+        });
+        document.getElementById("no-results").style.display = shown === 0 ? "" : "none";
+        updateCount(shown);
+        // Reset pills/tabs visually
+        document.querySelectorAll(".cat-tab").forEach((b) => b.classList.remove("on"));
+        document.querySelectorAll(".cat-tab")[0].classList.add("on");
+        activeCat = "all";
+        activePortal = "all";
+      }
+
+      // Init count
+      (function () {
+        const n = getEntries().length;
+        updateCount(n);
+      })();
+
+      // ── SETTINGS ──
+      const FONTS = {
+        hind: "'Hind Siliguri',sans-serif",
+        baloo: "'Baloo Da 2',cursive",
+        tiro: "'Tiro Bangla',serif",
+        "noto-serif": "'Noto Serif Bengali',serif",
+        "noto-sans": "'Noto Sans Bengali',sans-serif"
+      };
+      const THEMES = {
+        classic: {
+          "--ink": "#1a1208",
+          "--ink-lt": "#3d3020",
+          "--ink-md": "#6b5a45",
+          "--ink-mu": "#9a8a76",
+          "--paper": "#faf8f4",
+          "--paper-w": "#f5f1e8",
+          "--paper-d": "#ede8de",
+          "--gold": "#b8860b",
+          "--gold-l": "#d4a017",
+          "--gold-p": "#fdf4d8",
+          "--red": "#8b1a1a",
+          "--nav-bg": "#1a1208"
+        },
+        mint: {
+          "--ink": "#0a1f1e",
+          "--ink-lt": "#0f3330",
+          "--ink-md": "#3a7070",
+          "--ink-mu": "#6aaa9a",
+          "--paper": "#f0faf8",
+          "--paper-w": "#e0f5f0",
+          "--paper-d": "#c5e8e2",
+          "--gold": "#0c726d",
+          "--gold-l": "#0f8f88",
+          "--gold-p": "#d4f0ed",
+          "--red": "#0c726d",
+          "--nav-bg": "#0a1f1e"
+        },
+        teal: {
+          "--ink": "#e8f4f3",
+          "--ink-lt": "#c0dcd8",
+          "--ink-md": "#80b0aa",
+          "--ink-mu": "#4a8880",
+          "--paper": "#0c2624",
+          "--paper-w": "#0f302d",
+          "--paper-d": "#133a36",
+          "--gold": "#0c726d",
+          "--gold-l": "#14a098",
+          "--gold-p": "#0f3330",
+          "--red": "#14a098",
+          "--nav-bg": "#08201e"
+        },
+        navy: {
+          "--ink": "#c8b898",
+          "--ink-lt": "#b8a888",
+          "--ink-md": "#8a7a60",
+          "--ink-mu": "#5a4e38",
+          "--paper": "#1a2744",
+          "--paper-w": "#1e2f52",
+          "--paper-d": "#243660",
+          "--gold": "#c8b898",
+          "--gold-l": "#ddd0b0",
+          "--gold-p": "#1e2f52",
+          "--red": "#ddd0b0",
+          "--nav-bg": "#111c33"
+        }
+      };
+      function toggleSettings() {
+        document.getElementById("settings-panel").classList.toggle("open");
+        document.getElementById("settings-overlay").classList.toggle("open");
+      }
+      function closeSettings() {
+        document.getElementById("settings-panel").classList.remove("open");
+        document.getElementById("settings-overlay").classList.remove("open");
+      }
+      function setTheme(n, b) {
+        const t = THEMES[n];
+        if (!t) return;
+        Object.entries(t).forEach(([k, v]) => document.documentElement.style.setProperty(k, v));
+        document.querySelector("nav").style.background = t["--nav-bg"];
+        document.querySelectorAll(".theme-btn").forEach((x) => x.classList.remove("active"));
+        b.classList.add("active");
+        localStorage.setItem("sm-theme", n);
+      }
+      function setFont(n, b) {
+        const f = FONTS[n];
+        if (!f) return;
+        document.body.style.fontFamily = f;
+        document.querySelectorAll(".font-btn").forEach((x) => {
+          x.classList.remove("active");
+          const fp = x.querySelector(".font-preview");
+          if (fp) fp.style.fontFamily = FONTS[x.dataset.font] || f;
+        });
+        b.classList.add("active");
+        localStorage.setItem("sm-font", n);
+      }
+      function setSize(px) {
+        document.documentElement.style.fontSize = px + "px";
+        document.querySelectorAll(".size-btn").forEach((x) => x.classList.remove("active"));
+        event.target.classList.add("active");
+        localStorage.setItem("sm-size", px);
+      }
+      function resetSettings() {
+        ["sm-theme", "sm-font", "sm-size"].forEach((k) => localStorage.removeItem(k));
+        location.reload();
+      }
+      (function () {
+        const t = localStorage.getItem("sm-theme"),
+          f = localStorage.getItem("sm-font"),
+          s = localStorage.getItem("sm-size");
+        if (t) {
+          const b = document.querySelector('.theme-btn[data-theme="' + t + '"]');
+          if (b) setTheme(t, b);
+        }
+        if (f) {
+          const b = document.querySelector('.font-btn[data-font="' + f + '"]');
+          if (b) setFont(f, b);
+        }
+        if (s) document.documentElement.style.fontSize = s + "px";
+        setTimeout(() => {
+          document.querySelectorAll(".font-btn").forEach((b) => {
+            const fp = b.querySelector(".font-preview");
+            if (fp && FONTS[b.dataset.font]) fp.style.fontFamily = FONTS[b.dataset.font];
+          });
+        }, 400);
+      })();
+
+      // For loading StoryCards dynamically
+
+      async function openStory(story){
+
+        currentStoryIndex = storiesData.findIndex((s) => s.id === story.id);
+
+
+        const overlay = document.getElementById('reader-overlay');
+        const content = document.getElementById('chapter-content');
+
+        /* Open modal */
+        overlay.classList.add('open');
+        document.body.style.overflow='hidden';
+
+        /* Loading */
+        content.innerHTML = `
+          <div class="reader-loading">
+            ${story.category}টি লোড হচ্ছে...
+          </div>
+        `;
+
+        try{
+
+              const response = await fetch(story.contentFile);
+              const html = await response.text();
+
+              document.getElementById("modalChapter").textContent = story.category;
+              document.getElementById("modalTitle").textContent = story.title;
+
+              content.innerHTML = html;
+          
+              //restoreReaderPosition();
+              //updateReaderProgress();
+
+              document.getElementById("prevStory").disabled = currentStoryIndex === 0;
+
+              document.getElementById("nextStory").disabled = currentStoryIndex === storiesData.length - 1;
+
+        }catch(err){
+
+          content.innerHTML = `
+            <div class="reader-error">
+              ${story.category}টি লোড করা যায়নি
+            </div>
+          `;
+        }
+      }
+      
+      
+      function filterTab(category, btn) {
+        document.querySelectorAll(".cat-tab").forEach((tab) => tab.classList.remove("on"));
+
+        btn.classList.add("on");
+
+        document.querySelectorAll(".entry").forEach((entry) => {
+          if (category === "all" || entry.dataset.category === category) {
+            entry.style.display = "";
+          } else {
+            entry.style.display = "none";
+          }
+        });
+      }
+
+      async function loadStories() {
+        const response = await fetch("/data/published/stories.json");
+
+        storiesData = await response.json();
+
+        renderStories(storiesData);
+      }
+
+      function renderStories(stories) {
+        const container = document.getElementById("pub-list");
+
+        container.innerHTML = "";
+
+        stories.forEach((story) => {
+          const card = document.createElement("div");
+
+          card.className = "entry";
+
+          card.dataset.category = story.category;
+          card.dataset.type = story.type;
+
+          card.innerHTML = `
+            <div class="entry-img">
+              <img src="${story.image}" alt="${story.title}">
+              <div class="entry-year">${story.year}</div>
+            </div>
+
+            <div class="entry-body">
+
+              <div class="entry-cat-wrap">
+                <span class="entry-cat">
+                  ${story.category}
+                </span>
+
+                <span class="entry-portal">
+                  ${story.portal}
+                </span>
+              </div>
+
+              <div class="entry-title">
+                ${story.title}
+              </div>
+
+              <div class="entry-summary">
+                ${story.summary}
+              </div>
+
+              <div class="entry-footer">
+
+                <span class="entry-date">
+                  📅 ${story.publishedDate}
+                </span>
+
+                ${
+                  story.type === "Screen"
+                    ? `
+                    <button
+                      class="entry-link read-btn"
+                      data-id="${story.id}">
+                      এখানেই পড়ুন →
+                    </button>
+                    `
+                    : `
+                    <a
+                      class="entry-link"
+                      href="${story.url}"
+                      target="_blank">
+                      প্রকাশনায় পড়ুন →
+                    </a>
+                    `
+                }
+
+              </div>
+
+            </div>
+          `;
+
+          container.appendChild(card);
+        });
+      }
+
+      loadStories();
+
+      //Open Modal:
+      document.addEventListener("click", (e) => {
+
+        const btn = e.target.closest(".read-btn");
+
+        if (!btn) return;
+          const storyId = btn.dataset.id;
+
+          const story = storiesData.find(
+            s => String(s.id) === String(storyId)
+        );
+
+        if (!story) {
+          console.log("Story not found");
+          return;
+        }
+
+        openStory(story);
+      });
+
+      document.getElementById("prevStory").addEventListener("click", () => {
+        if (currentStoryIndex <= 0) return;
+
+        openStory(storiesData[currentStoryIndex - 1]);
+      });
+
+      document.getElementById("nextStory").addEventListener("click", () => {
+        if (currentStoryIndex >= storiesData.length - 1) return;
+
+        openStory(storiesData[currentStoryIndex + 1]);
+      });
+      
+//sanjoy
+      function toBengaliNum(n) {
+        const bn = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+        return String(n)
+          .split("")
+          .map((d) => bn[parseInt(d)] || d)
+          .join("");
+      }
+      
+      function setRdrFont(size, btn) {
+
+        document.querySelectorAll('#chapter-content p')
+          .forEach(p => p.style.fontSize = size + 'rem');
+
+        document.querySelectorAll('.rdr-ctrl')
+          .forEach(x => x.classList.remove('on'));
+
+        btn?.classList.add('on');
+      }
+
+      function closeReader(){
+        //saveReaderPosition();
+
+        document
+          .getElementById('reader-overlay')
+          .classList.remove('open');
+
+        document.body.style.overflow='';
+      }    
+
+      document.addEventListener('keydown',function(e){
+        if(e.key==='Escape') closeReader();
+      });
+      
+    </script>
+  </body>
+</html>

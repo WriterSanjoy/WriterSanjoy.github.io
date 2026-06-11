@@ -1,0 +1,19 @@
+{
+  "blog_id": "blog4",
+  "blog_title": "প্রদীপের নীচে ‘আলো’ 🪔",
+  "blog_date": "৯ মে, ২০১৬",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৩ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-004-cover.jpg",
+  "content_file": "/data/blogs/content/blog4.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "পরিসেবা",
+
+  "prev_blog_id": "blog3",
+  "prev_blog_name": "দিবস-মোহ",
+
+  "next_blog_id": "blog5",
+  "next_blog_name": "বোতলবন্দী"
+}

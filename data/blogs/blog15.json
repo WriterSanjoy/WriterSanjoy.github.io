@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog15",
+  "blog_title": "টাকা মাটি, মাটি...₹",
+  "blog_date": "জানুয়ারি ১৫, ২০১৮",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৪ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-015-cover.jpg",
+  "content_file": "/data/blogs/content/blog15.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "রাজনীতি",
+  "tag_3": "আইন",
+
+  "prev_blog_id": "blog14",
+  "prev_blog_name": "স্ফুলিঙ্গ",
+
+  "next_blog_id": "blog16",
+  "next_blog_name": "প্রাথমিক শিক্ষক নিয়োগঃ কোথায় এসে আমরা দাঁড়িয়েছি?"
+}

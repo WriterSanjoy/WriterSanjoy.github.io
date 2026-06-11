@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog10",
+  "blog_title": "সারমেয় সংবাদ 📢",
+  "blog_date": "জুন ১, ২০১৬",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৪ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-010-cover.jpg",
+  "content_file": "/data/blogs/content/blog10.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "রাজনীতি",
+  "tag_3": "আইন",
+
+  "prev_blog_id": "blog9",
+  "prev_blog_name": "আলাপ",
+
+  "next_blog_id": "blog11",
+  "next_blog_name": "সাধু সাবধান!"
+}

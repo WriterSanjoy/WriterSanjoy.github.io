@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ব্লগবার্তা — সঞ্জয় মণ্ডল</title>
+    <link rel="icon" type="image/png" href="../images/logoimage.png" sizes="32x32">
+    <meta name="description" content="সঞ্জয় মণ্ডলের ব্লগ — গল্প, প্রতিবেদন, অণুগল্প ও মতামত" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Baloo+Da+2:wght@400;500;600;700&family=Tiro+Bangla:ital@0;1&family=Noto+Serif+Bengali:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600&display=swap"
+      rel="stylesheet" 
+    />
+    
+    <!-- Linking style.css -->
+    <link rel="stylesheet" href="/css/shared.css" />
+    <link rel="stylesheet" href="/css/indexfile.css" />
+    
+  </head>
+  <body>
+    <!-- ════ NAV ════ -->
+    <nav>
+      <!--<a class="nbrand" href="index.html">সঞ্জয় মণ্ডল</a>-->
+      <span class="nbrand" onclick="sp('home')">
+        <img src="images/DarkLogo_Small.png" alt="সঞ্জয় মণ্ডল" class="brand-img" />
+      </span>
+      <ul class="nlinks">
+        <li><a href="index.html">প্রথম পাতা</a></li>
+        <li><a href="index.html">আমার কথা</a></li>
+        <li><a href="blog-list.html" class="act">ব্লগবার্তা</a></li>
+        <li><a href="index.html">বইটই</a></li>
+        <li><a href="published.html">প্রকাশিত</a></li>
+        <!--<li><a href="index.html">গল্পের আসর</a></li>-->
+        <li><a href="index.html">যোগাযোগ</a></li>
+      </ul>
+      <button class="nburg" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
+    </nav>
+    <div class="mmenu" id="mm">
+      <a href="index.html">প্রথম পাতা</a>
+      <a href="index.html">আমার কথা</a>
+      <a href="blog-list.html" class="act">ব্লগবার্তা</a>
+      <a href="index.html">বইটই</a>
+      <a href="published.html">প্রকাশিত</a>
+      <!--<a href="index.html">গল্পের আসর</a>-->
+      <a href="index.html">যোগাযোগ</a>
+    </div>
+
+    <!-- ════ PAGE HEADER ════ -->
+    <div class="phdr">
+      <div class="phdr-row">
+        <div>
+          <h1>ব্লগবার্তা</h1>
+          <p>গল্প · প্রতিবেদন · অণুগল্প · মতামত</p>
+        </div>
+        <div class="post-total" id="post-total-display"></div>
+      </div>
+    </div>
+
+    <!-- ════ MAIN LAYOUT ════ -->
+    <div class="blayout">
+      <!-- ══ LEFT: POST LIST ══ -->
+      <div>
+        <!-- Posts loaded dynamically from data/blogs/*.json -->
+        <div id="blog-list">
+          <div
+            id="loading-state"
+            style="
+              text-align: center;
+              padding: 3rem;
+              font-family: &quot;Hind Siliguri&quot;, sans-serif;
+              color: var(--ink-mu);
+              font-size: 0.95rem;
+            ">
+            ⏳ লেখাগুলো লোড হচ্ছে...
+          </div>
+
+          <!-- Cards injected here by JavaScript -->
+
+          <!-- Pagination — DO NOT EDIT -->
+          <div class="pgn" id="pgn"></div>
+
+          <!-- No results message -->
+          <div class="no-results" id="no-results" style="display: none">এই বিভাগে কোনো লেখা পাওয়া যায়নি।</div>
+        </div>
+        <!-- /blog-list -->
+      </div>
+      <!-- /blog-list -->
+
+      <!-- ══ RIGHT: SIDEBAR ══ -->
+      <div>
+        <aside class="sbar">
+          <!-- Search -->
+          <div class="sblk">
+            <div class="sbhd">🔍 খুঁজুন</div>
+            <div class="sbbd">
+              <div class="bsrch">
+                <input
+                  type="text"
+                  id="bsi"
+                  placeholder="লেখা খুঁজুন..."
+                  onkeydown="if(event.key==='Enter')doSearch()" />
+                <button onclick="doSearch()">→</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent posts — update when you add new posts (keep latest 6-8) -->
+          <div class="sblk">
+            <div class="sbhd">📋 সাম্প্রতিক লেখা</div>
+            <div class="sbbd" id="sidebar-recent">
+              <!-- Filled dynamically from JSON -->
+            </div>
+            <!--
+        <span class="sbpt">ঝলসানো রুটি — আগস্ট ২০২৩</span>
+        <a class="sbpi" href="blogs/blog-002.html"><div class="sbdot"></div><span class="sbpt">প্রতিবাদহীন, — আগস্ট ২০২০</span></a>
+        <a class="sbpi" href="blogs/blog-003.html"><div class="sbdot"></div><span class="sbpt">অদৃশ্য — মে ২০২০</span></a>
+      -->
+          </div>
+
+          <!-- Category filter -->
+          <div class="sblk">
+            <div class="sbhd">🏷 বিভাগ</div>
+            <div class="sbbd">
+              <div class="ctags">
+                <button class="ctag on" onclick="filterCat('all',this)">সব</button>
+                <button class="ctag" onclick="filterCat('প্রতিবেদন',this)">প্রতিবেদন</button>
+                <button class="ctag" onclick="filterCat('ছোটগল্প',this)">ছোটগল্প</button>
+                <button class="ctag" onclick="filterCat('অণুগল্প',this)">অণুগল্প</button>
+                <button class="ctag" onclick="filterCat('বিহ্বল গল্প',this)">বিহ্বল গল্প</button>
+                <button class="ctag" onclick="filterCat('কবিতা',this)">কবিতা</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Archive — update when you add posts in a new month/year -->
+          <div class="sblk">
+            <div class="sbhd">📅 সংগ্রহশালা</div>
+            <div class="sbbd">
+              <!-- Built automatically from JSON data -->
+              <div id="archive-container"></div>
+              <button
+                style="
+                  font-family: &quot;Hind Siliguri&quot;, sans-serif;
+                  font-size: 0.76rem;
+                  color: var(--ink-mu);
+                  background: none;
+                  border: none;
+                  cursor: pointer;
+                  margin-top: 0.5rem;
+                  padding: 0.2rem 0;
+                "
+                onclick="filterCat('all',document.querySelector('.ctag'))">
+                ← সব দেখুন
+              </button>
+            </div>
+          </div>
+
+          <!-- Favourite links -->
+          <div class="sblk">
+            <div class="sbhd">🔗 পছন্দের ব্লগ</div>
+            <div class="sbbd">
+              <a class="sbpi" href="https://www.omicronlab.com/avro-keyboard.html" target="_blank"
+                ><div class="sbdot" style="background: var(--teal)"></div>
+                <span class="sbpt" style="color: var(--teal)">অভ্র হরফ</span></a
+              >
+              <a class="sbpi" href="http://www.galpopath.com/" target="_blank"
+                ><div class="sbdot" style="background: var(--teal)"></div>
+                <span class="sbpt" style="color: var(--teal)">গল্পপাঠ</span></a
+              >
+              <a class="sbpi" href="http://www.sachalayatan.com/" target="_blank"
+                ><div class="sbdot" style="background: var(--teal)"></div>
+                <span class="sbpt" style="color: var(--teal)">সচলায়তন</span></a
+              >
+              <a class="sbpi" href="http://tagoreweb.in/" target="_blank"
+                ><div class="sbdot" style="background: var(--teal)"></div>
+                <span class="sbpt" style="color: var(--teal)">সম্পূর্ণ রবীন্দ্র-রচনাবলী</span></a
+              >
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <!-- /blayout -->
+
+    <!-- ════ SETTINGS ════ -->
+    <!--<div id="settings-btn" onclick="toggleSettings()" title="সেটিংস">⚙</div>-->
+    <div id="settings-overlay" onclick="closeSettings()"></div>
+    <div id="settings-panel">
+      <div class="sp-header"><span>⚙ সেটিংস</span><button onclick="closeSettings()">✕</button></div>
+      <div class="sp-section">
+        <div class="sp-label">🎨 থিম</div>
+        <div class="sp-grid">
+          <button class="theme-btn active" data-theme="classic" onclick="setTheme('classic',this)">📜 ক্লাসিক</button>
+          <button class="theme-btn" data-theme="mint" onclick="setTheme('mint',this)">🌿 মিন্ট</button>
+          <button class="theme-btn" data-theme="teal" onclick="setTheme('teal',this)">🩵 টিল ডার্ক</button>
+          <button class="theme-btn" data-theme="navy" onclick="setTheme('navy',this)">🌊 নেভি</button>
+        </div>
+      </div>
+      <div class="sp-section">
+        <div class="sp-label">✍ ফন্ট</div>
+        <div class="sp-font-list">
+          <button class="font-btn active" data-font="hind" onclick="setFont('hind',this)">
+            <span class="font-preview">বাংলা</span>Hind Siliguri
+          </button>
+          <button class="font-btn" data-font="baloo" onclick="setFont('baloo',this)">
+            <span class="font-preview">বাংলা</span>Baloo Da 2
+          </button>
+          <button class="font-btn" data-font="tiro" onclick="setFont('tiro',this)">
+            <span class="font-preview">বাংলা</span>Tiro Bangla
+          </button>
+          <button class="font-btn" data-font="noto-serif" onclick="setFont('noto-serif',this)">
+            <span class="font-preview">বাংলা</span>Noto Serif
+          </button>
+          <button class="font-btn" data-font="noto-sans" onclick="setFont('noto-sans',this)">
+            <span class="font-preview">বাংলা</span>Noto Sans
+          </button>
+        </div>
+      </div>
+      <div class="sp-section">
+        <div class="sp-label">🔠 লেখার আকার</div>
+        <div class="sp-size-row">
+          <button class="size-btn" onclick="setSize(14)">ছোট</button>
+          <button class="size-btn active" onclick="setSize(16)">স্বাভাবিক</button>
+          <button class="size-btn" onclick="setSize(18)">বড়</button>
+          <button class="size-btn" onclick="setSize(20)">বড়তর</button>
+        </div>
+      </div>
+      <div class="sp-section"><button class="reset-btn" onclick="resetSettings()">↺ ডিফল্টে ফিরুন</button></div>
+    </div>
+
+    <footer>
+      © সঞ্জয় মণ্ডল · সর্বস্বত্ব সংরক্ষিত ·
+      <a href="index.html">প্রথম পাতায় ফিরুন</a>
+    </footer>
+
+    <script>
+      // ════════════════════════════════════════════════════════════════
+      // CONFIGURATION
+      // ════════════════════════════════════════════════════════════════
+
+      // ── List ALL your JSON filenames here — NEWEST FIRST ──
+      // When you add a new blog, add its filename at the TOP of this array
+      const BLOG_JSON_FILES = ["blog23.json", "blog22.json", "blog2.json", "blog1.json"];
+
+      // Usage : files replaces your hard-coded BLOG_JSON_FILES
+      loadBlogIndex().then((files) => {
+        console.log("Newest first:", files);
+      });
+
+      // Path to your JSON files (relative to blog-list.html)
+      const JSON_BASE = "data/blogs/";
+
+      // Posts per page — change freely
+      const POSTS_PER_PAGE = 2;
+
+      // ── Category → CSS class mapping ──
+      const CAT_CLASS = {
+        প্রতিবেদন: "c-rep",
+        ছোটগল্প: "c-sto",
+        অণুগল্প: "c-mic",
+        "বিহ্বল গল্প": "c-bih",
+        কবিতা: "c-poem"
+      };
+
+      // Default icon per category
+      const CAT_ICON = {
+        প্রতিবেদন: "📰",
+        ছোটগল্প: "📖",
+        অণুগল্প: "✍",
+        "বিহ্বল গল্প": "🌿",
+        কবিতা: "🌸"
+      };
+
+      // ════════════════════════════════════════════════════════════════
+      // STATE
+      // ════════════════════════════════════════════════════════════════
+      let allPosts = []; // all loaded post data objects
+      let filtered = []; // after filter/search
+      let currentPage = 1;
+      let currentCat = "all";
+
+      // ════════════════════════════════════════════════════════════════
+      // Load blog index dynamically
+      // ════════════════════════════════════════════════════════════════
+      // Remember : Keep them sorted manually in index.json
+      // insert new blogs at the top each time.
+      async function loadBlogIndex() {
+        try {
+          const res = await fetch("/data/blogs/index.json");
+          if (!res.ok) throw new Error("Index fetch failed: " + res.status);
+          const blogs = await res.json();
+
+          // Preserve order as written in index.json
+          return blogs.map((blog) => blog.blog_id + ".json");
+        } catch (err) {
+          console.error("Error loading index.json:", err);
+          document.getElementById("posts").innerHTML = `<p class="error">⚠️ Could not load blog index.</p>`;
+          return [];
+        }
+      }
+
+      // ════════════════════════════════════════════════════════════════
+      // INIT — fetch index.json, then fetch all blog JSON files
+      // ════════════════════════════════════════════════════════════════
+      async function init() {
+        console.log("Blog init() starting...");
+        const loading = document.getElementById("loading-state");
+        const blogListDiv = document.getElementById("blog-list");
+        console.log("blog-list div:", blogListDiv ? "FOUND" : "NOT FOUND");
+
+        try {
+          // Step 1: Load index.json
+          const BLOG_JSON_FILES = await loadBlogIndex(); // returns ["blog23.json", "blog22.json", ...]
+
+          if (BLOG_JSON_FILES.length === 0) {
+            if (loading) loading.innerHTML = "❌ No blog index found.";
+            return;
+          }
+
+          console.log("Files in order:", BLOG_JSON_FILES);
+
+          // Step 2: Fetch all JSON files in parallel
+          const promises = BLOG_JSON_FILES.map((fname) =>
+            fetch(JSON_BASE + fname)
+              .then((r) => {
+                if (!r.ok) throw new Error(r.status);
+                return r.json();
+              })
+              .catch((err) => {
+                console.warn("Could not load " + fname, err);
+                return null; // keep order, mark failed
+              })
+          );
+
+          const results = await Promise.all(promises);
+
+          // Step 3: Filter out failed fetches, keep order
+          allPosts = results.filter(Boolean);
+          console.log("Posts loaded:", allPosts.length);
+
+          if (loading) loading.style.display = "none";
+
+          // Step 4: Render UI
+          renderSidebarRecent();
+          buildArchive();
+
+          filtered = [...allPosts];
+          updateTotal();
+          renderPage(1);
+        } catch (e) {
+          if (loading) {
+            loading.innerHTML = "❌ ব্লগগুলি দেখানোয় সমস্যা হয়েছে। বর্তমান পৃষ্ঠাটি রিফ্রেশ করতে F5 /Ctrl + F5 চাপুন।";
+          }
+          console.error("Init error:", e);
+        }
+      }
+
+      // ════════════════════════════════════════════════════════════════
+      // BUILD ONE CARD from JSON data
+      // ════════════════════════════════════════════════════════════════
+      function buildCard(post) {
+        const catClass = CAT_CLASS[post.blog_type] || "c-rep";
+        const icon = CAT_ICON[post.blog_type] || "📝";
+        const file = post.content_file
+          ? post.blog_id + ".html" // links to blogs/blog1.html etc.
+          : "#";
+        //const href = 'blogs/' + post.blog_id + '.html';
+        const href = "blog.html/?id=" + post.blog_id; //sanjoy
+
+        // Extract date parts for filtering
+        // blog_date is like "১৬ ফেব্রুয়ারি, ২০১৬"
+        // We'll store original for display and try to parse year/month
+        const dateStr = post.blog_date || "";
+
+        // Build tags
+        const tags = [post.tag_1, post.tag_2, post.tag_3]
+          .filter(Boolean)
+          .map((t) => `<span class="ctag" style="margin-right:.3rem">${t}</span>`)
+          .join("");
+
+        // Build image area
+        const imgHtml = post.blog_image
+          ? `<img src="${post.blog_image}" alt="${post.blog_title}" style="width:100%;height:100%;object-fit:cover"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+          : "";
+        const placeholderStyle = post.blog_image ? "display:none" : "display:flex";
+
+        const div = document.createElement("div");
+        div.className = "bpost";
+        div.dataset.cat = post.blog_type || "";
+        div.dataset.year = extractYear(dateStr);
+        div.dataset.month = extractMonth(dateStr);
+        div.style.display = "none"; // pagination controls visibility
+
+        div.innerHTML = `
+    <div class="bpimg">
+      ${imgHtml}
+      <div class="bpic" style="${placeholderStyle};align-items:center;justify-content:center;font-size:5rem;opacity:.14;position:absolute;inset:0">${icon}</div>
+      <div class="bpil">${post.blog_title}</div>
+    </div>
+    <div class="bpb">
+      <div class="bpm">
+        <span class="bpcat ${catClass}">${post.blog_type || ""}</span>
+        <span class="bpdate">${post.blog_date || ""}</span>
+        ${post.reading_time ? `<span class="bpdate" style="color:var(--ink-mu)">· ${post.reading_time}</span>` : ""}
+      </div>
+      <a class="bptit" href="${href}">${post.blog_title}</a>
+      <div class="bpex" id="excerpt-${post.blog_id}">
+        <p style="color:var(--ink-mu);font-size:.82rem;font-style:italic">লেখা লোড হচ্ছে...</p>
+      </div>
+      ${tags ? `<div style="margin-top:.5rem">${tags}</div>` : ""}
+    </div>
+    <div class="bpf">
+      <a class="rmbtn" href="${href}">সম্পূর্ণ পড়ুন →</a>
+      <div class="pshr">
+        <button class="sbt" onclick="sharePost('${href}','fb')">Facebook</button>
+        <button class="sbt" onclick="sharePost('${href}','tw')">X</button>
+      </div>
+    </div>`;
+
+        // Load excerpt from content_file
+        if (post.content_file) {
+          fetch(post.content_file)
+            .then((r) => r.text())
+            .then((html) => {
+              const excerptEl = document.getElementById("excerpt-" + post.blog_id);
+              if (!excerptEl) return;
+              // Parse HTML and extract first 2 paragraphs as plain text
+              const tmp = document.createElement("div");
+              tmp.innerHTML = html;
+              const paras = tmp.querySelectorAll("p");
+              let excerpt = "";
+              for (let i = 0; i < Math.min(2, paras.length); i++) {
+                const txt = paras[i].textContent.trim();
+                if (txt) excerpt += `<p>${txt.substring(0, 220)}${txt.length > 220 ? "…" : ""}</p>`;
+              }
+              excerptEl.innerHTML = excerpt || "<p></p>";
+            })
+            .catch(() => {
+              const el = document.getElementById("excerpt-" + post.blog_id);
+              if (el) el.innerHTML = "<p></p>";
+            });
+        }
+
+        return div;
+      }
+
+      // ════════════════════════════════════════════════════════════════
+      // DATE HELPERS
+      // ════════════════════════════════════════════════════════════════
+
+      const XXX_MONTH_MAP = {
+        জানুয়ারি: "জানুয়ারি",
+        ফেব্রুয়ারি: "ফেব্রুয়ারি",
+        মার্চ: "মার্চ",
+        এপ্রিল: "এপ্রিল",
+        মে: "মে",
+        জুন: "জুন",
+        জুলাই: "জুলাই",
+        আগস্ট: "আগস্ট",
+        সেপ্টেম্বর: "সেপ্টেম্বর",
+        অক্টোবর: "অক্টোবর",
+        নভেম্বর: "নভেম্বর",
+        ডিসেম্বর: "ডিসেম্বর"
+      };
+
+      const MONTH_MAP = {
+        জানুয়ারি: "জানুয়ারি",
+        জানুয়ারি: "জানুয়ারি",
+        ফেব্রুয়ারি: "ফেব্রুয়ারি",
+        মার্চ: "মার্চ",
+        এপ্রিল: "এপ্রিল",
+        মে: "মে",
+        জুন: "জুন",
+        জুলাই: "জুলাই",
+        আগস্ট: "আগস্ট",
+        অগাস্ট: "আগস্ট",
+        সেপ্টেম্বর: "সেপ্টেম্বর",
+        অক্টোবর: "অক্টোবর",
+        নভেম্বর: "নভেম্বর",
+        ডিসেম্বর: "ডিসেম্বর"
+      };
+
+      function extractYear(dateStr) {
+        // Bengali digits or ASCII — find 4-digit year
+        const m = dateStr.match(/[০-৯]{4}|[0-9]{4}/);
+        return m ? m[0] : "";
+      }
+      function XXX_extractMonth(dateStr) {
+        for (const m of Object.keys(MONTH_MAP)) {
+          if (dateStr.includes(m)) return m;
+        }
+        return "";
+      }
+
+      function extractMonth(dateStr) {
+        for (const m of Object.keys(MONTH_MAP)) {
+          if (dateStr.includes(m)) return MONTH_MAP[m];
+        }
+        return "";
+      }
+
+      // ════════════════════════════════════════════════════════════════
+      // SIDEBAR RECENT + ARCHIVE (built from data)
+      // ════════════════════════════════════════════════════════════════
+      function renderSidebarRecent() {
+        const container = document.getElementById("sidebar-recent");
+        if (!container) return;
+        container.innerHTML = "";
+        const recent = allPosts.slice(0, 4); //sanjoy
+        recent.forEach((post) => {
+          const a = document.createElement("a");
+          a.className = "sbpi";
+          //a.href = 'blogs/' + post.blog_id + '.html';
+          a.href = "blog.html/?id=" + post.blog_id;
+          a.innerHTML = `<div class="sbdot"></div><span class="sbpt">${post.blog_title} — ${post.blog_date}</span>`;
+          container.appendChild(a);
+        });
+      }
+
+      //Helper fuction for buildArchive
+      function normalizeDigits(str) {
+        const bn = "০১২৩৪৫৬৭৮৯";
+        const en = "0123456789";
+        return str
+          .split("")
+          .map((ch) => {
+            const idx = bn.indexOf(ch);
+            return idx >= 0 ? en[idx] : ch;
+          })
+          .join("");
+      }
+
+      function buildArchive() {
+        const tree = {};
+        allPosts.forEach((post) => {
+          const y = extractYear(post.blog_date || "");
+          const m = extractMonth(post.blog_date || "");
+          if (!y || !m) return;
+          if (!tree[y]) tree[y] = {};
+          if (!tree[y][m]) tree[y][m] = 0;
+          tree[y][m]++;
+        });
+
+        const container = document.getElementById("archive-container");
+        if (!container) return;
+        container.innerHTML = "";
+
+        Object.keys(tree)
+          .sort((a, b) => parseInt(normalizeDigits(b)) - parseInt(normalizeDigits(a)))
+          .forEach((year) => {
+            const months = tree[year];
+            const monthsHtml = Object.entries(months)
+              .map(
+                ([m, cnt]) =>
+                  `<div class="archm" onclick="filterMonth('${year}','${m}')">
+                   <span>${m}</span><span class="archc">${toBengaliNum(cnt)}</span>
+                  </div>`
+                )
+                .join("");
+
+            const div = document.createElement("div");
+            div.className = "archyr";
+            div.innerHTML = `
+            <div class="archyh" onclick="toggleArch(this)">
+              <span>${year}</span><span>►</span>
+            </div>
+            <div class="archms">${monthsHtml}</div>`;
+                container.appendChild(div);
+          });
+      }
+
+      // ════════════════════════════════════════════════════════════════
+      // PAGINATION
+      // ════════════════════════════════════════════════════════════════
+      function updateTotal() {
+        const el = document.getElementById("post-total-display");
+        if (el) el.textContent = `মোট ${toBengaliNum(filtered.length)}টি লেখা`;
+      }
+
+      function renderPage(page) {
+        currentPage = page;
+        const container = document.getElementById("blog-list");
+
+        // Remove all existing cards
+        container.querySelectorAll(".bpost").forEach((el) => el.remove());
+
+        // Hide loading
+        const loading = document.getElementById("loading-state");
+        if (loading) loading.style.display = "none";
+
+        const total = filtered.length;
+        const totalPages = Math.ceil(total / POSTS_PER_PAGE);
+        const start = (page - 1) * POSTS_PER_PAGE;
+        const pageItems = filtered.slice(start, start + POSTS_PER_PAGE);
+
+        // Build and inject cards for this page
+        const frag = document.createDocumentFragment();
+        pageItems.forEach((post) => {
+          const card = buildCard(post);
+          card.style.display = "";
+          frag.appendChild(card);
+        });
+        container.insertBefore(frag, document.getElementById("pgn"));
+
+        // No results
+        document.getElementById("no-results").style.display = total === 0 ? "" : "none";
+
+        buildPagination(page, totalPages);
+
+        if (page > 1) window.scrollTo({ top: 120, behavior: "smooth" });
+      }
+
+      function buildPagination(cur, total) {
+        const pgn = document.getElementById("pgn");
+        if (total <= 1) {
+          pgn.innerHTML = "";
+          return;
+        }
+        let html = "";
+        if (cur > 1) html += `<button class="pgb" onclick="renderPage(${cur - 1})">‹</button>`;
+        for (let i = 1; i <= total; i++) {
+          if (i === 1 || i === total || (i >= cur - 1 && i <= cur + 1)) {
+            html += `<button class="pgb${i === cur ? " cur" : ""}" onclick="renderPage(${i})">${toBengaliNum(i)}</button>`;
+          } else if (i === cur - 2 || i === cur + 2) {
+            html += `<button class="pgb pgb-sep">…</button>`;
+          }
+        }
+        if (cur < total) html += `<button class="pgb" onclick="renderPage(${cur + 1})">›</button>`;
+        pgn.innerHTML = html;
+      }
+
+      function toBengaliNum(n) {
+        const bn = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+        return String(n)
+          .split("")
+          .map((d) => bn[parseInt(d)] || d)
+          .join("");
+      }
+
+      // ════════════════════════════════════════════════════════════════
+      // FILTERS
+      // ════════════════════════════════════════════════════════════════
+      function filterCat(cat, btn) {
+        currentCat = cat;
+        document.querySelectorAll(".ctag").forEach((b) => b.classList.remove("on"));
+        if (btn) btn.classList.add("on");
+        applyFilter();
+      }
+
+      function filterMonth(year, month) {
+        document.querySelectorAll(".ctag").forEach((b) => b.classList.remove("on"));
+        currentCat = "all";
+        filtered = allPosts.filter(
+          (p) => extractYear(p.blog_date || "") === year && extractMonth(p.blog_date || "") === month
+        );
+        updateTotal();
+        renderPage(1);
+      }
+
+      function applyFilter() {
+        filtered = currentCat === "all" ? [...allPosts] : allPosts.filter((p) => p.blog_type === currentCat);
+        updateTotal();
+        renderPage(1);
+      }
+
+      // ════════════════════════════════════════════════════════════════
+      // SEARCH
+      // ════════════════════════════════════════════════════════════════
+      function doSearch() {
+        const q = document.getElementById("bsi").value.trim().toLowerCase();
+        if (!q) {
+          applyFilter();
+          return;
+        }
+        filtered = allPosts.filter((p) => {
+          const text = (
+            p.blog_title +
+            " " +
+            (p.blog_type || "") +
+            " " +
+            (p.tag_1 || "") +
+            " " +
+            (p.tag_2 || "") +
+            " " +
+            (p.tag_3 || "")
+          ).toLowerCase();
+          return text.includes(q);
+        });
+        document.querySelectorAll(".ctag").forEach((b) => b.classList.remove("on"));
+        document.querySelectorAll(".ctag")[0].classList.add("on");
+        currentCat = "all";
+        updateTotal();
+        renderPage(1);
+      }
+
+      // ════════════════════════════════════════════════════════════════
+      // ARCHIVE TOGGLE
+      // ════════════════════════════════════════════════════════════════
+      function toggleArch(hd) {
+        const m = hd.nextElementSibling;
+        const a = hd.querySelector("span:last-child");
+
+        if (!m) return;
+
+        m.classList.toggle("open");
+
+        a.textContent = m.classList.contains("open")
+          ? "▼"
+          : "►";
+      }
+
+      // ════════════════════════════════════════════════════════════════
+      // SHARE
+      // ════════════════════════════════════════════════════════════════
+      function sharePost(path, platform) {
+        const url = encodeURIComponent("https://writersanjoy.github.io/" + path);
+        if (platform === "fb") window.open("https://www.facebook.com/sharer/sharer.php?u=" + url, "_blank");
+        if (platform === "tw") window.open("https://twitter.com/intent/tweet?url=" + url, "_blank");
+      }
+
+      // ════════════════════════════════════════════════════════════════
+      // SETTINGS
+      // ════════════════════════════════════════════════════════════════
+      const FONTS = {
+        hind: "'Hind Siliguri',sans-serif",
+        baloo: "'Baloo Da 2',cursive",
+        tiro: "'Tiro Bangla',serif",
+        "noto-serif": "'Noto Serif Bengali',serif",
+        "noto-sans": "'Noto Sans Bengali',sans-serif"
+      };
+      const THEMES = {
+        classic: {
+          "--ink": "#1a1208",
+          "--ink-lt": "#3d3020",
+          "--ink-md": "#6b5a45",
+          "--ink-mu": "#9a8a76",
+          "--paper": "#faf8f4",
+          "--paper-w": "#f5f1e8",
+          "--paper-d": "#ede8de",
+          "--gold": "#b8860b",
+          "--gold-l": "#d4a017",
+          "--gold-p": "#fdf4d8",
+          "--red": "#8b1a1a",
+          "--nav-bg": "#1a1208"
+        },
+        mint: {
+          "--ink": "#0a1f1e",
+          "--ink-lt": "#0f3330",
+          "--ink-md": "#3a7070",
+          "--ink-mu": "#6aaa9a",
+          "--paper": "#f0faf8",
+          "--paper-w": "#e0f5f0",
+          "--paper-d": "#c5e8e2",
+          "--gold": "#0c726d",
+          "--gold-l": "#0f8f88",
+          "--gold-p": "#d4f0ed",
+          "--red": "#0c726d",
+          "--nav-bg": "#0a1f1e"
+        },
+        teal: {
+          "--ink": "#e8f4f3",
+          "--ink-lt": "#c0dcd8",
+          "--ink-md": "#80b0aa",
+          "--ink-mu": "#4a8880",
+          "--paper": "#0c2624",
+          "--paper-w": "#0f302d",
+          "--paper-d": "#133a36",
+          "--gold": "#0c726d",
+          "--gold-l": "#14a098",
+          "--gold-p": "#0f3330",
+          "--red": "#14a098",
+          "--nav-bg": "#08201e"
+        },
+        navy: {
+          "--ink": "#c8b898",
+          "--ink-lt": "#b8a888",
+          "--ink-md": "#8a7a60",
+          "--ink-mu": "#5a4e38",
+          "--paper": "#1a2744",
+          "--paper-w": "#1e2f52",
+          "--paper-d": "#243660",
+          "--gold": "#c8b898",
+          "--gold-l": "#ddd0b0",
+          "--gold-p": "#1e2f52",
+          "--red": "#ddd0b0",
+          "--nav-bg": "#111c33"
+        }
+      };
+      function toggleSettings() {
+        document.getElementById("settings-panel").classList.toggle("open");
+        document.getElementById("settings-overlay").classList.toggle("open");
+      }
+      function closeSettings() {
+        document.getElementById("settings-panel").classList.remove("open");
+        document.getElementById("settings-overlay").classList.remove("open");
+      }
+      function setTheme(n, b) {
+        const t = THEMES[n];
+        if (!t) return;
+        Object.entries(t).forEach(([k, v]) => document.documentElement.style.setProperty(k, v));
+        document.querySelector("nav").style.background = t["--nav-bg"];
+        document.body.style.background = t["--paper"];
+        document.querySelectorAll(".theme-btn").forEach((x) => x.classList.remove("active"));
+        b.classList.add("active");
+        localStorage.setItem("sm-theme", n);
+      }
+      function setFont(n, b) {
+        const f = FONTS[n];
+        if (!f) return;
+        document.body.style.fontFamily = f;
+        document.querySelectorAll(".font-btn").forEach((x) => {
+          x.classList.remove("active");
+          const fp = x.querySelector(".font-preview");
+          if (fp) fp.style.fontFamily = FONTS[x.dataset.font] || f;
+        });
+        b.classList.add("active");
+        localStorage.setItem("sm-font", n);
+      }
+      function setSize(px) {
+        document.documentElement.style.fontSize = px + "px";
+        document.querySelectorAll(".size-btn").forEach((x) => x.classList.remove("active"));
+        event.target.classList.add("active");
+        localStorage.setItem("sm-size", px);
+      }
+      function resetSettings() {
+        ["sm-theme", "sm-font", "sm-size"].forEach((k) => localStorage.removeItem(k));
+        location.reload();
+      }
+      (function () {
+        const t = localStorage.getItem("sm-theme"),
+          f = localStorage.getItem("sm-font"),
+          s = localStorage.getItem("sm-size");
+        if (t) {
+          const b = document.querySelector('.theme-btn[data-theme="' + t + '"]');
+          if (b) setTheme(t, b);
+        }
+        if (f) {
+          const b = document.querySelector('.font-btn[data-font="' + f + '"]');
+          if (b) setFont(f, b);
+        }
+        if (s) document.documentElement.style.fontSize = s + "px";
+        setTimeout(() => {
+          document.querySelectorAll(".font-btn").forEach((b) => {
+            const fp = b.querySelector(".font-preview");
+            if (fp && FONTS[b.dataset.font]) fp.style.fontFamily = FONTS[b.dataset.font];
+          });
+        }, 400);
+      })();
+
+      // Start
+      document.addEventListener("DOMContentLoaded", init);
+    </script>
+  </body>
+</html>

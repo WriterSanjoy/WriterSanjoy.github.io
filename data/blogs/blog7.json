@@ -1,0 +1,20 @@
+{
+  "blog_id": "blog7",
+  "blog_title": "মহিষাসুর 😈",
+  "blog_date": "এপ্রিল ২৫, ২০১৬",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৪ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-007-cover.jpg",
+  "content_file": "/data/blogs/content/blog7.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "রাজনীতি",
+  "tag_3": "আইন",
+
+  "prev_blog_id": "blog6",
+  "prev_blog_name": "নবদিগন্তের অভিমন্যুরা",
+
+  "next_blog_id": "blog8",
+  "next_blog_name": "বিশুদ্ধ বাতাস"
+}

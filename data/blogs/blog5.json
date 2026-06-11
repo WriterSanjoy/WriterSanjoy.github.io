@@ -1,0 +1,19 @@
+{
+  "blog_id": "blog5",
+  "blog_title": "বোতলবন্দী 🍾",
+  "blog_date": "১৫ মে, ২০১৬",
+  "blog_type": "প্রতিবেদন",
+  "reading_time": "৪ মিনিট",
+
+  "blog_image": "/images/blogimages/blog-005-cover.jpg",
+  "content_file": "/data/blogs/content/blog5.html",
+
+  "tag_1": "সমাজ",
+  "tag_2": "রাজনীতি",
+
+  "prev_blog_id": "blog4",
+  "prev_blog_name": "প্রদীপের নীচে ‘আলো’",
+
+  "next_blog_id": "blog6",
+  "next_blog_name": "নবদিগন্তের অভিমন্যুরা"
+}
