@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "name": "Me Sanjoy",
+    "comment": "Good but not agreed",
+    "rating": 2,
+    "approved": false,
+    "likes": 0,
+    "authorReply": "অনেক ধন্যবাদ। আপনার মতামত আমার কাছে মূল্যবান।",
+    "date": "2026-06-12T07:02:37.766Z"
+  }
+]
