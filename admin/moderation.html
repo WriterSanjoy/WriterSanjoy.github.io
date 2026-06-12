@@ -44,6 +44,45 @@ h1{
   margin-bottom:1rem;
 }
 
+.comment-body{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:1rem;
+  margin-bottom:1rem;
+}
+
+.comment-body .comment-text{
+  flex:1;
+  margin-bottom:0;
+}
+
+.comment-rating{
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.25rem;
+  background:rgba(255,255,255,.06);
+  border-radius:10px;
+  padding:.5rem .75rem;
+  min-width:60px;
+}
+
+.rating-stars{
+  color:#f5a623;
+  font-size:1.1rem;
+  letter-spacing:1px;
+  line-height:1;
+}
+
+.rating-label{
+  font-size:.68rem;
+  color:rgba(255,255,255,.4);
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
 .admin-actions{
   display:flex;
   gap:.8rem;
@@ -198,8 +237,15 @@ async function loadPendingComments(){
           ${item.name}
         </div>
 
-        <div class="comment-text">
-          ${item.comment}
+        <div class="comment-body">
+          <div class="comment-text">
+            ${item.comment}
+          </div>
+          ${item.rating ? `
+          <div class="comment-rating">
+            <div class="rating-stars">${'★'.repeat(Math.min(5,parseInt(item.rating)))}${'☆'.repeat(Math.max(0,5-Math.min(5,parseInt(item.rating))))}</div>
+            <div class="rating-label">Rating</div>
+          </div>` : ''}
         </div>
 
         <div class="admin-actions">
